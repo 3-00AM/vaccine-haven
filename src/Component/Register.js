@@ -5,8 +5,8 @@ class Register extends Component {
   render() {
     return (
       <div className="hero fullscreen">
-        <div className="hero-body">
-          <div style="margin: auto">
+        <div className="content">
+          <div style={{margin: "auto"}}>
             <form className="frame p-0" method="post">
               <div className="frame__body p-0">
                 <div className="row p-0 level fill-height">
@@ -15,24 +15,35 @@ class Register extends Component {
                     <div className="padded">
                       <h1 className="u-text-center u-font-alt">Contact Us</h1>
                       <div className="divider" />
-                      <p className="u-text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                   eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                      <p className="u-text-center">Get the user information for who want to reserve the vaccine</p>
                       <div className="divider" />
 
-                      <div className="form-group">
-                        <label className="form-group-label">
-                                                <span className="icon">
-                                                    <i className="fa-wrapper far fa-user" />
-                                                </span>
-                        </label>
-                        <input type="text" className="form-group-input" placeholder="Enter your name" />
+                      <div className="form-section section-inline">
+                        <div className="section-body row">
+                          <div className="form-group col-6 pl-0">
+                            <label className="form-group-label">
+                              <span className="icon">
+                                <i className="fa-wrapper far fa-user" />
+                              </span>
+                            </label>
+                            <input type="text" autoComplete="name" className="form-group-input" placeholder="Enter your name" />
+                          </div>
+                          <div className="form-group col-6 pr-0">
+                            <label className="form-group-label">
+                              <span className="icon">
+                                <i className="fa-wrapper far fa-user" />
+                              </span>
+                            </label>
+                            <input type="text" autoComplete="surname" className="form-group-input" placeholder="Enter your surname" />
+                          </div>
+                        </div>
                       </div>
 
                       <div className="form-group">
                         <label className="form-group-label">
-                                                <span className="icon">
-                                                    <i className="fa-wrapper far fa-envelope" />
-                                                </span>
+                          <span className="icon">
+                            <i className="fa-wrapper far fa-envelope" />
+                          </span>
                         </label>
                         <input type="email" className="form-group-input" placeholder="Enter your email" />
                       </div>
@@ -41,18 +52,18 @@ class Register extends Component {
                         <div className="section-body row">
                           <div className="form-group col-6 pl-0">
                             <label className="form-group-label">
-                                                        <span className="icon">
-                                                            <i className="fa-wrapper far fa-calendar" />
-                                                        </span>
+                              <span className="icon">
+                                <i className="fa-wrapper far fa-calendar" />
+                              </span>
                             </label>
                             <input type="date" className="form-group-input"
                                    placeholder="Enter your birthday (or not)" />
                           </div>
                           <div className="form-group col-6 pr-0">
                             <label className="form-group-label">
-                                                        <span className="icon">
-                                                            <i className="fa-wrapper fas fa-list" />
-                                                        </span>
+                              <span className="icon">
+                                <i className="fa-wrapper fas fa-list" />
+                              </span>
                             </label>
                             <select className="select form-group-input" placeholder="Choose one">
                               <option>Bug Report</option>
