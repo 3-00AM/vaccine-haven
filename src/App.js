@@ -5,6 +5,7 @@ import React, {Component} from "react";
 
 import Navbar from './Navbar';
 import history from "./history";
+import Routes from './Routes';
 
 let lastScrollY = 0;
 let ticking = false;
@@ -26,7 +27,7 @@ class App extends Component {
 
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        // this.nav.current.style.top = `${lastScrollY}px`;
+        this.nav.current.style.top = `${lastScrollY}px`;
         ticking = false;
       });
 
@@ -38,6 +39,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
+        <Routes />
         <section id={'splash'}>
           <div id="splash-img" className="hero fullscreen hero-img parallax-img">
             <div className="hero-body">
@@ -47,14 +49,15 @@ class App extends Component {
               </div>
             </div>
           </div>
-          <div className="transition transition--visible"/>
+          <div className="transition transition--visible" />
         </section>
         <div className="p-3">
           <section className="py-1">
             <div className="hero bg-indigo-100 u-round">
               <div className="hero-body">
                 <div className="px-3 w-100">
-                  <div className="u-flex u-justify-space-between u-items-center animated fadeIn" onScroll={this.handleScroll()}>
+                  <div className="u-flex u-justify-space-between u-items-center animated fadeIn"
+                       onScroll={this.handleScroll()}>
                     <div>
                       <h2 className="title level-left">Vaccine Registration</h2><h5
                       className="subtitle text-gray-500 level-left">For reserve vaccine.</h5>

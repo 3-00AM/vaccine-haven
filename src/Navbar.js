@@ -9,9 +9,9 @@ function Navbar() {
           <a><h6 className="title white">Vaccine Haven</h6></a>
         </div>
         <div className="nav-item nav-btn" id="header-btn">
-          <span/>
-          <span/>
-          <span/>
+          <span />
+          <span />
+          <span />
         </div>
       </div>
       <div className="header-nav" id="header-menu">
