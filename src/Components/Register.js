@@ -7,8 +7,8 @@ function Register() {
 
   const url = "https://wcg-apis.herokuapp.com/registration"
   const [data, setData] = useState({
-    name: "",
-    surname: "",
+    firstname: "",
+    lastname: "",
     citizen_id: "",
     birthdate: "",
     occupation: "",
@@ -20,8 +20,8 @@ function Register() {
     Axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
     Axios.defaults.headers.post['Content-Type'] = 'application/json';
     Axios.post(url, {
-      name: data.name,
-      surname: data.surname,
+      name: data.firstname,
+      surname: data.lastname,
       citizen_id: parseInt(data.citizen_id),
       birth_date: data.birthdate,
       occupation: data.occupation,
@@ -65,7 +65,7 @@ function Register() {
                                 <i className="fa-wrapper far fa-user" />
                               </span>
                           </label>
-                          <input onChange={(event => handle(event))} type="text" id="name" value={data.name}
+                          <input onChange={(event => handle(event))} type="text" id="firstname" value={data.firstname}
                                  className="form-group-input"
                                  placeholder="Enter your name" />
                         </div>
@@ -75,7 +75,7 @@ function Register() {
                                 <i className="fa-wrapper far fa-user" />
                               </span>
                           </label>
-                          <input onChange={(event => handle(event))} type="text" id="surname" value={data.surname}
+                          <input onChange={(event => handle(event))} type="text" id="lastname" value={data.lastname}
                                  className="form-group-input"
                                  placeholder="Enter your surname" />
                         </div>
