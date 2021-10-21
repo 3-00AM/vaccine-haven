@@ -15,11 +15,11 @@ function Register() {
     address: ""
   })
 
-  function submit(event) {
+  async function submit(event) {
     event.preventDefault();
     Axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
     Axios.defaults.headers.post['Content-Type'] = 'application/json';
-    Axios.post(url, {
+    await Axios.post(url, {
       name: data.firstname,
       surname: data.lastname,
       citizen_id: parseInt(data.citizen_id),
@@ -46,7 +46,7 @@ function Register() {
     <div className="hero fullscreen">
       <div className="content">
         <div style={{margin: "auto"}}>
-          <form className="frame p-0" method="post" autocomplete="on" onSubmit={(event) => submit(event)}>
+          <form className="frame p-0" method="post" autoComplete="on" onSubmit={(event) => submit(event)}>
             <div className="frame__body p-0">
               <div className="row p-0 level fill-height">
                 <div className="col">
