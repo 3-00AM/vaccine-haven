@@ -19,7 +19,8 @@ class Home extends Component {
             <div className="hero-body">
               <div className="content u-text-center">
                 <h1 className="uppercase white title" data-aos="zoom-in" data-aos-duration="1000">Vaccine Haven</h1>
-                <h3 className="uppercase white sub-title faded" data-aos="zoom-in" data-aos-duration="1200">Vaccine for everyone</h3>
+                <h3 className="uppercase white sub-title faded" data-aos="zoom-in" data-aos-duration="1200">Vaccine for
+                                                                                                            everyone</h3>
               </div>
             </div>
           </div>

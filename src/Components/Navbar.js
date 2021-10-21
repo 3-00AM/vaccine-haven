@@ -3,7 +3,8 @@ import 'cirrus-ui';
 
 function Navbar() {
   return (
-    <div className="header unselectable header-animated doc-header  header-clear header-landing" style={{position: "absolute"}}>
+    <div className="header unselectable header-animated doc-header  header-clear header-landing"
+         style={{position: "absolute"}}>
       <div className="header-brand">
         <div className="nav-item no-hover">
           <a><h6 className="title white">Vaccine Haven</h6></a>
