@@ -1,32 +1,16 @@
 import "cirrus-ui";
 import React, {useState} from "react";
 import Axios from "axios";
-import handle from "./Register";
 
 function Reserve() {
 
-  const url = "https://wcg-apis.herokuapp.com/reservation"
+  const base_url = "https://wcg-apis.herokuapp.com/reservation"
+
   const [data, setData] = useState({
     citizen_id: "",
     site_name: "",
     vaccine_name: ""
   })
-
-  function submit(event) {
-    event.preventDefault();
-    Axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-    Axios.defaults.headers.post['Content-Type'] = 'application/json';
-    Axios.post(url, {
-      citizen_id: parseInt(data.citizen_id),
-      site_name: data.site_name,
-      vaccine_name: data.vaccine_name
-    }).then(res => {
-      console.log(res.data)
-      console.log(url)
-    }).catch(error => {
-      console.log(error);
-    });
-  }
 
   function handle(event) {
     const newData = {...data}
@@ -35,12 +19,32 @@ function Reserve() {
     console.log(newData)
   }
 
+  async function submit(event) {
+    event.preventDefault();
+
+    const config = {
+      method: 'post',
+      url: `${base_url}?citizen_id=${data.citizen_id}&site_name=${data.site_name}&vaccine_name=${data.vaccine_name}`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      }
+    };
+
+    await Axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
 
   return (
     <div className="hero fullscreen">
       <div className="content">
         <div style={{margin: "auto"}}>
-          <form className="frame p-0" method="post" autocomplete="on" onSubmit={(event) => submit(event)}>
+          <form className="frame p-0" method="post" autoComplete="on" onSubmit={(event) => submit(event)}>
             <div className="frame__body p-0">
               <div className="row p-0 level fill-height">
                 <div className="col">
@@ -71,8 +75,8 @@ function Reserve() {
                           </label>
                           <select onChange={(event => handle(event))} className="select form-group-input" id="site_name"
                                   value={data.site_name} placeholder="Choose site">
-                            <option>Choose Site...</option>
-                            <option>OGYH Site</option>
+                            <option value="" disabled defaultValue>Choose Site...</option>
+                            <option value="OGYHSite" >OGYHSite</option>
                           </select>
                         </div>
                         <div className="form-group col-6 pr-0">
@@ -83,11 +87,11 @@ function Reserve() {
                           </label>
                           <select onChange={(event => handle(event))} className="select form-group-input"
                                   id="vaccine_name" value={data.vaccine_name} placeholder="Choose vaccine">
-                            <option>Choose Vaccine...</option>
-                            <option>Pfizer</option>
-                            <option>Astra</option>
-                            <option>Sinofarm</option>
-                            <option>Sinovac</option>
+                            <option value="" disabled defaultValue>Choose Vaccine...</option>
+                            <option value="Pfizer">Pfizer</option>
+                            <option value="Astra">Astra</option>
+                            <option value="Sinopharm">Sinopharm</option>
+                            <option value="Sinovac">Sinovac</option>
                           </select>
                         </div>
                       </div>

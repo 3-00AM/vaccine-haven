@@ -5,7 +5,8 @@ import {Link} from "react-router-dom";
 
 function Register() {
 
-  const url = "https://wcg-apis.herokuapp.com/registration"
+  const base_url = 'https://wcg-apis.herokuapp.com/registration';
+
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
@@ -15,25 +16,6 @@ function Register() {
     address: ""
   })
 
-  async function submit(event) {
-    event.preventDefault();
-    Axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-    Axios.defaults.headers.post['Content-Type'] = 'application/json';
-    await Axios.post(url, {
-      name: data.firstname,
-      surname: data.lastname,
-      citizen_id: parseInt(data.citizen_id),
-      birth_date: data.birthdate,
-      occupation: data.occupation,
-      address: data.address
-    }).then(res => {
-      console.log(res.data)
-      console.log(url)
-    }).catch(error => {
-      console.log(error);
-    });
-  }
-
   function handle(event) {
     const newData = {...data}
     newData[event.target.id] = event.target.value
@@ -41,6 +23,24 @@ function Register() {
     console.log(newData)
   }
 
+  async function submit(event) {
+    event.preventDefault();
+    const config = {
+      method: 'post',
+      url: `${base_url}?name=${data.firstname}&surname=${data.lastname}&citizen_id=${data.citizen_id}&birth_date=${data.birthdate}&occupation=${data.occupation}&address=${data.address}`,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      }
+    };
+
+    await Axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   return (
     <div className="hero fullscreen">
@@ -112,10 +112,6 @@ function Register() {
                           </label>
                           <input onChange={(event => handle(event))} type="text" id="occupation" value={data.occupation}
                                  className="form-group-input" placeholder="Enter your occupation" />
-                          {/*<select onChange={(event => handle(event))} className="select form-group-input" id="priority" value={data.priority} placeholder="Choose one">*/}
-                          {/*  <option>High Priority</option>*/}
-                          {/*  <option>Normal Priority</option>*/}
-                          {/*</select>*/}
                         </div>
                       </div>
                     </div>
