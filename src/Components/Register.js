@@ -174,9 +174,9 @@ function Register() {
                     <div className="space" />
 
                     <div className="btn-group u-pull-right">
-                      {/*<Link to="/reservation">*/}
+                      <Link to="/">
                       <button onClick={modal ? close : open} className="btn-info" type="submit">Next</button>
-                      {/*</Link>*/}
+                      </Link>
                     </div>
 
                     {modal && <Modal title="VaccineHaven" topic="Register Vaccine" close={close}>
