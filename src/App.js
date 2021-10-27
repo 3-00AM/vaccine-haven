@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "cirrus-ui";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, {Component} from "react";
+
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Register from "./Components/Register";
+import Home from "./Components/Home";
+import Reserve from "./Components/Reserve";
+
+class App extends Component {
+
+  componentDidMount() {
+  }
+
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />,
+          <Route path="/register" component={Register} />
+          <Route path="/reservation" component={Reserve} />
+        </Switch>
+      </Router>
+    )
+  }
 }
 
 export default App;
