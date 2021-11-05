@@ -1,10 +1,12 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import 'cirrus-ui';
+
 
 function Navbar() {
   return (
     <div className="header unselectable header-animated doc-header  header-clear header-landing"
-         style={{position: "absolute"}}>
+        style={{position: "absolute"}}>
       <div className="header-brand">
         <div className="nav-item no-hover">
           <a><h6 className="title white">Vaccine Haven</h6></a>
@@ -18,16 +20,16 @@ function Navbar() {
       <div className="header-nav" id="header-menu">
         <div className="nav-right">
           <div className="nav-item active">
-            <a className="white" href="#">My Booking</a>
+            <Link className="white" to="/my_booking">My Booking</Link>
           </div>
           <div className="nav-item">
-            <a className="white" href="#">Insite</a>
+            <Link className="white" to="#">Insite</Link>
           </div>
           <div className="nav-item">
-            <a className="white" href="#">Walk-in</a>
+            <Link className="white" to="#">Walk-in</Link>
           </div>
           <div className="nav-item">
-            <a className="white" href="#">Contact</a>
+            <Link className="white" to="#">Contact</Link>
           </div>
         </div>
       </div>
