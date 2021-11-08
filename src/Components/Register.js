@@ -72,11 +72,12 @@ function Register() {
                         <div className="input-control">
                           <input type="number"
                                  className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.citizen_id && "text-danger input-error"}`}
-                                 placeholder="Citizen ID" {...register("citizen_id", {
-                            required: "Citizen ID is required",
-                            minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
-                            maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'}
-                          })} onKeyUp={() => {
+                                 placeholder="Citizen ID"
+                                 {...register("citizen_id", {
+                                   required: "Citizen ID is required",
+                                   minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
+                                   maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'}
+                                 })} onKeyUp={() => {
                             trigger("citizen_id");
                           }} />
                           <span className="icon icon-left"><i
@@ -95,7 +96,8 @@ function Register() {
                             <input
                               className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.firstname && "text-danger input-error"}`}
                               type="text"
-                              placeholder="Firstname" {...register("firstname", {required: "Firstname is required."})}
+                              placeholder="Firstname"
+                              {...register("firstname", {required: "Firstname is required."})}
                               onKeyUp={() => {
                                 trigger("firstname");
                               }} />
@@ -112,7 +114,8 @@ function Register() {
                             <input
                               className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.lastname && "text-danger input-error"}`}
                               type="text"
-                              placeholder="Lastname" {...register("lastname", {required: "Lastname is required."})}
+                              placeholder="Lastname"
+                              {...register("lastname", {required: "Lastname is required."})}
                               onKeyUp={() => {
                                 trigger("lastname");
                               }} />
@@ -130,7 +133,8 @@ function Register() {
                         <div className="input-control">
                           <input type="date"
                                  className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.birthdate && "text-danger input-error"}`}
-                                 placeholder="Birthdate" {...register("birthdate", {required: "Birthdate is required."})}
+                                 placeholder="Birthdate"
+                                 {...register("birthdate", {required: "Birthdate is required."})}
                                  onKeyUp={() => {
                                    trigger("birthdate");
                                  }} />
@@ -146,7 +150,8 @@ function Register() {
                         <div className="input-control">
                           <input type="text"
                                  className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.occupation && "text-danger input-error"}`}
-                                 placeholder="Occupation" {...register("occupation", {required: "Occupation is required."})}
+                                 placeholder="Occupation"
+                                 {...register("occupation", {required: "Occupation is required."})}
                                  onKeyUp={() => {
                                    trigger("occupation");
                                  }} />
@@ -161,7 +166,8 @@ function Register() {
                     <div className="mb-1">
                       <label className="font-bold">Address <span className="required">*</span></label>
                       <textarea className={`form-group-input ${errors.address && "text-danger input-error"}`}
-                                placeholder="Enter your address here" {...register("address", {required: "Address is required."})}
+                                placeholder="Enter your address here"
+                                {...register("address", {required: "Address is required."})}
                                 onKeyUp={() => {
                                   trigger("address");
                                 }} />
@@ -175,10 +181,6 @@ function Register() {
                               type="submit">Next
                       </button>
                     </div>
-
-                    {/*{modal && <Modal title="VaccineHaven" topic="Register Vaccine" close={close}>*/}
-                    {/*  This is Modal content*/}
-                    {/*</Modal>}*/}
 
                   </div>
                   <div className="space xlarge" />
