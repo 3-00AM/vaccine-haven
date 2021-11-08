@@ -2,7 +2,7 @@ import "cirrus-ui";
 import React from "react";
 import Axios from "axios";
 import {useForm} from 'react-hook-form';
-import {Link, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 function Register() {
 
