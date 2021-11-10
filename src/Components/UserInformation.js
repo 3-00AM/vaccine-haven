@@ -5,24 +5,11 @@ import { useForm } from 'react-hook-form';
 import 'cirrus-ui';
 import Navbar from "./Navbar";
 import { useParams } from 'react-router';
+import axios from 'axios';
 
-function UserInformation() {
-  // const { state } = this.props.location.state;
+function UserInformation(props) {
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const [reserveStatus, setReserveStatus] = useState(false);
-  const [displayInfo, setDisplayInfo] = useState(false);
-
-  const { citizen_id } = useParams();
-  const [data, setData] = useState([]);
-
-  // const [id, setId] = useState('');
-  // const [firstName, setFirstName] = useState('');
-  // const [birthDate, setBirthDate] = useState('');
-  // const [address, setAddress] = useState('');
-  // const [occupation, setOccupation] = useState('');
-  // const [reservation, setReservation] = useState('');
-  // const [surName, setSurName] = useState('');
+  const data = props.location.state
   const base_url = 'https://wcg-apis.herokuapp.com';
 
   const config = {
@@ -32,98 +19,151 @@ function UserInformation() {
       'Access-Control-Allow-Origin': '*',
     }
   };
-  console.log(citizen_id);
+  console.log(data.citizen_id);
 
+  const reserveInfo = async () => {
+    console.log('data');
+    // config.url = `${base_url}/reservation`
+    // Axios(config)
+    //   .then(function (response) {
+    //     // console.log(response.data.citizen_id);
+    //     const info = response.data;
+    //     console.log('data');
+    //     console.log(info);
+    //     // console.log(data.address);
+    //     // wait for gov and change this (can't find registered person)
+    //     // if (data.feedback === "cannot find this person") {
+    //     //     console.log('false');
+    //     //     setDisplayInfo(false)
+    //     //     // setCitizen_id('')
+    //     // }
+    //     // else {
 
-  const userInfo = async () => {
-    config.url = `${base_url}/registration/${citizen_id}`
-    console.log("ci" + citizen_id);
-    await Axios(config)
-      .then(function (response) {
-        if (response.data.feedback === "cannot find this person") {
-          console.log('false');
-          setDisplayInfo(false)
-        }
-        else {
-          console.log(response.data);
-          setData(response.data);
-          console.log(data);
-
-          // if (data.vaccine_taken === null){
-          // setReservation('Not reservation yet')
-          // }
-          // else{
-          // setReservation(data.vaccine_taken);
-          // }
-          console.log(data.address)
-        }
-
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    //     // }
+    //   })
   };
-  userInfo();
 
-  console.log(errors);
-
-  // const reserveInfo = async () => {
-  //     config.url = `${base_url}/reservation`
-  //     Axios(config)
-  //         .then(function (response) {
-  //             // console.log(response.data.citizen_id);
-  //             const info = response.data;
-  //             console.log('data');
-  //             console.log(info);
-  //             // console.log(data.address);
-  //             // wait for gov and change this (can't find registered person)
-  //             // if (data.feedback === "cannot find this person") {
-  //             //     console.log('false');
-  //             //     setDisplayInfo(false)
-  //             //     // setCitizen_id('')
-  //             // }
-  //             // else {
-
-  //             // }
-  //         })
-  // };
+  setInterval(() => {
+    reserveInfo();
+    console.log("interval")
+  }, 10000);
 
   return (
-    <div className="Info">
-      {/* <Navbar/> */}
-      <div class="px-15 py-2 mx-5">
+    <div className="fullscreen bg-indigo-200">
+      <Navbar />
+      <div class="px-1 py-6 mx-2">
         <div class='row'>
           <div class='col-6'>
             <div class="card">
               <div class="card__header">
                 <p class="font-bold px-3">User information:</p>
               </div>
-              <div class='content'>
-                <p>Name: {data.name} {data.surname}</p>
-                <p>Citizen ID: {data.citizen_id}</p>
-                <p>Birth day: {data.birth_date}</p>
-                <p>Occupation: {data.occupation}</p>
-                <p>Address: {data.address}</p>
-              </div>
               <div class='card__footer level content'>
               </div>
+              <div class='content'>
+                <div class='row'>
+                  <div class='col-5'>
+                    <span>Name: </span>
+                  </div>
+                  <div class='col-7'>
+                    <span>{data.name} {data.surname}</span>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-5'>
+                    <span>Citizen ID: </span>
+                  </div>
+                  <div class='col-7'>
+                    <span>{data.citizen_id}</span>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-5'>
+                    <span>Birth day: </span>
+                  </div>
+                  <div class='col-7'>
+                    <span>{data.birth_date}</span>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-5'>
+                    <span>Occupation: </span>
+                  </div>
+                  <div class='col-7'>
+                    <span>{data.occupation}</span>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-5'>
+                    <span>Address: </span>
+                  </div>
+                  <div class='col-7'>
+                    <span>{data.address}</span>
+                  </div>
+                </div>
+              </div>
+              {/* <div class='card__footer level content'>
+              </div> */}
             </div>
           </div>
-          <div class='col-6'>
-            <div class='card'>
-              <div class='card__header'>
-                <p class="font-bold px-3">Vaccine Reservation Information:</p>
+          {/* <div class='col-6'> */}
+          <div class='row col'>
+            <div class='grid-r-8'>
+              <div class='card'>
+                <div class='card__header'>
+                  <p class="font-bold px-3">Vaccine Reservation Information:</p>
+                </div>
+                <div class='content'>
+                  <div class='row'>
+                    <div class='col-5'>
+                      <span>Vaccine: </span>
+                    </div>
+                    <div class='col-7'>
+                      <span>Sinopharm</span>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-5'>
+                      <span>Stie name: </span>
+                    </div>
+                    <div class='col-7'>
+                      <span>OGYH</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class='content'>
-                <p>Vaccine: </p>
-              </div>
-              <div class='card__footer level content'>
+            </div>
+            <div class='grid-r-6'>
+              <div class='card'>
+                <div class='card__header'>
+                  <p class="font-bold px-3">Vaccine Taken:</p>
+                </div>
+                <div class='card__footer level content'>
+                </div>
+                <div class='content'>
+                <div class='row'>
+                    <div class='col-5'>
+                      <span>AstraZeneca: </span>
+                    </div>
+                    <div class='col-7'>
+                      <span>1</span>
+                    </div>
+                  </div>
+                  <div class='row'>
+                    <div class='col-5'>
+                      <span>Sinopharm: </span>
+                    </div>
+                    <div class='col-7'>
+                      <span>1</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <Cancel citizen_id={data.citizen_id} />
       </div>
-      <Cancel citizen_id={citizen_id} />
     </div >
   );
 }
