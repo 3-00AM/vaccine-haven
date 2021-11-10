@@ -34,12 +34,12 @@ function Booking() {
 
         await Axios(config)
             .then(function (response) {
-                data = JSON.stringify(response.data)
+                data = response.data
                 console.log('data');
                 console.log(data);
                 console.log(data.address);
                 // wait for gov and change this (can't find registered person)
-                if(data.feedback === "cannot find this person") {
+                if(data.status === "Something about unfound from gov") {
                     setDisplayInfo(false)
                     setCitizen_id('')
                 }
@@ -51,6 +51,8 @@ function Booking() {
                 
             })
             .catch(function (error) {
+                setDisplayInfo(false)
+                setCitizen_id('')
                 console.log(error);
             });
     };
