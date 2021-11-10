@@ -3,6 +3,8 @@ import { useState } from 'react';
 import Axios from "axios";
 import { useForm } from 'react-hook-form';
 import UserInformation from './UserInformation';
+import {Link, useHistory} from "react-router-dom";
+import 'cirrus-ui';
 
 function Booking() {
     // const fetchUserInfo = async (citizen_id) => {
@@ -16,6 +18,7 @@ function Booking() {
 
     const [displayInfo, setDisplayInfo] = useState(false)
     const [citizen_id, setCitizen_id] = useState('')
+    let history = useHistory();
 
     const config = {
         method: 'get',
@@ -29,12 +32,12 @@ function Booking() {
         event.preventDefault();
 
         config.url = `${base_url}/registration/${data.citizen_id}`
-        console.log(data)
+        console.log(data.citizen_id)
         console.log(event)
 
         await Axios(config)
             .then(function (response) {
-                data = JSON.stringify(response.data)
+                data = response.data;
                 console.log('data');
                 console.log(data);
                 console.log(data.address);
@@ -47,6 +50,7 @@ function Booking() {
                     setDisplayInfo(true)
                     setCitizen_id(data.citizen_id)
                     console.log("citizen-id" + data["citizen_id"])
+                    history.push(`/queue/${data.citizen_id}`)
                 }
                 
             })
@@ -93,8 +97,7 @@ function Booking() {
                     {errors.citizen_id?.type === 'maxLength' &&
                         <span className="required info">Citizen ID must be at most 13 characters long</span>}
                 </div>
-
-                <button className="btn-success" type="submit">Submit</button>
+                    <button className="btn-success" type="submit">Submit</button>
             </form>
             { displayInfo &&  <UserInformation citizen_id={citizen_id}/>}
         </div>
