@@ -2,12 +2,15 @@ import "cirrus-ui";
 import React, {useState} from "react";
 import Axios from "axios";
 import {useForm} from "react-hook-form";
+import {Link, useHistory} from "react-router-dom";
 
 function Reserve() {
 
-  const {register, handleSubmit, formState: {errors}} = useForm();
+  const {register, handleSubmit, trigger, setError, formState: {errors, isValid}} = useForm();
 
   const base_url = 'https://wcg-apis.herokuapp.com/reservation';
+
+  let history = useHistory();
 
   const config = {
     method: 'post',
@@ -17,6 +20,11 @@ function Reserve() {
     }
   };
 
+  const onError = (errors, e) => {
+    console.log(errors, e)
+    console.log(isValid)
+  };
+
   const onSubmit = async (data, event) => {
     event.preventDefault();
 
@@ -24,20 +32,33 @@ function Reserve() {
 
     await Axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        let res_data = response.data;
+        let feedback = res_data.feedback;
+        if (feedback === "reservation success!") {
+          history.push("/");
+        } else if (feedback === "reservation failed: citizen ID is not registered") {
+          setError("citizen_id", {
+            type: "manual",
+            message: "This Citizen ID is not registered."
+          })
+        } else if (feedback === "reservation failed: there is already a reservation for this citizen") {
+          setError("citizen_id", {
+            type: "manual",
+            message: "This Citizen ID already reserved."
+          })
+        }
       })
       .catch(function (error) {
         console.log(error);
       });
   };
-  console.log(errors);
 
 
   return (
     <div className="hero fullscreen">
       <div className="content">
         <div style={{margin: "auto"}}>
-          <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
+          <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit, onError)}>
             <div className="frame__body p-0">
               <div className="row p-0 level fill-height">
                 <div className="col">
@@ -55,55 +76,61 @@ function Reserve() {
                         <div className="input-control">
                           <input type="number"
                                  className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.citizen_id && "text-danger input-error"}`}
-                                 placeholder="Citizen ID" {...register("citizen_id", {
-                            required: true,
-                            minLength: 13,
-                            maxLength: 13
-                          })} />
+                                 placeholder="Citizen ID"
+                                 {...register("citizen_id", {
+                                   required: "Citizen ID is required",
+                                   minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
+                                   maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'}
+                                 })} onKeyUp={() => {
+                            trigger("citizen_id");
+                          }} />
                           <span className="icon icon-left"><i
                             className={`fa fa-wrapper fa-id-card ${errors.citizen_id && "text-danger input-error"}`}
                             aria-hidden="true" /></span>
                         </div>
                       </div>
-                      {errors.citizen_id?.type === 'required' &&
-                      <span className="required info">Citizen ID is required.</span>}
-                      {errors.citizen_id?.type === 'minLength' &&
-                      <span className="required info">Citizen ID must be at least 13 characters long</span>}
-                      {errors.citizen_id?.type === 'maxLength' &&
-                      <span className="required info">Citizen ID must be at most 13 characters long</span>}
+                      {errors.citizen_id && <span className="required info">{errors.citizen_id.message}</span>}
                     </div>
 
                     <div className="row">
                       <div className="mb-1 col-6 pl-0">
                         <label className="font-bold">Choose Site <span className="required">*</span></label>
                         <select className="select"
-                                placeholder="Choose Site" {...register("site_name", {required: true})}>
-                          <option value="" disabled defaultValue>Choose Site...</option>
+                                placeholder="Choose Site"
+                                {...register("site_name", {required: "Site Name is required."})}
+                                onClick={() => {
+                                  trigger("site_name");
+                                }}>
+                          <option value="" disabled selected={true}>Choose Site...</option>
                           <option value="OGYHSite">OGYHSite</option>
                         </select>
-                        {errors.site_name?.type === 'required' &&
-                        <span className="required info">Site Name is required.</span>}
+                        {errors.site_name && <span className="required info">{errors.site_name.message}</span>}
                       </div>
                       <div className="mb-1 col-6 pr-0">
                         <label className="font-bold label-small">Choose Vaccine <span
                           className="required">*</span></label>
                         <select className="select"
-                                placeholder="Choose Vaccine" {...register("vaccine_name", {required: true})}>
-                          <option value="" disabled defaultValue>Choose Vaccine...</option>
+                                placeholder="Choose Vaccine"
+                                {...register("vaccine_name", {required: "Vaccine Name is required."})}
+                                onClick={() => {
+                                  trigger("vaccine_name");
+                                }}>
+                          <option value="" disabled selected={true}>Choose Vaccine...</option>
                           <option value="Pfizer">Pfizer</option>
                           <option value="Astra">Astra</option>
                           <option value="Sinopharm">Sinopharm</option>
                           <option value="Sinovac">Sinovac</option>
                         </select>
-                        {errors.vaccine_name?.type === 'required' &&
-                        <span className="required info">Vaccine Name is required.</span>}
+                        {errors.vaccine_name && <span className="required info">{errors.vaccine_name.message}</span>}
                       </div>
                     </div>
 
                     <div className="space" />
 
                     <div className="btn-group u-pull-right">
-                      <button className="btn-info">Send</button>
+                      <button disabled={!isValid} className="btn-info"
+                              type="submit">Next
+                      </button>
                     </div>
 
                   </div>
@@ -116,7 +143,6 @@ function Reserve() {
       </div>
     </div>
   );
-
 }
 
 export default Reserve;
