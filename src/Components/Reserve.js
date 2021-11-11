@@ -6,7 +6,7 @@ import {Link, useHistory} from "react-router-dom";
 
 function Reserve() {
 
-  const {register, handleSubmit, trigger, formState: {errors, isValid}} = useForm();
+  const {register, handleSubmit, trigger, setError, formState: {errors, isValid}} = useForm();
 
   const base_url = 'https://wcg-apis.herokuapp.com/reservation';
 
@@ -36,6 +36,16 @@ function Reserve() {
         let feedback = res_data.feedback;
         if (feedback === "reservation success!") {
           history.push("/");
+        } else if (feedback === "reservation failed: citizen ID is not registered") {
+          setError("citizen_id", {
+            type: "manual",
+            message: "This Citizen ID is not registered."
+          })
+        } else if (feedback === "reservation failed: there is already a reservation for this citizen") {
+          setError("citizen_id", {
+            type: "manual",
+            message: "This Citizen ID already reserved."
+          })
         }
       })
       .catch(function (error) {
@@ -91,7 +101,7 @@ function Reserve() {
                                 onClick={() => {
                                   trigger("site_name");
                                 }}>
-                          <option value="" disabled defaultValue>Choose Site...</option>
+                          <option value="" disabled selected={true}>Choose Site...</option>
                           <option value="OGYHSite">OGYHSite</option>
                         </select>
                         {errors.site_name && <span className="required info">{errors.site_name.message}</span>}
@@ -105,7 +115,7 @@ function Reserve() {
                                 onClick={() => {
                                   trigger("vaccine_name");
                                 }}>
-                          <option value="" disabled defaultValue>Choose Vaccine...</option>
+                          <option value="" disabled selected={true}>Choose Vaccine...</option>
                           <option value="Pfizer">Pfizer</option>
                           <option value="Astra">Astra</option>
                           <option value="Sinopharm">Sinopharm</option>
@@ -133,7 +143,6 @@ function Reserve() {
       </div>
     </div>
   );
-
 }
 
 export default Reserve;

@@ -34,16 +34,24 @@ function Register() {
       .then(function (response) {
         let res_data = response.data;
         let feedback = res_data.feedback;
-        if (feedback === "registration failed: this person already registered") {
+        if (response.status === 201) {
+          history.push("/");
+        } else if (feedback === "registration failed: this person already registered") {
           setError("citizen_id", {
             type: "manual",
             message: "This Citizen ID already registered."
           })
+        } else if (feedback === "registration failed: not archived minimum age") {
+          setError("birthdate", {
+            type: "manual",
+            message: "Not archived minimum age."
+          })
+        } else if (feedback === "registration failed: invalid birth date format") {
+          setError("birthdate", {
+            type: "manual",
+            message: "Invalid birth date."
+          })
         }
-        if (feedback === "registration success!") {
-          history.push("/");
-        }
-        // After get the feedback set then get the element by id and set the link to to the homepage or register.
       })
       .catch(function (error) {
         console.log(error);
@@ -191,10 +199,7 @@ function Register() {
         </div>
       </div>
     </div>
-
-
   );
-
 }
 
 export default Register;
