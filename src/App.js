@@ -18,16 +18,14 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/register" component={Register} />
-          <Route path="/reservation" component={Reserve} />
-          <Route path="/my_booking" component={Booking} />
-          <Route path="/cancel" component={Cancel} />
-          <Route path="/queue/:citizen_id" component={UserInformation}/>
-        </Switch>
-      </Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/register" component={Register} />
+        <Route path="/reservation" component={Reserve} />
+        <Route path="/my_booking" component={Booking} />
+        <Route path="/cancel" component={Cancel} />
+        <Route path="/queue/:citizen_id" component={UserInformation} />
+      </Switch>
     )
   }
 }
