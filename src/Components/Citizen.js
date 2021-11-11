@@ -1,5 +1,5 @@
 import React from 'react'
-import Axios from "axios";
+import axios from "axios";
 import {useForm} from 'react-hook-form';
 import {useHistory} from "react-router-dom";
 import 'cirrus-ui';
@@ -17,8 +17,6 @@ function Citizen() {
   let history = useHistory();
 
   const config = {
-    method: 'get',
-    url: ``,
     headers: {
       'Access-Control-Allow-Origin': '*',
     }
@@ -26,36 +24,29 @@ function Citizen() {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
-
-    config.url = `${base_url}/registration/${data.citizen_id}`
     console.log(data.citizen_id)
     console.log(event)
 
-    await Axios(config)
-      .then(function (response) {
-        data = response.data;
-        console.log('data');
-        console.log(data);
-        console.log(data.address);
-        // wait for gov and change this (can't find registered person)
-        if (data.feedback === "cannot find this person") {
+    await axios.all([
+      axios.get(`${base_url}/registration/${data.citizen_id}`, config),
+      axios.get(`${base_url}/reservation/${data.citizen_id}`, config)
+    ])
+      .then(axios.spread((reg, reservation) => {
+        const register_data = reg.data;
+        const reservation_data = reservation.data;
+        const register_feedback = register_data.feedback;
+        if (register_feedback === "report failed: citizen ID is not registered") {
           setError("citizen_id", {
             type: "manual",
-            message: "Connot find this citizen ID."
+            message: "This Citizen ID is not registered."
           });
         } else {
-          console.log("citizen-id" + data["citizen_id"])
-          history.push(`/citizen/${data.citizen_id}`, data)
+          history.push(`/citizen/${register_data.citizen_id}`, {register_data, reservation_data})
         }
-
-      })
+      }))
       .catch(function (error) {
-        setError("citizen_id", {
-          type: "manual",
-          message: "Connot find this citizen ID."
-        });
-        console.log(error);
-      });
+        console.log(error)
+      })
   };
   console.log(errors);
 

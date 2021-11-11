@@ -29,7 +29,15 @@ function Register() {
     console.log(data)
     event.preventDefault();
 
-    config.url = `${base_url}/registration?name=${data.firstname}&surname=${data.lastname}&citizen_id=${data.citizen_id}&birth_date=${data.birthdate}&occupation=${data.occupation}&address=${data.address}`
+    config.url = `${base_url}/registration?
+    name=${data.firstname}
+    &surname=${data.lastname}
+    &citizen_id=${data.citizen_id}
+    &birth_date=${data.birthdate}
+    &occupation=${data.occupation}
+    &address=${data.address}
+    &phone_number=${data.phone_number}
+    &is_risk=${data.is_risk}`
 
     await Axios(config)
       .then(function (response) {

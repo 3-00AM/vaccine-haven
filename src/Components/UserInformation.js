@@ -6,13 +6,23 @@ import Navbar from "./Navbar";
 
 function UserInformation(props) {
 
-  const data = props.location.state
+  const state = props.location.state
   const base_url = 'https://wcg-apis.herokuapp.com';
+  const register_data = state.register_data;
 
-  // wait for reservation api
-  console.log(data)
-  const reserve = data.reservation_data;
-  console.log(reserve)
+  let reservation_data;
+  if (state.reservation_data.length > 0) {
+    reservation_data = state.reservation_data[0];
+  } else
+    reservation_data = {
+      citizen_id: "",
+      site_name: "",
+      vaccine_name: "",
+      timestamp: "",
+      queue: "",
+      checked: ""
+    }
+
 
   const config = {
     method: 'get',
@@ -21,7 +31,7 @@ function UserInformation(props) {
       'Access-Control-Allow-Origin': '*',
     }
   };
-  console.log(data.citizen_id);
+  console.log(register_data.citizen_id);
 
 
   // const reserveInfo = async () => {
@@ -69,7 +79,7 @@ function UserInformation(props) {
                     <span>Name: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{data.name} {data.surname}</span>
+                    <span>{register_data.name} {register_data.surname}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -77,7 +87,7 @@ function UserInformation(props) {
                     <span>Citizen ID: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{data.citizen_id}</span>
+                    <span>{register_data.citizen_id}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -85,7 +95,7 @@ function UserInformation(props) {
                     <span>Birth day: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{data.birth_date}</span>
+                    <span>{register_data.birth_date}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -93,7 +103,23 @@ function UserInformation(props) {
                     <span>Occupation: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{data.occupation}</span>
+                    <span>{register_data.occupation}</span>
+                  </div>
+                </div>
+                <div className='row'>
+                  <div className='col-5'>
+                    <span>Phone Number: </span>
+                  </div>
+                  <div className='col-7'>
+                    <span>{register_data.phone_number}</span>
+                  </div>
+                </div>
+                <div className='row'>
+                  <div className='col-5'>
+                    <span>Risk: </span>
+                  </div>
+                  <div className='col-7'>
+                    <span>{register_data.is_risk}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -101,7 +127,7 @@ function UserInformation(props) {
                     <span>Address: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{data.address}</span>
+                    <span>{register_data.address}</span>
                   </div>
                 </div>
               </div>
@@ -120,7 +146,7 @@ function UserInformation(props) {
                     <span>Vaccine: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reserve.vaccine_name}</span>
+                    <span>{reservation_data.vaccine_name}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -128,7 +154,7 @@ function UserInformation(props) {
                     <span>Stie name: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reserve.site_name}</span>
+                    <span>{reservation_data.site_name}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -136,7 +162,7 @@ function UserInformation(props) {
                     <span>Queue: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reserve.queue}</span>
+                    <span>{reservation_data.queue}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -144,7 +170,7 @@ function UserInformation(props) {
                     <span>Date: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reserve.timestamp}</span>
+                    <span>{reservation_data.timestamp}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -152,12 +178,12 @@ function UserInformation(props) {
                     <span>Time: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reserve.timestamp}</span>
+                    <span>{reservation_data.timestamp}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <Cancel citizen_id={data.citizen_id} />
+            <Cancel citizen_id={reservation_data.citizen_id} />
           </div>
           <div className='col-6'>
             <div className='card'>

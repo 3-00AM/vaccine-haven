@@ -13,7 +13,7 @@ function Cancel({ citizen_id }) {
 
     const onClick = async () => {
         // change this to send json 
-        config.url = `${base_url}/reservation?citizen_id=${citizen_id}`
+        config.url = `${base_url}/reservation/${citizen_id}`
         await Axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
