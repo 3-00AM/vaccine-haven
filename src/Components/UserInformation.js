@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cancel from './Cancel';
 import Axios from "axios";
-import { useForm } from 'react-hook-form';
 import 'cirrus-ui';
 import Navbar from "./Navbar";
 import { useParams } from 'react-router';
@@ -22,25 +21,25 @@ function UserInformation(props) {
   console.log(data.citizen_id);
 
   const reserveInfo = async () => {
-    console.log('data');
-    // config.url = `${base_url}/reservation`
-    // Axios(config)
-    //   .then(function (response) {
-    //     // console.log(response.data.citizen_id);
-    //     const info = response.data;
-    //     console.log('data');
-    //     console.log(info);
-    //     // console.log(data.address);
-    //     // wait for gov and change this (can't find registered person)
-    //     // if (data.feedback === "cannot find this person") {
-    //     //     console.log('false');
-    //     //     setDisplayInfo(false)
-    //     //     // setCitizen_id('')
-    //     // }
-    //     // else {
+    console.log('dataanpm ');
+    config.url = `${base_url}/reservation/${data.citizen_id}`
+    Axios(config)
+      .then(function (response) {
+        // console.log(response.data.citizen_id);
+        const info = response.data;
+        console.log('data');
+        console.log(info);
+        // console.log(data.address);
+        // wait for gov and change this (can't find registered person)
+        // if (data.feedback === "cannot find this person") {
+        //     console.log('false');
+        //     setDisplayInfo(false)
+        //     // setCitizen_id('')
+        // }
+        // else {
 
-    //     // }
-    //   })
+        // }
+      })
   };
 
   setInterval(() => {
@@ -102,11 +101,8 @@ function UserInformation(props) {
                   </div>
                 </div>
               </div>
-              {/* <div class='card__footer level content'>
-              </div> */}
             </div>
           </div>
-          {/* <div class='col-6'> */}
           <div class='row col'>
             <div class='grid-r-8'>
               <div class='card'>
