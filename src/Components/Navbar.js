@@ -1,5 +1,8 @@
+
 import React, {useEffect, useState} from 'react';
+import {Link} from "react-router-dom";
 import 'cirrus-ui';
+
 
 function Navbar() {
 
@@ -37,13 +40,16 @@ function Navbar() {
 
         <div className="nav-right">
           <div className="nav-item">
-            <a className="white" href="#">My Booking</a>
+            <Link className="white" to="/my_booking">My Booking</Link>
           </div>
           <div className="nav-item">
-            <a className="white" href="#">Walk-in</a>
+            <Link className="white" to="#">Insite</Link>
           </div>
           <div className="nav-item">
-            <a className="white" href="#">Contact</a>
+            <Link className="white" to="#">Walk-in</Link>
+          </div>
+          <div className="nav-item">
+            <Link className="white" to="#">Contact</Link>
           </div>
         </div>
       </div>
