@@ -12,7 +12,9 @@ function UserInformation(props) {
   const base_url = 'https://wcg-apis.herokuapp.com';
 
   // wait for reservation api
+  console.log(data)
   const reserve = data.reservation_data;
+  console.log(reserve)
 
   const config = {
     method: 'get',
@@ -120,7 +122,7 @@ function UserInformation(props) {
                     <span>Vaccine: </span>
                   </div>
                   <div class='col-7'>
-                    {/* <span>{resevation.vaccine_name}</span> */}
+                    <span>{reserve.vaccine_name}</span>
                   </div>
                 </div>
                 <div class='row'>
@@ -128,7 +130,7 @@ function UserInformation(props) {
                     <span>Stie name: </span>
                   </div>
                   <div class='col-7'>
-                    {/* <span>{reservation.site_name}</span> */}
+                    <span>{reserve.site_name}</span>
                   </div>
                 </div>
                 <div class='row'>
@@ -136,7 +138,15 @@ function UserInformation(props) {
                     <span>Queue: </span>
                   </div>
                   <div class='col-7'>
-                    {/* <span>{reservation.queue}</span> */}
+                    <span>{reserve.queue}</span>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-5'>
+                    <span>Date: </span>
+                  </div>
+                  <div class='col-7'>
+                    <span>{reserve.timestamp}</span>
                   </div>
                 </div>
                 <div class='row'>
@@ -144,12 +154,11 @@ function UserInformation(props) {
                     <span>Time: </span>
                   </div>
                   <div class='col-7'>
-                    {/* <span>{reservation.timestamp}</span> */}
+                    <span>{reserve.timestamp}</span>
                   </div>
                 </div>
               </div>
             </div>
-            {/* </div> */}
             <Cancel citizen_id={data.citizen_id} />
           </div>
           <div class='col-6'>
