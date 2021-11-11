@@ -1,17 +1,29 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "./Navbar";
 import {Link} from "react-router-dom";
 import AOS from "aos";
 import 'aos/dist/aos.css';
 
 function Home() {
+
+  const [scroll, setScroll] = useState(0)
+
+  useEffect(() => {
+    document.addEventListener("scroll", () => {
+      const scrollCheck = window.scrollY < 100
+      if (scrollCheck !== scroll) {
+        setScroll(scrollCheck)
+      }
+    })
+  })
+
   useEffect(() => {
     AOS.init();
   })
 
   return (
     <div className="Home">
-      <Navbar />
+      <Navbar onScroll={scroll ? "header-clear header-landing" : "header-dark"}/>
       <section id={'splash'}>
         <div id="splash-img" className="hero fullscreen hero-img parallax-img">
           <div className="hero-body">
@@ -35,7 +47,7 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">For registration citizen.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link to="/register">
+                    <Link to="/registration">
                       <button className="u-shadow btn-link">Register</button>
                     </Link>
                   </div>
@@ -73,7 +85,7 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">See your reserved vaccine.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link to="/register">
+                    <Link to="/citizen">
                       <button className="u-shadow btn-link">Check Info</button>
                     </Link>
                   </div>

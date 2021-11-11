@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Cancel from './Cancel';
 import Axios from "axios";
 import 'cirrus-ui';
 import Navbar from "./Navbar";
-import { useParams } from 'react-router';
-import axios from 'axios';
 
 function UserInformation(props) {
 
@@ -54,55 +52,55 @@ function UserInformation(props) {
   // }, 10000);
 
   return (
-    <div className="fullscreen bg-indigo-200">
+    <div className="bg-indigo-200">
       <Navbar />
-      <div class="px-1 py-6 mx-2">
-        <div class='row'>
-          <div class='col-12'>
-            <div class="card">
-              <div class="card__header">
-                <p class="font-bold px-3">User information:</p>
+      <div className="px-1 py-10 mx-2">
+        <div className='row'>
+          <div className='col-12'>
+            <div className="card">
+              <div className="card__header">
+                <p className="font-bold px-3">User information:</p>
               </div>
-              <div class='card__footer level content'>
+              <div className='card__footer level content'>
               </div>
-              <div class='content'>
-                <div class='row'>
-                  <div class='col-5'>
+              <div className='content'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>Name: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>{data.name} {data.surname}</span>
                   </div>
                 </div>
-                <div class='row'>
-                  <div class='col-5'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>Citizen ID: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>{data.citizen_id}</span>
                   </div>
                 </div>
-                <div class='row'>
-                  <div class='col-5'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>Birth day: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>{data.birth_date}</span>
                   </div>
                 </div>
-                <div class='row'>
-                  <div class='col-5'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>Occupation: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>{data.occupation}</span>
                   </div>
                 </div>
-                <div class='row'>
-                  <div class='col-5'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>Address: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>{data.address}</span>
                   </div>
                 </div>
@@ -110,50 +108,50 @@ function UserInformation(props) {
             </div>
           </div>
         </div>
-        <div class='row'>
-          <div class='col-6'>
-            <div class='card'>
-              <div class='card__header'>
-                <p class="font-bold px-3">Vaccine Reservation Information:</p>
+        <div className='row'>
+          <div className='col-6'>
+            <div className='card'>
+              <div className='card__header'>
+                <p className="font-bold px-3">Vaccine Reservation Information:</p>
               </div>
-              <div class='content'>
-                <div class='row'>
-                  <div class='col-5'>
+              <div className='content'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>Vaccine: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>{reserve.vaccine_name}</span>
                   </div>
                 </div>
-                <div class='row'>
-                  <div class='col-5'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>Stie name: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>{reserve.site_name}</span>
                   </div>
                 </div>
-                <div class='row'>
-                  <div class='col-5'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>Queue: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>{reserve.queue}</span>
                   </div>
                 </div>
-                <div class='row'>
-                  <div class='col-5'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>Date: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>{reserve.timestamp}</span>
                   </div>
                 </div>
-                <div class='row'>
-                  <div class='col-5'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>Time: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>{reserve.timestamp}</span>
                   </div>
                 </div>
@@ -161,27 +159,27 @@ function UserInformation(props) {
             </div>
             <Cancel citizen_id={data.citizen_id} />
           </div>
-          <div class='col-6'>
-            <div class='card'>
-              <div class='card__header'>
-                <p class="font-bold px-3">Vaccine Taken:</p>
+          <div className='col-6'>
+            <div className='card'>
+              <div className='card__header'>
+                <p className="font-bold px-3">Vaccine Taken:</p>
               </div>
-              <div class='card__footer level content'>
+              <div className='card__footer level content'>
               </div>
-              <div class='content'>
-                <div class='row'>
-                  <div class='col-5'>
+              <div className='content'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>AstraZeneca: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>1</span>
                   </div>
                 </div>
-                <div class='row'>
-                  <div class='col-5'>
+                <div className='row'>
+                  <div className='col-5'>
                     <span>Sinopharm: </span>
                   </div>
-                  <div class='col-7'>
+                  <div className='col-7'>
                     <span>1</span>
                   </div>
                 </div>

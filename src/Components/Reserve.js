@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import Axios from "axios";
 import {useForm} from "react-hook-form";
 import {Link, useHistory} from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Reserve() {
 
@@ -56,6 +57,7 @@ function Reserve() {
 
   return (
     <div className="hero fullscreen">
+      <Navbar />
       <div className="content">
         <div style={{margin: "auto"}}>
           <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit, onError)}>

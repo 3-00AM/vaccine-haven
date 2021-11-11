@@ -1,21 +1,9 @@
-
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import 'cirrus-ui';
 
 
-function Navbar() {
-
-  const [scroll, setScroll] = useState(0)
-
-  useEffect(() => {
-    document.addEventListener("scroll", () => {
-      const scrollCheck = window.scrollY < 100
-      if (scrollCheck !== scroll) {
-        setScroll(scrollCheck)
-      }
-    })
-  })
+function Navbar(props) {
 
   const [isActive, setActive] = useState("false");
   const ToggleClass = () => {
@@ -24,11 +12,11 @@ function Navbar() {
 
   return (
     <div
-      className={`header header-fixed unselectable header-animated doc-header ${isActive ? "" : "translucent"} ${scroll ? "header-clear header-landing" : "header-dark"}`}
+      className={`header header-fixed unselectable header-animated doc-header ${isActive ? "" : "translucent"} ${props.onScroll || "header-dark"}`}
       onClick={ToggleClass}>
       <div className="header-brand">
         <div className="nav-item no-hover">
-          <a><h6 className="title white">Vaccine Haven</h6></a>
+          <Link to="/"><h6 className="title white">Vaccine Haven</h6></Link>
         </div>
         <div className={`nav-item nav-btn ${isActive ? "" : "active"}`} onClick={ToggleClass} id={`header-btn`}>
           <span />
@@ -40,16 +28,20 @@ function Navbar() {
 
         <div className="nav-right">
           <div className="nav-item">
-            <Link className="white" to="/my_booking">My Booking</Link>
+            <Link className="white" to="/citizen">My Info</Link>
+          </div>
+          <div className="nav-item has-sub toggle-hover" id="dropdown">
+            <Link className="white nav-dropdown-link">Registration</Link>
+            <ul className="dropdown-menu dropdown-animated" role="menu">
+              <li role="menu-item"><Link to={'/registration'}>Citizen Registration</Link></li>
+              <li role="menu-item"><Link to={'/reservation'}>Reservation</Link></li>
+            </ul>
           </div>
           <div className="nav-item">
-            <Link className="white" to="#">Insite</Link>
+            <Link className="white" to="">Walk-in</Link>
           </div>
           <div className="nav-item">
-            <Link className="white" to="#">Walk-in</Link>
-          </div>
-          <div className="nav-item">
-            <Link className="white" to="#">Contact</Link>
+            <Link className="white" to="">Contact</Link>
           </div>
         </div>
       </div>

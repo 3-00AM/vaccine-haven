@@ -3,6 +3,7 @@ import React from "react";
 import Axios from "axios";
 import {useForm} from 'react-hook-form';
 import {useHistory} from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Register() {
 
@@ -60,6 +61,7 @@ function Register() {
 
   return (
     <div className="hero fullscreen">
+      <Navbar />
       <div className="content">
         <div style={{margin: "auto"}}>
           <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit, onError)}>
