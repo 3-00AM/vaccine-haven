@@ -1,13 +1,15 @@
-import "cirrus-ui";
 import React from "react";
 import Axios from "axios";
 import {useForm} from 'react-hook-form';
 import {useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
 
+import "cirrus-ui";
+import "react-phone-number-input/style.css";
+
 function Register() {
 
-  const {register, handleSubmit, setError, trigger, formState: {errors, isValid}} = useForm({});
+  const {register, handleSubmit, setError, trigger, control, formState: {errors, isValid}} = useForm({});
 
   const base_url = 'https://wcg-apis.herokuapp.com';
   let history = useHistory();
@@ -29,15 +31,7 @@ function Register() {
     console.log(data)
     event.preventDefault();
 
-    config.url = `${base_url}/registration?
-    name=${data.firstname}
-    &surname=${data.lastname}
-    &citizen_id=${data.citizen_id}
-    &birth_date=${data.birthdate}
-    &occupation=${data.occupation}
-    &address=${data.address}
-    &phone_number=${data.phone_number}
-    &is_risk=${data.is_risk}`
+    config.url = `${base_url}/registration?name=${data.firstname}&surname=${data.lastname}&citizen_id=${data.citizen_id}&birth_date=${data.birthdate}&occupation=${data.occupation}&address=${data.address}&phone_number=${data.phone}&is_risk=${data.is_risk}`
 
     await Axios(config)
       .then(function (response) {
@@ -181,6 +175,25 @@ function Register() {
                       </div>
                     </div>
 
+                    <div className="row">
+                      <div className="mb-1 col-6 pl-0">
+                        <label className="font-bold">Phone Number <span className="required">*</span></label>
+                        <div className="input-control">
+                          <input type="tel"
+                                 className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.phone && "text-danger input-error"}`}
+                                 placeholder="Phone Number"
+                                 {...register("phone", {required: "Phone number is required."})}
+                                 onKeyUp={() => {
+                                   trigger("phone");
+                                 }} />
+                          <span className={`icon icon-left ${errors.phone && "text-danger input-error"}`}>
+                            <i className="fa fa-wrapper fa-phone" />
+                          </span>
+                        </div>
+                        {errors.phone && <span className="required info">{errors.phone.message}</span>}
+                      </div>
+                    </div>
+
                     <div className="mb-1">
                       <label className="font-bold">Address <span className="required">*</span></label>
                       <textarea className={`form-group-input ${errors.address && "text-danger input-error"}`}
@@ -191,13 +204,29 @@ function Register() {
                                 }} />
                       {errors.address && <span className="required info">{errors.address.message}</span>}
                     </div>
-
-                    <div className="space" />
-
-                    <div className="btn-group u-pull-right">
-                      <button disabled={!isValid} className="btn-info"
-                              type="submit">Next
-                      </button>
+                    <div className="row">
+                      <div className="mb-1 col-6 pl-0">
+                        <div className="form-ext-control form-ext-checkbox">
+                          <label className="tooltip tooltip-bottom"
+                                 data-tooltip="Seven disease that have to take vaccine first.">
+                            <input id="check-info" className="form-ext-input form-ext-input--info" type="checkbox"
+                                   {...register("is_risk",)}
+                                   onKeyUp={() => {
+                                     trigger("is_risk");
+                                   }}
+                            />
+                            <label className="form-ext-label" htmlFor="check-info">do you have any disease that risk for
+                                                                                   COVID 19</label>
+                          </label>
+                        </div>
+                      </div>
+                      <div className="mb-1 col-6 pr-0">
+                        <div className="btn-group u-pull-right">
+                          <button disabled={!isValid} className="btn-info"
+                                  type="submit">Next
+                          </button>
+                        </div>
+                      </div>
                     </div>
 
                   </div>
