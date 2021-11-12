@@ -3,9 +3,7 @@ import Axios from "axios";
 import {useForm} from 'react-hook-form';
 import {useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
-
 import "cirrus-ui";
-import "react-phone-number-input/style.css";
 
 function Register() {
 
