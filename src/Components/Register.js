@@ -9,7 +9,7 @@ import "react-phone-number-input/style.css";
 
 function Register() {
 
-  const {register, handleSubmit, setError, trigger, control, formState: {errors, isValid}} = useForm({});
+  const {register, handleSubmit, setError, trigger, formState: {errors, isValid}} = useForm({});
 
   const base_url = 'https://wcg-apis.herokuapp.com';
   let history = useHistory();
