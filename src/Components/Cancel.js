@@ -1,4 +1,5 @@
 import Axios from "axios";
+import {useHistory} from "react-router-dom";
 
 function Cancel({ citizen_id }) {
 
@@ -10,6 +11,7 @@ function Cancel({ citizen_id }) {
             'Access-Control-Allow-Origin': '*',
         }
     };
+    const history = useHistory();
 
     const onClick = async () => {
         // change this to send json 
@@ -17,6 +19,7 @@ function Cancel({ citizen_id }) {
         await Axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
+                history.push("/citizen")
             })
             .catch(function (error) {
                 console.log(error);
