@@ -35,7 +35,7 @@ function UserInformation(props) {
 
 
   // const reserveInfo = async () => {
-  //   console.log('dataanpm ');
+  //   console.log('data');
   //   config.url = `${base_url}/reservation/${data.citizen_id}`
   //   Axios(config)
   //     .then(function (response) {
@@ -213,7 +213,7 @@ function UserInformation(props) {
             </div>
           </div>
         </div>
-        <h2>add tap for this three part</h2>
+        {/*<h2>add tap for this three part</h2>*/}
       </div>
     </div>
   );
