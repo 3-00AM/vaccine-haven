@@ -85,7 +85,7 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">See your reserved vaccine.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link to="/citizen">
+                    <Link to="/info">
                       <button className="u-shadow btn-link">Check Info</button>
                     </Link>
                   </div>

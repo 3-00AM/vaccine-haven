@@ -5,7 +5,7 @@ import {useHistory} from "react-router-dom";
 import 'cirrus-ui';
 import Navbar from "./Navbar";
 
-function Citizen() {
+function Info() {
   // const fetchUserInfo = async (citizen_id) => {
   //     const res = await fetch(`https://wcg-apis.herokuapp.com/citizen/${citizen_id}`)
   //     const data = await res.json()
@@ -41,7 +41,7 @@ function Citizen() {
             message: "This Citizen ID is not registered."
           });
         } else {
-          history.push(`/citizen/${register_data.citizen_id}`, {register_data, reservation_data})
+          history.push(`/info/${register_data.citizen_id}`, {register_data, reservation_data})
         }
       }))
       .catch(function (error) {
@@ -107,4 +107,4 @@ function Citizen() {
   )
 }
 
-export default Citizen
+export default Info

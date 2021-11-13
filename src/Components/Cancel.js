@@ -19,7 +19,7 @@ function Cancel({ citizen_id }) {
         await Axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
-                history.push("/citizen")
+                history.push("/info")
             })
             .catch(function (error) {
                 console.log(error);

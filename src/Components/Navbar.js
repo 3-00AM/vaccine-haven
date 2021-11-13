@@ -27,7 +27,7 @@ function Navbar(props) {
 
         <div className="nav-right">
           <div className="nav-item">
-            <Link className="white" to="/citizen">My Info</Link>
+            <Link className="white" to="/info">My Info</Link>
           </div>
           <div className="nav-item has-sub toggle-hover" id="dropdown">
             <text className="white nav-dropdown-link">Register</text>
