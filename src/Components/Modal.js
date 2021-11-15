@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const Modal = ({id, title, topic, children}) => {
   return ReactDOM.createPortal(
     <>
-      <div className={`modal-animated--zoom-in`} id={id}>
+      <div className={`modal modal-animated--zoom-in`} id={id}>
         <Link to={`/registration`} className="modal-overlay btn-close" aria-label={`close`} />
         <div className="modal-content" role={`document`}>
           <div className="modal-header">

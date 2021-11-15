@@ -1,9 +1,10 @@
 import React from "react";
 import Axios from "axios";
 import {useForm} from 'react-hook-form';
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
 import "cirrus-ui";
+import Modal from "./Modal";
 
 function Register() {
 
@@ -224,6 +225,9 @@ function Register() {
                                   type="submit">Next
                           </button>
                         </div>
+                        <Modal id={"confirm-modal"} title={"Register Citizen"} topic={"Confirm registration"}>
+                          This is content
+                        </Modal>
                       </div>
                     </div>
 
