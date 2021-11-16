@@ -6,12 +6,6 @@ import 'cirrus-ui';
 import Navbar from "./Navbar";
 
 function Info() {
-  // const fetchUserInfo = async (citizen_id) => {
-  //     const res = await fetch(`https://wcg-apis.herokuapp.com/citizen/${citizen_id}`)
-  //     const data = await res.json()
-
-  //     return data
-  // }
   const {register, handleSubmit, setError, trigger, formState: {errors}} = useForm();
   const base_url = 'https://wcg-apis.herokuapp.com';
   let history = useHistory();
