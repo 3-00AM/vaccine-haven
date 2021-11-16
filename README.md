@@ -20,7 +20,8 @@ To prevent these issues, we decided to create an application that can manage the
 
 * [Next.js](https://nextjs.org/)
 * [React.js](https://reactjs.org/)
-* [Cirrus CSS](https://cirrus-ui.netlify.app/)
+* [Bootstrap](https://getbootstrap.com/)
+
 </br>
 
 ## Team Members
@@ -41,16 +42,17 @@ To prevent these issues, we decided to create an application that can manage the
 
 </br>
 
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). And you have to
-install [Node JS](https://nodejs.org/en/) and install the LTS version of Node JS.
-
-## Available Scripts
+# Getting Started
 
 In the project directory, you can run:
 
-### `npm start`
+    $ npm install
+
+
+For downloading all of the dependency you required for the website application.
+
+    $ npm start
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -58,13 +60,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm run test`
+    $ npm run test
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more
 information.
 
-### `npm run build`
+    $ npm run build
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -72,22 +74,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will
-remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc.) right
-into your project, so you have full control over them. All the commands except `eject` will still work, but they will
-point to the copied scripts, so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you
-shouldn’t feel obligated to use this feature. However, we understand that this tool wouldn't be useful if you couldn't
-customize it when you are ready for it.
 
 <div align="right">
     <b><a href="#top">↥ back to top</a></b>
@@ -115,7 +101,10 @@ This project is licensed under the VaccineHaven License - see the LICENSE.md fil
 </br>
 
 # Acknowledgments
-A list of resources that we find that is helpful to this project (reference)
+A list of resources that we find which is helpful to this project
+
+* [Cirrus CSS](https://cirrus-ui.netlify.app/)
+* [React](https://reactjs.org/docs/getting-started.html)
 
 
 <div align="right">
