@@ -1,10 +1,9 @@
 import axios from "axios";
-import async from "async";
 
 export const BASE_URL = "https://wcg-apis.herokuapp.com";
 
 export const config = {
-  params: {},
+  params: ``,
   url: ``,
   headers: {
     'Access-Control-Allow-Origin': '*',

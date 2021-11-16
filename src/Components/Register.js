@@ -1,18 +1,25 @@
 import React from "react";
 import axios from "axios";
 import {useForm} from 'react-hook-form';
-import {Link, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
 import "cirrus-ui";
 import Modal from "./Modal";
-import {config} from "../utils";
+import {BASE_URL} from "../utils";
 
 function Register() {
 
   const {register, handleSubmit, setError, trigger, formState: {errors, isValid}} = useForm({});
 
-  const base_url = 'https://wcg-apis.herokuapp.com';
   let history = useHistory();
+
+  const config = {
+    params: {},
+    url: ``,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
+  };
 
   const onError = (errors, e) => {
     console.log(errors, e)
@@ -20,15 +27,9 @@ function Register() {
   };
 
   const onSubmit = async (data, event) => {
-    console.log(data)
     event.preventDefault();
 
-    config.params = data
-
-    // config.url = `${base_url}/registration?name=${data.name}&surname=${data.surname}&citizen_id=${data.citizen_id}&birth_date=${data.birth_date}&occupation=${data.occupation}&address=${data.address}&phone_number=${data.phone_number}&is_risk=${data.is_risk}`
-    config.url = `${base_url}/registration`
-
-    await axios.post(config)
+    await axios.post(`${BASE_URL}/registration`, null, { params: data})
       .then(function (response) {
         let res_data = response.data;
         let feedback = res_data.feedback;

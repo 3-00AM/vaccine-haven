@@ -1,18 +1,24 @@
 import "cirrus-ui";
-import React, {useState} from "react";
+import React from "react";
 import axios from "axios";
 import {useForm} from "react-hook-form";
-import {Link, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
-import {config} from "../utils";
+import {BASE_URL} from "../utils";
 
 function Reserve() {
 
   const {register, handleSubmit, trigger, setError, formState: {errors, isValid}} = useForm();
 
-  const base_url = 'https://wcg-apis.herokuapp.com/reservation';
-
   let history = useHistory();
+
+  const config = {
+    params: {},
+    url: ``,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
+  };
 
   const onError = (errors, e) => {
     console.log(errors, e)
@@ -22,11 +28,7 @@ function Reserve() {
   const onSubmit = async (data, event) => {
     event.preventDefault();
 
-    config.params = data
-
-    config.url = `${base_url}`
-
-    await axios.post(config)
+    await axios.post(`${BASE_URL}/reservation`, null, { params: data})
       .then(function (response) {
         let res_data = response.data;
         let feedback = res_data.feedback;
