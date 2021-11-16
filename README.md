@@ -20,8 +20,7 @@ To prevent these issues, we decided to create an application that can manage the
 
 * [Next.js](https://nextjs.org/)
 * [React.js](https://reactjs.org/)
-* [Bootstrap](https://getbootstrap.com/)
-
+* [Cirrus CSS](https://cirrus-ui.netlify.app/)
 </br>
 
 ## Team Members
