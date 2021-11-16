@@ -6,13 +6,13 @@
 
 ## Background
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due to the COVID-19 pandemic, everyone is required to take the vaccine to take control of the range of spreading the virus. As a result, vaccine organization is important. Poor management can cause, for example, overcrowding and inadequate injection which then leads to the new wave of COVID-19 spreading.
+Due to the COVID-19 pandemic, everyone is required to take the vaccine to take control of the range of spreading the virus. As a result, vaccine organization is important. Poor management can cause, for example, overcrowding and inadequate injection which then leads to the new wave of COVID-19 spreading.
 
 </br>
 
 ## Description
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To prevent these issues, we decided to create an application that can manage the whole system of vaccine reservations including many features such as patient appointments. Using the VaccineHaven application, we can decrease the number of infected patients because we can reserve the vaccine inside of it. With the given information from the user (name, id), the application can take the data from the government database and provide the nearest vaccine service site with useful information.
+To prevent these issues, we decided to create an application that can manage the whole system of vaccine reservations including many features such as patient appointments. Using the VaccineHaven application, we can decrease the number of infected patients because we can reserve the vaccine inside of it. With the given information from the user (name, id), the application can take the data from the government database and provide the nearest vaccine service site with useful information.
 
 </br>
 
