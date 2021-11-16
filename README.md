@@ -1,3 +1,47 @@
+
+
+# VaccineHaven
+
+![VaccineHaven](public\vaccine-haven-bg.png)
+
+## Background
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due to the COVID-19 pandemic, everyone is required to take the vaccine to take control of the range of spreading the virus. As a result, vaccine organization is important. Poor management can cause, for example, overcrowding and inadequate injection which then leads to the new wave of COVID-19 spreading.
+
+</br>
+
+## Description
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To prevent these issues, we decided to create an application that can manage the whole system of vaccine reservations including many features such as patient appointments. Using the VaccineHaven application, we can decrease the number of infected patients because we can reserve the vaccine inside of it. With the given information from the user (name, id), the application can take the data from the government database and provide the nearest vaccine service site with useful information.
+
+</br>
+
+## Built With
+
+* Next.js
+* React.js
+* Bootstrap
+
+</br>
+
+## Team Members
+| Name                     |                  GitHub ID                  |      Role       |
+|--------------------------|:-------------------------------------------:| :-------------: |
+| Vichisorn Wejsupakul     | [james31366](https://github.com/james31366) |  Scrum Master   |
+| Teeranut Sawanyawat      | [LevNut](https://github.com/LevNut)         |  Product Owner  |
+| Bheem Suttipong          | [Bheem6005](https://github.com/Bheem6005)   |    Developer    |
+| Chonchanok Chevaisrakul  | [boom210232](https://github.com/boom210232) |    Developer    |
+| Kongtapp Veerawattananun | [KongtappV](https://github.com/KongtappV)   |    Developer    |
+| Metaras Charoenseang     | [metaras](https://github.com/metaras)       |    Developer    |
+| Narawish Sangsiriwut     | [NarawishS](https://github.com/NarawishS)   |    Developer    |
+| Pattarin Wongwaipanich   | [pattarinn](https://github.com/pattarinn)   |    Developer    |
+
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+
+</br>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). And you have to
@@ -46,39 +90,35 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 shouldn’t feel obligated to use this feature. However, we understand that this tool wouldn't be useful if you couldn't
 customize it when you are ready for it.
 
-## Learn More
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
 
-You can learn more in
-the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+</br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Usage
 
-### Code Splitting
+This space used to describe how to use our project and show some useful tip or example, with screen shot or link.
 
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
 
-### Analyzing the Bundle Size
+</br>
 
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# License
+This project is licensed under the VaccineHaven License - see the LICENSE.md file for details
 
-### Making a Progressive Web App
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
 
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+</br>
 
-### Advanced Configuration
+# Acknowledgments
+A list of resources that we find that is helpful to this project (reference)
 
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
-
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
