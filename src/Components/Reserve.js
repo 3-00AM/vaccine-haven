@@ -1,9 +1,10 @@
 import "cirrus-ui";
 import React, {useState} from "react";
-import Axios from "axios";
+import axios from "axios";
 import {useForm} from "react-hook-form";
 import {Link, useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
+import {config} from "../utils";
 
 function Reserve() {
 
@@ -13,14 +14,6 @@ function Reserve() {
 
   let history = useHistory();
 
-  const config = {
-    method: 'post',
-    url: ``,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    }
-  };
-
   const onError = (errors, e) => {
     console.log(errors, e)
     console.log(isValid)
@@ -29,9 +22,11 @@ function Reserve() {
   const onSubmit = async (data, event) => {
     event.preventDefault();
 
-    config.url = `${base_url}?citizen_id=${data.citizen_id}&site_name=${data.site_name}&vaccine_name=${data.vaccine_name}`
+    config.params = data
 
-    await Axios(config)
+    config.url = `${base_url}`
+
+    await axios.post(config)
       .then(function (response) {
         let res_data = response.data;
         let feedback = res_data.feedback;
