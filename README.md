@@ -18,9 +18,9 @@ To prevent these issues, we decided to create an application that can manage the
 
 ## Built With
 
-* Next.js
-* React.js
-* Bootstrap
+* [Next.js](https://nextjs.org/)
+* [React.js](https://reactjs.org/)
+* [Bootstrap](https://getbootstrap.com/)
 
 </br>
 
