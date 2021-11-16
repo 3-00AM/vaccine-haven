@@ -91,20 +91,13 @@ This space used to describe how to use our project and show some useful tip or e
 
 </br>
 
-# License
-This project is licensed under the VaccineHaven License - see the LICENSE.md file for details
-
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-
-</br>
-
 # Acknowledgments
 A list of resources that we find which is helpful to this project
 
 * [Cirrus CSS](https://cirrus-ui.netlify.app/)
 * [React](https://reactjs.org/docs/getting-started.html)
+* [React Router](https://reactrouter.com/docs/en/v6)
+* [Framer Motion](https://www.framer.com/motion/)
 
 
 <div align="right">
