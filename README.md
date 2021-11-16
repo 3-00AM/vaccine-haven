@@ -36,11 +36,9 @@ To prevent these issues, we decided to create an application that can manage the
 | Narawish Sangsiriwut     | [NarawishS](https://github.com/NarawishS)   |    Developer    |
 | Pattarin Wongwaipanich   | [pattarinn](https://github.com/pattarinn)   |    Developer    |
 
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
+<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
 
-</br>
+<br>
 
 
 # Getting Started
@@ -75,24 +73,30 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
+<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
 
-</br>
+<br>
 
 # Usage
 
-This space used to describe how to use our project and show some useful tip or example, with screen shot or link.
+Our website has four main features, including Citizen Registration, Vaccine Reservation, User Information, and Vaccine Site. The user can find the features usage description on the wiki page in the link below the picture.
 
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
+<br>
 
-</br>
+![index2](https://i.imgur.com/MasIFeA.png)
+
+## Usage Wiki Page (Guidance)
+* [Registration](https://github.com/3-00AM/vaccine-haven/wiki/Registration)
+* [Reservation](https://github.com/3-00AM/vaccine-haven/wiki/Reservation)
+* [User Information & Cancellation](https://github.com/3-00AM/vaccine-haven/wiki/User-Information-&-Cancellation)
+* [Vaccine Site](https://github.com/3-00AM/vaccine-haven/wiki/Vaccine-Site)
+
+<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
+
+<br>
 
 # Acknowledgments
-A list of resources that we find which is helpful to this project
+A List of Resources that We Found which is Helpful to This Project
 
 * [Cirrus CSS](https://cirrus-ui.netlify.app/)
 * [React](https://reactjs.org/docs/getting-started.html)
@@ -100,6 +104,4 @@ A list of resources that we find which is helpful to this project
 * [Framer Motion](https://www.framer.com/motion/)
 
 
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
+<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
