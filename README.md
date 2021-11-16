@@ -2,7 +2,7 @@
 
 # VaccineHaven
 
-![VaccineHaven](public\vaccine-haven-bg.png)
+![VaccineHaven](https://github.com/3-00AM/vaccine-haven/blob/readme/public/vaccine-haven-bg.png )
 
 ## Background
 
