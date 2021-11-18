@@ -3,6 +3,39 @@ import async from "async";
 
 export const BASE_URL = "https://wcg-apis.herokuapp.com";
 
+export let register_data = {
+  citizen_id: "2222222222222",
+  name: "Vichisorn",
+  surname: "Wejsupakul",
+  birthdate: "2000-10-26",
+  occupation: "Student",
+  phone_number: "0964590546",
+  is_risk: "True",
+  address: "TestAPI",
+  vaccine_taken: "[]"
+}
+
+export let reservation_data = [
+  {
+    "citizen_id": "1234567890123",
+    "site_name": "ABC",
+    "vaccine_name": "Pfizer",
+    "timestamp": "2021-11-12 00:43:15.399941",
+    "queue": "2022-02-03 10:11:01",
+    "checked": "True"
+  },
+  {
+    "citizen_id": "1234567890123",
+    "site_name": "ABC",
+    "vaccine_name": "Pfizer",
+    "timestamp": "2021-11-12 01:23:15.182224",
+    "queue": "None",
+    "checked": "False"
+  }
+]
+
+export let urlParameter = `name=${register_data.name}&surname=${register_data.surname}&citizen_id=${register_data.citizen_id}&birth_date=${register_data.birthdate}&occupation=${register_data.occupation}&address=${register_data.address}&phone_number=${register_data.phone_number}&is_risk=${register_data.is_risk}`
+
 export const config = {
   params: ``,
   url: ``,
