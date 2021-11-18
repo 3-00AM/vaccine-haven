@@ -100,7 +100,7 @@ describe("When failed post a citizen data", () => {
     const result = await postRegisterUser(data)
 
     expect(mock.history.post[0].url).toEqual(`${postRegisterUrl}`);
-    expect(result.data).toEqual("registration failed: registration failed: missing some attribute")
+    expect(result.data).toEqual("registration failed: missing some attribute")
   });
 
   it('should not register that citizen when a surname field is missing', async function () {
@@ -111,7 +111,7 @@ describe("When failed post a citizen data", () => {
     const result = await postRegisterUser(data)
 
     expect(mock.history.post[0].url).toEqual(`${postRegisterUrl}`);
-    expect(result.data).toEqual("registration failed: registration failed: missing some attribute")
+    expect(result.data).toEqual("registration failed: missing some attribute")
   });
 
   it('should not register that citizen when a citizen id field is missing', async function () {
@@ -122,7 +122,7 @@ describe("When failed post a citizen data", () => {
     const result = await postRegisterUser(data)
 
     expect(mock.history.post[0].url).toEqual(`${postRegisterUrl}`);
-    expect(result.data).toEqual("registration failed: registration failed: missing some attribute")
+    expect(result.data).toEqual("registration failed: missing some attribute")
   });
 
   it('should not register that citizen when a birth date field is missing', async function () {
@@ -133,7 +133,7 @@ describe("When failed post a citizen data", () => {
     const result = await postRegisterUser(data)
 
     expect(mock.history.post[0].url).toEqual(`${postRegisterUrl}`);
-    expect(result.data).toEqual("registration failed: registration failed: missing some attribute")
+    expect(result.data).toEqual("registration failed: missing some attribute")
   });
 
   it('should not register that citizen when an occupation field is missing', async function () {
@@ -144,7 +144,7 @@ describe("When failed post a citizen data", () => {
     const result = await postRegisterUser(data)
 
     expect(mock.history.post[0].url).toEqual(`${postRegisterUrl}`);
-    expect(result.data).toEqual("registration failed: registration failed: missing some attribute")
+    expect(result.data).toEqual("registration failed: missing some attribute")
   });
 
   it('should not register that citizen when an address field is missing', async function () {
@@ -155,7 +155,7 @@ describe("When failed post a citizen data", () => {
     const result = await postRegisterUser(data)
 
     expect(mock.history.post[0].url).toEqual(`${postRegisterUrl}`);
-    expect(result.data).toEqual("registration failed: registration failed: missing some attribute")
+    expect(result.data).toEqual("registration failed: missing some attribute")
   });
 
   it('should not register that citizen when a phone number field is missing', async function () {
@@ -166,7 +166,7 @@ describe("When failed post a citizen data", () => {
     const result = await postRegisterUser(data)
 
     expect(mock.history.post[0].url).toEqual(`${postRegisterUrl}`);
-    expect(result.data).toEqual("registration failed: registration failed: missing some attribute")
+    expect(result.data).toEqual("registration failed: missing some attribute")
   });
 
   it('should not register that citizen when is_risk is missing', async function () {
@@ -177,6 +177,6 @@ describe("When failed post a citizen data", () => {
     const result = await postRegisterUser(data)
 
     expect(mock.history.post[0].url).toEqual(`${postRegisterUrl}`);
-    expect(result.data).toEqual("registration failed: registration failed: missing some attribute")
+    expect(result.data).toEqual("registration failed: missing some attribute")
   });
 })
