@@ -1,8 +1,5 @@
-import React from "react";
-import {cleanup} from "@testing-library/react";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import * as assert from "assert";
 import {BASE_URL, fetchRegisteredUser, postRegisterUser} from "../../utils";
 
 const registration_url = `${BASE_URL}/registration`;
@@ -18,13 +15,7 @@ let data = {
   address: "TestAPI",
   vaccine_taken: "[]"
 }
-
-let response = {}
-
 let postRegisterUrl = `${registration_url}?name=${data.name}&surname=${data.surname}&citizen_id=${data.citizen_id}&birth_date=${data.birthdate}&occupation=${data.occupation}&address=${data.address}&phone_number=${data.phone_number}&is_risk=${data.is_risk}`
-
-const deleteCitizenID = `https://wcg-apis.herokuapp.com/citizen?citizen_id=${data.citizen_id}`
-
 let mock;
 
 beforeAll(() => {
@@ -40,7 +31,7 @@ describe("When successful get a particular citizen data", () => {
   it('should get registered data of that citizen back from government', async function () {
     mock.onGet(`${registration_url}/1111111111111`).reply(200, data);
 
-    const result = await fetchRegisteredUser()
+    const result = await fetchRegisteredUser(data)
 
     expect(mock.history.get[0].url).toEqual(`${registration_url}/1111111111111`);
     expect(result.data).toEqual(data)
@@ -49,11 +40,11 @@ describe("When successful get a particular citizen data", () => {
 
 describe("When failed get a particular citizen data", () => {
   it('should not get registered data of that citizen', async function () {
-    mock.onGet(`${registration_url}/1111111111111`).reply(404, []);
+    mock.onGet(`${registration_url}/${data.citizen_id}`).reply(404, []);
 
-    const result = await fetchRegisteredUser()
+    const result = await fetchRegisteredUser(data)
 
-    expect(mock.history.get[0].url).toEqual(`${registration_url}/1111111111111`);
+    expect(mock.history.get[0].url).toEqual(`${registration_url}/${data.citizen_id}`);
     expect(result).toEqual([])
   })
 })
