@@ -10,7 +10,7 @@ Due to the COVID-19 pandemic, everyone is required to take the vaccine to take c
 virus. As a result, vaccine organization is important. Poor management can cause, for example, overcrowding and
 inadequate injection which then leads to the new wave of COVID-19 spreading.
 
-</br>
+<br>
 
 ## Description
 
@@ -20,7 +20,7 @@ infected patients because we can reserve the vaccine inside of it. With the give
 the application can take the data from the government database and provide the nearest vaccine service site with useful
 information.
 
-</br>
+<br>
 
 ## Built With
 
@@ -28,7 +28,7 @@ information.
 * [React.js](https://reactjs.org/)
 * [Bootstrap](https://getbootstrap.com/)
 
-</br>
+<br>
 
 ## Team Members
 
@@ -104,7 +104,6 @@ Site. The user can find the features usage description on the wiki page in the l
 
 <br>
 
-
 # Organization
 
 * [World Class Government](https://github.com/WorldClassProgrammers/Government-APIs)
@@ -113,7 +112,6 @@ Site. The user can find the features usage description on the wiki page in the l
 <div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
 
 <br>
-
 
 # Acknowledgments
 

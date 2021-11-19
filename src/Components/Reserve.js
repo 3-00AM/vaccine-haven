@@ -28,7 +28,7 @@ function Reserve() {
   const onSubmit = async (data, event) => {
     event.preventDefault();
 
-    await axios.post(`${BASE_URL}/reservation`, null, { params: data})
+    await axios.post(`${BASE_URL}/reservation`, null, {params: data})
       .then(function (response) {
         let res_data = response.data;
         let feedback = res_data.feedback;

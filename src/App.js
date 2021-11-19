@@ -17,13 +17,13 @@ class App extends Component {
 
   render() {
     return (
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/registration" component={Register} />
-          <Route path="/reservation" component={Reserve} />
-          <Route exact path="/info" component={Info} />
-          <Route path="/info/:citizen_id" component={UserInformation} />
-        </Switch>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/registration" component={Register} />
+        <Route path="/reservation" component={Reserve} />
+        <Route exact path="/info" component={Info} />
+        <Route path="/info/:citizen_id" component={UserInformation} />
+      </Switch>
     )
   }
 }

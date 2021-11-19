@@ -23,7 +23,7 @@ function Home() {
 
   return (
     <div className="Home">
-      <Navbar onScroll={scroll ? "header-clear header-landing" : "header-dark"}/>
+      <Navbar onScroll={scroll ? "header-clear header-landing" : "header-dark"} />
       <section id={'splash'}>
         <div id="splash-img" className="hero fullscreen hero-img parallax-img">
           <div className="hero-body">

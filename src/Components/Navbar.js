@@ -17,14 +17,14 @@ function Navbar(props) {
 
         <div className="nav-item no-hover pl-0" style={{width: "75%", justifyContent: "flex-start"}}>
           <Link to="/">
-            <img src={homeLogo} alt="homeLogo"/>
+            <img src={homeLogo} alt="homeLogo" />
             {/*<h6 className="title white">Vaccine Haven</h6>*/}
           </Link>
         </div>
         <div onClick={ToggleClass} className={`nav-item nav-btn ${isActive ? "" : "active"}`} id={`header-btn`}>
-          <span/>
-          <span/>
-          <span/>
+          <span />
+          <span />
+          <span />
         </div>
       </div>
       <div className={`header-nav ${isActive ? "" : "active"}`} id={`header-menu`}>
