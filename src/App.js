@@ -9,6 +9,7 @@ import Home from "./Components/Home";
 import Reserve from "./Components/Reserve";
 import Info from "./Components/Info";
 import UserInformation from "./Components/UserInformation";
+import WalkIn from "./Components/WalkIn";
 
 class App extends Component {
 
@@ -23,6 +24,7 @@ class App extends Component {
         <Route path="/reservation" component={Reserve} />
         <Route exact path="/info" component={Info} />
         <Route path="/info/:citizen_id" component={UserInformation} />
+        <Route path="/site" component={WalkIn} />
       </Switch>
     )
   }
