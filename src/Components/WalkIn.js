@@ -40,20 +40,19 @@ export default function WalkIn() {
   return <div className="bg-blue-100">
     <Navbar/>
     <div className="py-10">
-      {youtube}
-      <div className="p-3">
-        <div className="toast toast--danger animated fadeIn infinite">
-          <button className="btn-close" onClick={yeet}/>
-          <p>Error</p>
-        </div>
-      </div>
+      {/*{youtube}*/}
+      {/*<div className="p-3">*/}
+      {/*  <div className="toast toast--danger animated fadeIn infinite">*/}
+      {/*    <button className="btn-close" onClick={yeet}/>*/}
+      {/*    <p>Error</p>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
       {site.map(site => {
         return <div className="p-3">
           <div className="card p-3">
             <div className="card-body">
               Site: {site.name}
-              <Link to="/" style={{float: "right"}} className="utb utb-OLR"> More Info </Link>
-              <div className="animated loading"/>
+              <Link to="#" style={{float: "right"}} className="utb utb-OLR"> More Info </Link>
             </div>
             <div className="card-footer">
               Location: {site.location}
