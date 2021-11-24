@@ -3,11 +3,11 @@ import Cancel from './Cancel';
 import Axios from "axios";
 import 'cirrus-ui';
 import Navbar from "./Navbar";
+import {BASE_URL} from "../utils";
 
 function UserInformation(props) {
 
   const state = props.location.state
-  const base_url = 'https://wcg-apis.herokuapp.com';
   const register_data = state.register_data;
 
   let reservation_data;
@@ -36,7 +36,7 @@ function UserInformation(props) {
 
   // const reserveInfo = async () => {
   //   console.log('data');
-  //   config.url = `${base_url}/reservation/${data.citizen_id}`
+  //   config.url = `${BASE_URL}/reservation/${data.citizen_id}`
   //   Axios(config)
   //     .then(function (response) {
   //       // console.log(response.data.citizen_id);
@@ -51,11 +51,11 @@ function UserInformation(props) {
   //       //     // setCitizen_id('')
   //       // }
   //       // else {
-
+  //
   //       // }
   //     })
   // };
-
+  //
   // setInterval(() => {
   //   reserveInfo();
   //   console.log("interval")
@@ -183,7 +183,7 @@ function UserInformation(props) {
                 </div>
               </div>
             </div>
-            <Cancel citizen_id={reservation_data.citizen_id} />
+            <Cancel id={`cancel__btn`} citizen_id={reservation_data.citizen_id} />
           </div>
           <div className='col-6'>
             <div className='card'>

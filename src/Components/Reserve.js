@@ -4,21 +4,13 @@ import axios from "axios";
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
-import {BASE_URL} from "../utils";
+import {BASE_URL, config} from "../utils";
 
 function Reserve() {
 
   const {register, handleSubmit, trigger, setError, formState: {errors, isValid}} = useForm();
 
   let history = useHistory();
-
-  const config = {
-    params: {},
-    url: ``,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    }
-  };
 
   const onError = (errors, e) => {
     console.log(errors, e)
@@ -28,7 +20,8 @@ function Reserve() {
   const onSubmit = async (data, event) => {
     event.preventDefault();
 
-    await axios.post(`${BASE_URL}/reservation`, null, {params: data})
+    config.params = data;
+    await axios.post(`${BASE_URL}/reservation`, null, config)
       .then(function (response) {
         let res_data = response.data;
         let feedback = res_data.feedback;
@@ -73,14 +66,16 @@ function Reserve() {
                         className="info inline font-light">Please input your real ID.</span></label>
                       <div className="section-body">
                         <div className="input-control">
-                          <input type="number"
-                                 className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.citizen_id && "text-danger input-error"}`}
-                                 placeholder="Citizen ID"
-                                 {...register("citizen_id", {
-                                   required: "Citizen ID is required",
-                                   minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
-                                   maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'}
-                                 })} onKeyUp={() => {
+                          <input
+                            type="number"
+                            id={'citizen_id'}
+                            className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.citizen_id && "text-danger input-error"}`}
+                            placeholder="Citizen ID"
+                            {...register("citizen_id", {
+                              required: "Citizen ID is required",
+                              minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
+                              maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'}
+                            })} onKeyUp={() => {
                             trigger("citizen_id");
                           }} />
                           <span className="icon icon-left"><i
@@ -94,12 +89,14 @@ function Reserve() {
                     <div className="row">
                       <div className="mb-1 col-6 pl-0">
                         <label className="font-bold">Choose Site <span className="required">*</span></label>
-                        <select className="select"
-                                placeholder="Choose Site"
-                                {...register("site_name", {required: "Site Name is required."})}
-                                onClick={() => {
-                                  trigger("site_name");
-                                }}>
+                        <select
+                          className="select"
+                          id={`site_name`}
+                          placeholder="Choose Site"
+                          {...register("site_name", {required: "Site Name is required."})}
+                          onClick={() => {
+                            trigger("site_name");
+                          }}>
                           <option value="" disabled selected={true}>Choose Site...</option>
                           <option value="OGYHSite">OGYHSite</option>
                         </select>
@@ -108,12 +105,14 @@ function Reserve() {
                       <div className="mb-1 col-6 pr-0">
                         <label className="font-bold label-small">Choose Vaccine <span
                           className="required">*</span></label>
-                        <select className="select"
-                                placeholder="Choose Vaccine"
-                                {...register("vaccine_name", {required: "Vaccine Name is required."})}
-                                onClick={() => {
-                                  trigger("vaccine_name");
-                                }}>
+                        <select
+                          id={`vaccine_name`}
+                          className="select"
+                          placeholder="Choose Vaccine"
+                          {...register("vaccine_name", {required: "Vaccine Name is required."})}
+                          onClick={() => {
+                            trigger("vaccine_name");
+                          }}>
                           <option value="" disabled selected={true}>Choose Vaccine...</option>
                           <option value="Pfizer">Pfizer</option>
                           <option value="Astra">Astra</option>
@@ -127,8 +126,8 @@ function Reserve() {
                     <div className="space" />
 
                     <div className="btn-group u-pull-right">
-                      <button disabled={!isValid} className="btn-info"
-                              type="submit">Next
+                      <button id={`reserve__btn`} disabled={!isValid} className="btn-info"
+                              type="submit">Submit
                       </button>
                     </div>
 
