@@ -94,7 +94,7 @@ function Reserve() {
                           id={`site_name`}
                           placeholder="Choose Site"
                           {...register("site_name", {required: "Site Name is required."})}
-                          onClick={() => {
+                          onChange={() => {
                             trigger("site_name");
                           }}>
                           <option value="" disabled selected={true}>Choose Site...</option>
@@ -110,7 +110,7 @@ function Reserve() {
                           className="select"
                           placeholder="Choose Vaccine"
                           {...register("vaccine_name", {required: "Vaccine Name is required."})}
-                          onClick={() => {
+                          onChange={() => {
                             trigger("vaccine_name");
                           }}>
                           <option value="" disabled selected={true}>Choose Vaccine...</option>
