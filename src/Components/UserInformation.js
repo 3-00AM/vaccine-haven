@@ -146,7 +146,7 @@ function UserInformation(props) {
                     <span>Vaccine: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reservation_data.vaccine_name}</span>
+                    <span id={`reserve_vaccine_value`}>{reservation_data.vaccine_name}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -154,7 +154,7 @@ function UserInformation(props) {
                     <span>Stie name: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reservation_data.site_name}</span>
+                    <span id={`reserve_site_value`}>{reservation_data.site_name}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -162,7 +162,7 @@ function UserInformation(props) {
                     <span>Queue: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reservation_data.queue}</span>
+                    <span id={`reserve_queue_value`}>{reservation_data.queue}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -170,7 +170,7 @@ function UserInformation(props) {
                     <span>Date: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reservation_data.timestamp}</span>
+                    <span id={`reserve_date_value`}>{reservation_data.timestamp}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -178,12 +178,12 @@ function UserInformation(props) {
                     <span>Time: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reservation_data.timestamp}</span>
+                    <span id={`reserve_time_value`}>{reservation_data.timestamp}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <Cancel id={`cancel__btn`} citizen_id={reservation_data.citizen_id} />
+            <Cancel citizen_id={reservation_data.citizen_id} />
           </div>
           <div className='col-6'>
             <div className='card'>
