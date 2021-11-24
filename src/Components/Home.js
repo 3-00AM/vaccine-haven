@@ -47,8 +47,8 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">For registration citizen.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link to="/registration">
-                      <button id={`register__btn`} className="u-shadow btn-link">Register</button>
+                    <Link id={`register__link`} to="/registration">
+                      <button className="u-shadow btn-link">Register</button>
                     </Link>
                   </div>
                 </div>
@@ -66,8 +66,8 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">Reservation for Vaccine.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link to="/reservation">
-                      <button id={`reserve__btn`} className="u-shadow btn-link">Reserve Vaccine</button>
+                    <Link id={`reserve__link`} to="/reservation">
+                      <button className="u-shadow btn-link">Reserve Vaccine</button>
                     </Link>
                   </div>
                 </div>
@@ -85,8 +85,8 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">See your reserved vaccine.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link to="/info">
-                      <button id={`check_info__btn`} className="u-shadow btn-link">Check Info</button>
+                    <Link id={`check_info__link`} to="/info">
+                      <button className="u-shadow btn-link">Check Info</button>
                     </Link>
                   </div>
                 </div>
@@ -104,8 +104,8 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">See the Vaccine site information.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link to="/">
-                      <button id={`check_site__btn`} className="u-shadow btn-link">Check Site</button>
+                    <Link id={`check_site__link`} to="/">
+                      <button className="u-shadow btn-link">Check Site</button>
                     </Link>
                   </div>
                 </div>

@@ -16,7 +16,7 @@ function Navbar(props) {
       <div className="header-brand">
 
         <div className="nav-item no-hover pl-0" style={{width: "75%", justifyContent: "flex-start"}}>
-          <Link to="/">
+          <Link id={`nav__home__link`} to="/">
             <img src={homeLogo} alt="homeLogo" />
             {/*<h6 className="title white">Vaccine Haven</h6>*/}
           </Link>
@@ -31,20 +31,20 @@ function Navbar(props) {
 
         <div className="nav-right">
           <div className="nav-item">
-            <Link className="white" to="/info">My Info</Link>
+            <Link id={`nav__info__link`} className="white" to="/info">My Info</Link>
           </div>
           <div className="nav-item has-sub toggle-hover" id="dropdown">
             <text className="white nav-dropdown-link">Register</text>
             <ul className="dropdown-menu dropdown-animated" role="menu">
-              <li id={`nav__register__btn`} role="menu-item"><Link to={'/registration'}>Registration</Link></li>
-              <li id={`nav__reserve__btn`} role="menu-item"><Link to={'/reservation'}>Reservation</Link></li>
+              <li role="menu-item"><Link id={`nav__register__link`} to={'/registration'}>Registration</Link></li>
+              <li role="menu-item"><Link id={`nav__reserve__link`} to={'/reservation'}>Reservation</Link></li>
             </ul>
           </div>
-          <div id={`nav__walk_in__btn`} className="nav-item">
-            <Link className="white" to="">Walk-in</Link>
+          <div className="nav-item">
+            <Link id={`nav__walk_in__link`} className="white" to="">Walk-in</Link>
           </div>
-          <div id={`nav__contact__btn`} className="nav-item">
-            <Link className="white" to="">Contact</Link>
+          <div className="nav-item">
+            <Link id={`nav__contact__link`} className="white" to="">Contact</Link>
           </div>
         </div>
       </div>
