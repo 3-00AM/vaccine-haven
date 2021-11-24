@@ -36,14 +36,14 @@ function Navbar(props) {
           <div className="nav-item has-sub toggle-hover" id="dropdown">
             <text className="white nav-dropdown-link">Register</text>
             <ul className="dropdown-menu dropdown-animated" role="menu">
-              <li role="menu-item"><Link to={'/registration'}>Registration</Link></li>
-              <li role="menu-item"><Link to={'/reservation'}>Reservation</Link></li>
+              <li id={`nav__register__btn`} role="menu-item"><Link to={'/registration'}>Registration</Link></li>
+              <li id={`nav__reserve__btn`} role="menu-item"><Link to={'/reservation'}>Reservation</Link></li>
             </ul>
           </div>
-          <div className="nav-item">
+          <div id={`nav__walk_in__btn`} className="nav-item">
             <Link className="white" to="">Walk-in</Link>
           </div>
-          <div className="nav-item">
+          <div id={`nav__contact__btn`} className="nav-item">
             <Link className="white" to="">Contact</Link>
           </div>
         </div>

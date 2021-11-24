@@ -48,7 +48,7 @@ function Home() {
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
                     <Link to="/registration">
-                      <button className="u-shadow btn-link">Register</button>
+                      <button id={`register__btn`} className="u-shadow btn-link">Register</button>
                     </Link>
                   </div>
                 </div>
@@ -67,7 +67,7 @@ function Home() {
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
                     <Link to="/reservation">
-                      <button className="u-shadow btn-link">Reserve Vaccine</button>
+                      <button id={`reserve__btn`} className="u-shadow btn-link">Reserve Vaccine</button>
                     </Link>
                   </div>
                 </div>
@@ -86,7 +86,7 @@ function Home() {
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
                     <Link to="/info">
-                      <button className="u-shadow btn-link">Check Info</button>
+                      <button id={`check_info__btn`} className="u-shadow btn-link">Check Info</button>
                     </Link>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ function Home() {
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
                     <Link to="/">
-                      <button className="u-shadow btn-link">Check Site</button>
+                      <button id={`check_site__btn`} className="u-shadow btn-link">Check Site</button>
                     </Link>
                   </div>
                 </div>
