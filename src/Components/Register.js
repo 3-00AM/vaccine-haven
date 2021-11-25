@@ -4,7 +4,7 @@ import {useForm} from 'react-hook-form';
 import {Link, useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
 import "cirrus-ui";
-import {notify, toaster} from "evergreen-ui"
+import {toaster} from "evergreen-ui"
 
 
 function Register() {
