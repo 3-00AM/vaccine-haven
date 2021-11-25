@@ -1,8 +1,10 @@
-import Axios from "axios";
+import axios from "axios";
 import {useHistory} from "react-router-dom";
 import {toaster} from "evergreen-ui";
+import {BASE_URL, config} from "../utils";
 
-function Cancel({ citizen_id }) {
+function Cancel({citizen_id}) {
+  const history = useHistory();
 
     const base_url = 'https://wcg-apis.herokuapp.com';
     const config = {
@@ -41,12 +43,11 @@ function Cancel({ citizen_id }) {
             });
     }
 
-
-    return (
-        <div>
-            <button className="btn-danger" type="submit" onClick={onClick}>Cancel</button>
-        </div>
-    )
+  return (
+    <div>
+      <button id={`cancel__btn`} className="btn-danger" type="submit" onClick={onClick}>Cancel</button>
+    </div>
+  )
 }
 
 export default Cancel

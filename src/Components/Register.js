@@ -1,26 +1,18 @@
 import React from "react";
-import Axios from "axios";
+import axios from "axios";
 import {useForm} from 'react-hook-form';
-import {Link, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
 import "cirrus-ui";
 import {toaster} from "evergreen-ui"
+import {BASE_URL, config} from "../utils";
 
 
 function Register() {
 
   const {register, handleSubmit, setError, trigger, formState: {errors, isValid}} = useForm({});
 
-  const base_url = 'https://wcg-apis.herokuapp.com';
   let history = useHistory();
-
-  const config = {
-    method: 'post',
-    url: ``,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    }
-  };
 
   const onError = (errors, e) => {
     console.log(errors, e)
@@ -29,12 +21,11 @@ function Register() {
 
 
   const onSubmit = async (data, event) => {
-    console.log(data)
     event.preventDefault();
 
-    config.url = `${base_url}/registration?name=${data.firstname}&surname=${data.lastname}&citizen_id=${data.citizen_id}&birth_date=${data.birthdate}&occupation=${data.occupation}&address=${data.address}&phone_number=${data.phone}&is_risk=${data.is_risk}`
+    config.params=data;
 
-    await Axios(config)
+    await axios.post(`${BASE_URL}/registration`, null, config)
       .then(function (response) {
         let res_data = response.data;
         let feedback = res_data.feedback;
@@ -58,9 +49,9 @@ function Register() {
             zIndex: 100
           })
         } else if (feedback === "registration failed: not archived minimum age") {
-          setError("birthdate", {
+          setError("birth_date", {
             type: "manual",
-            message: "Not archived minimum age."
+            message: "Minimum age has to be at least 30 years old."
           })
           toaster.danger("Registration Failed!", {
             id: "forbidden-action",
@@ -69,7 +60,7 @@ function Register() {
             zIndex: 100
           })
         } else if (feedback === "registration failed: invalid birth date format") {
-          setError("birthdate", {
+          setError("birth_date", {
             type: "manual",
             message: "Invalid birth date."
           })
@@ -113,14 +104,16 @@ function Register() {
                         className="info inline font-light">Please input your real ID.</span></label>
                       <div className="section-body">
                         <div className="input-control">
-                          <input type="number"
-                                 className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.citizen_id && "text-danger input-error"}`}
-                                 placeholder="Citizen ID"
-                                 {...register("citizen_id", {
-                                   required: "Citizen ID is required",
-                                   minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
-                                   maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'}
-                                 })} onKeyUp={() => {
+                          <input
+                            type="number"
+                            id={'citizen_id'}
+                            className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.citizen_id && "text-danger input-error"}`}
+                            placeholder="Citizen ID"
+                            {...register("citizen_id", {
+                              required: "Citizen ID is required",
+                              minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
+                              maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'}
+                            })} onKeyUp={() => {
                             trigger("citizen_id");
                           }} />
                           <span className="icon icon-left"><i
@@ -137,17 +130,18 @@ function Register() {
                           <label className="font-bold">Firstname <span className="required">*</span></label>
                           <div className="input-control">
                             <input
-                              className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.firstname && "text-danger input-error"}`}
+                              id={`name`}
+                              className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.name && "text-danger input-error"}`}
                               type="text"
                               placeholder="Firstname"
-                              {...register("firstname", {required: "Firstname is required."})}
+                              {...register("name", {required: "Firstname is required."})}
                               onKeyUp={() => {
-                                trigger("firstname");
+                                trigger("name");
                               }} />
-                            <span className={`icon icon-left ${errors.firstname && "text-danger input-error"}`}><i
+                            <span className={`icon icon-left ${errors.name && "text-danger input-error"}`}><i
                               className="fa fa-wrapper fa-user" aria-hidden="true" /></span>
                           </div>
-                          {errors.firstname && <span className="required info">{errors.firstname.message}</span>}
+                          {errors.name && <span className="required info">{errors.name.message}</span>}
 
                         </div>
 
@@ -155,17 +149,18 @@ function Register() {
                           <label className="font-bold">Lastname <span className="required">*</span></label>
                           <div className="input-control">
                             <input
-                              className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.lastname && "text-danger input-error"}`}
+                              id={`surname`}
+                              className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.surname && "text-danger input-error"}`}
                               type="text"
                               placeholder="Lastname"
-                              {...register("lastname", {required: "Lastname is required."})}
+                              {...register("surname", {required: "Lastname is required."})}
                               onKeyUp={() => {
-                                trigger("lastname");
+                                trigger("surname");
                               }} />
-                            <span className={`icon icon-left ${errors.lastname && "text-danger input-error"}`}><i
+                            <span className={`icon icon-left ${errors.surname && "text-danger input-error"}`}><i
                               className="fa fa-wrapper fa-user" aria-hidden="true" /></span>
                           </div>
-                          {errors.lastname && <span className="required info">{errors.lastname.message}</span>}
+                          {errors.surname && <span className="required info">{errors.surname.message}</span>}
                         </div>
                       </div>
                     </div>
@@ -174,24 +169,27 @@ function Register() {
                       <div className="mb-1 col-6 pl-0">
                         <label className="font-bold">Birthdate <span className="required">*</span></label>
                         <div className="input-control">
-                          <input type="date"
-                                 className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.birthdate && "text-danger input-error"}`}
-                                 placeholder="Birthdate"
-                                 {...register("birthdate", {required: "Birthdate is required."})}
-                                 onKeyUp={() => {
-                                   trigger("birthdate");
-                                 }} />
-                          <span className={`icon icon-left ${errors.birthdate && "text-danger input-error"}`}>
+                          <input
+                            type="date"
+                            id={`birth_date`}
+                            className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.birth_date && "text-danger input-error"}`}
+                            placeholder="Birthdate"
+                            {...register("birth_date", {required: "Birthdate is required."})}
+                            onKeyUp={() => {
+                              trigger("birth_date");
+                            }} />
+                          <span className={`icon icon-left ${errors.birth_date && "text-danger input-error"}`}>
                             <i className="fa fa-wrapper fa-calendar" />
                           </span>
                         </div>
-                        {errors.birthdate && <span className="required info">{errors.birthdate.message}</span>}
+                        {errors.birth_date && <span className="required info">{errors.birth_date.message}</span>}
                       </div>
 
                       <div className="mb-1 col-6 pr-0">
                         <label className="font-bold label-small">Occupation <span className="required">*</span></label>
                         <div className="input-control">
                           <input type="text"
+                                 id={`occupation`}
                                  className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.occupation && "text-danger input-error"}`}
                                  placeholder="Occupation"
                                  {...register("occupation", {required: "Occupation is required."})}
@@ -210,29 +208,33 @@ function Register() {
                       <div className="mb-1 col-6 pl-0">
                         <label className="font-bold">Phone Number <span className="required">*</span></label>
                         <div className="input-control">
-                          <input type="tel"
-                                 className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.phone && "text-danger input-error"}`}
-                                 placeholder="Phone Number"
-                                 {...register("phone", {required: "Phone number is required."})}
-                                 onKeyUp={() => {
-                                   trigger("phone");
-                                 }} />
-                          <span className={`icon icon-left ${errors.phone && "text-danger input-error"}`}>
+                          <input
+                            type="tel"
+                            id={`phone_number`}
+                            className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.phone_number && "text-danger input-error"}`}
+                            placeholder="Phone Number"
+                            {...register("phone_number", {required: "Phone number is required."})}
+                            onKeyUp={() => {
+                              trigger("phone_number");
+                            }} />
+                          <span className={`icon icon-left ${errors.phone_number && "text-danger input-error"}`}>
                             <i className="fa fa-wrapper fa-phone" />
                           </span>
                         </div>
-                        {errors.phone && <span className="required info">{errors.phone.message}</span>}
+                        {errors.phone_number && <span className="required info">{errors.phone_number.message}</span>}
                       </div>
                     </div>
 
                     <div className="mb-1">
                       <label className="font-bold">Address <span className="required">*</span></label>
-                      <textarea className={`form-group-input ${errors.address && "text-danger input-error"}`}
-                                placeholder="Enter your address here"
-                                {...register("address", {required: "Address is required."})}
-                                onKeyUp={() => {
-                                  trigger("address");
-                                }} />
+                      <textarea
+                        id={`address`}
+                        className={`form-group-input ${errors.address && "text-danger input-error"}`}
+                        placeholder="Enter your address here"
+                        {...register("address", {required: "Address is required."})}
+                        onKeyUp={() => {
+                          trigger("address");
+                        }} />
                       {errors.address && <span className="required info">{errors.address.message}</span>}
                     </div>
                     <div className="row">
@@ -253,8 +255,8 @@ function Register() {
                       </div>
                       <div className="mb-1 col-6 pr-0">
                         <div className="btn-group u-pull-right">
-                          <button className="btn-info"
-                                  type="submit">Next
+                          <button id={`register__btn`} className="btn-info"
+                                  type="submit">Submit
                           </button>
                         </div>
                       </div>

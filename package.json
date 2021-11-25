@@ -15,10 +15,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.17.5",
+    "react-https-redirect": "^1.1.0",
     "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.3",
-    "react-transition-group": "^4.4.2",
+    "react-scripts": "^4.0.3",
+    "thai-id-validator": "^1.1.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

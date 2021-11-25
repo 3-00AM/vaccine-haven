@@ -1,13 +1,62 @@
-# Getting Started with Create React App
+# VaccineHaven
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). And you have to
-install [Node JS](https://nodejs.org/en/) and install the LTS version of Node JS.
+[![Node.js CI](https://github.com/3-00AM/vaccine-haven/actions/workflows/node.js.yml/badge.svg)](https://github.com/3-00AM/vaccine-haven/actions/workflows/node.js.yml)
+[![CodeQL](https://github.com/3-00AM/vaccine-haven/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/3-00AM/vaccine-haven/actions/workflows/codeql-analysis.yml)
 
-## Available Scripts
+![VaccineHaven](https://i.imgur.com/U2N3Mxb.png)
+
+## Background
+
+Due to the COVID-19 pandemic, everyone is required to take the vaccine to take control of the range of spreading the
+virus. As a result, vaccine organization is important. Poor management can cause, for example, overcrowding and
+inadequate injection which then leads to the new wave of COVID-19 spreading.
+
+<br>
+
+## Description
+
+To prevent these issues, we decided to create an application that can manage the whole system of vaccine reservations
+including many features such as patient appointments. Using the VaccineHaven application, we can decrease the number of
+infected patients because we can reserve the vaccine inside of it. With the given information from the user (name, id),
+the application can take the data from the government database and provide the nearest vaccine service site with useful
+information.
+
+<br>
+
+## Built With
+
+* [Next.js](https://nextjs.org/)
+* [React.js](https://reactjs.org/)
+* [Bootstrap](https://getbootstrap.com/)
+
+<br>
+
+## Team Members
+
+| Name                     |                  GitHub ID                  |     Role      |
+| ------------------------ | :-----------------------------------------: | :-----------: |
+| Vichisorn Wejsupakul     | [james31366](https://github.com/james31366) | Scrum Master  |
+| Teeranut Sawanyawat      |     [LevNut](https://github.com/LevNut)     | Product Owner |
+| Bheem Suttipong          |  [Bheem6005](https://github.com/Bheem6005)  |   Developer   |
+| Chonchanok Chevaisrakul  | [boom210232](https://github.com/boom210232) |   Developer   |
+| Kongtapp Veerawattananun |  [KongtappV](https://github.com/KongtappV)  |   Developer   |
+| Metaras Charoenseang     |    [metaras](https://github.com/metaras)    |   Developer   |
+| Narawish Sangsiriwut     |  [NarawishS](https://github.com/NarawishS)  |   Developer   |
+| Pattarin Wongwaipanich   |  [pattarinn](https://github.com/pattarinn)  |   Developer   |
+
+<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
+
+<br>
+
+# Getting Started
 
 In the project directory, you can run:
 
-### `npm start`
+    $ npm install
+
+For downloading all of the dependency you required for the website application.
+
+    $ npm start
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -15,13 +64,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm run test`
+    $ npm run test
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more
 information.
 
-### `npm run build`
+    $ npm run build
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -29,56 +78,49 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<br>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will
-remove the single build dependency from your project.
+# Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc.) right
-into your project, so you have full control over them. All the commands except `eject` will still work, but they will
-point to the copied scripts, so you can tweak them. At this point you’re on your own.
+Our website has four main features, including Citizen Registration, Vaccine Reservation, User Information, and Vaccine
+Site. The user can find the features usage description on the wiki page in the link below the picture.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you
-shouldn’t feel obligated to use this feature. However, we understand that this tool wouldn't be useful if you couldn't
-customize it when you are ready for it.
+* Our website: https://vaccine-haven.herokuapp.com/
 
-## Learn More
+<br>
 
-You can learn more in
-the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![index2](https://i.imgur.com/MasIFeA.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Usage Wiki Page (Guidance)
 
-### Code Splitting
+* [Registration](https://github.com/3-00AM/vaccine-haven/wiki/Registration)
+* [Reservation](https://github.com/3-00AM/vaccine-haven/wiki/Reservation)
+* [User Information & Cancellation](https://github.com/3-00AM/vaccine-haven/wiki/User-Information-&-Cancellation)
+* [Vaccine Site](https://github.com/3-00AM/vaccine-haven/wiki/Vaccine-Site)
 
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
 
-### Analyzing the Bundle Size
+<br>
 
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Organization
 
-### Making a Progressive Web App
+* [World Class Government](https://github.com/WorldClassProgrammers/Government-APIs)
+* [OGYH](https://github.com/OGYH-Team)
 
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
 
-### Advanced Configuration
+<br>
 
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Acknowledgments
 
-### Deployment
+A List of Resources that We Found which is Helpful to This Project
 
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+* [Cirrus CSS](https://cirrus-ui.netlify.app/)
+* [React](https://reactjs.org/docs/getting-started.html)
+* [React Router](https://reactrouter.com/docs/en/v6)
+* [Framer Motion](https://www.framer.com/motion/)
 
-### `npm run build` fails to minify
-
-This section has moved
-here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
