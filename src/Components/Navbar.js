@@ -12,7 +12,8 @@ function Navbar(props) {
 
   return (
     <div
-      className={`header header-fixed unselectable header-animated doc-header ${isActive ? "" : "translucent"} ${props.onScroll || "header-dark"}`} style={{zIndex:30}}>
+      className={`header header-fixed unselectable header-animated doc-header ${isActive ? "" : "translucent"} ${props.onScroll || "header-dark"}`}
+      style={{zIndex: 30}}>
       <div className="header-brand">
 
         <div className="nav-item no-hover pl-0" style={{width: "75%", justifyContent: "flex-start"}}>

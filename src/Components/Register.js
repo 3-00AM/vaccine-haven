@@ -22,8 +22,7 @@ function Register() {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
-
-    config.params=data;
+    config.params = data;
 
     await axios.post(`${BASE_URL}/registration`, null, config)
       .then(function (response) {

@@ -42,18 +42,19 @@ function Info() {
             id: "forbidden-action",
             description: "Here is a personal information.",
             duration: 5,
-            zIndex: 100})
+            zIndex: 100
+          })
         }
       }))
       .catch(function (error) {
         console.log(error)
       })
-      toaster.danger("Submit Failed!", {
-        id: "forbidden-action",
-        description: "Something went wrong!",
-        duration: 5,
-        zIndex: 100
-      })
+    toaster.danger("Submit Failed!", {
+      id: "forbidden-action",
+      description: "Something went wrong!",
+      duration: 5,
+      zIndex: 100
+    })
   };
   console.log(errors);
 

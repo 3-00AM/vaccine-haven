@@ -4,8 +4,7 @@ import axios from "axios";
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
-import {Overlay, toaster} from "evergreen-ui";
-import { overflow } from "ui-box";
+import {toaster} from "evergreen-ui";
 import {BASE_URL, config} from "../utils";
 
 
@@ -21,11 +20,10 @@ function Reserve() {
   };
 
 
-  
   const onSubmit = async (data, event) => {
     event.preventDefault();
-
     config.params = data;
+
     await axios.post(`${BASE_URL}/reservation`, null, config)
       .then(function (response) {
         let res_data = response.data;

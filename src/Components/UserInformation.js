@@ -3,7 +3,7 @@ import axios from "axios";
 import 'cirrus-ui';
 import Navbar from "./Navbar";
 import {useHistory} from "react-router-dom";
-import { Pane, Dialog, Button } from 'evergreen-ui'
+import {Pane, Dialog, Button} from 'evergreen-ui'
 import {BASE_URL} from "../utils";
 
 function UserInformation(props) {
@@ -23,7 +23,7 @@ function UserInformation(props) {
       vaccine_name: "",
       timestamp: "",
       queue: "",
-      checked: "" 
+      checked: ""
     }
 
 
@@ -37,15 +37,15 @@ function UserInformation(props) {
   const history = useHistory();
 
   const onCancel = async () => {
-      // change this to send json 
-      await axios.delete(`${base_url}/reservation/${reservation_data.citizen_id}`, config)
-          .then(function (response) {
-              console.log(JSON.stringify(response.data));
-              history.push("/info")
-          })
-          .catch(function (error) {
-              console.log(error);
-          });
+    // change this to send json
+    await axios.delete(`${BASE_URL}/reservation/${reservation_data.citizen_id}`, config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        history.push("/info")
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
 
@@ -206,7 +206,7 @@ function UserInformation(props) {
                 intent="danger"
                 onCloseComplete={() => setIsShown(false)}
                 confirmLabel="Confirm"
-                onConfirm = {onCancel}
+                onConfirm={onCancel}
               >
                 Are you sure you want to cancel the reservation?
               </Dialog>
