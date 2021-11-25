@@ -38,23 +38,17 @@ function Info() {
           })
         } else {
           history.push(`/info/${register_data.citizen_id}`, {register_data, reservation_data})
-          toaster.success("Submit Successful!", {
-            id: "forbidden-action",
-            description: "Here is a personal information.",
-            duration: 5,
-            zIndex: 100
-          })
         }
       }))
       .catch(function (error) {
+        toaster.danger("Submit Failed!", {
+          id: "forbidden-action",
+          description: "Please make sure you already registered.",
+          duration: 5,
+          zIndex: 100
+        })
         console.log(error)
       })
-    toaster.danger("Submit Failed!", {
-      id: "forbidden-action",
-      description: "Something went wrong!",
-      duration: 5,
-      zIndex: 100
-    })
   };
   console.log(errors);
 

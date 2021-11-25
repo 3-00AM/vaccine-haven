@@ -3,7 +3,7 @@ import axios from "axios";
 import 'cirrus-ui';
 import Navbar from "./Navbar";
 import {useHistory} from "react-router-dom";
-import {Pane, Dialog, Button} from 'evergreen-ui'
+import {Pane, Dialog, Button, toaster} from 'evergreen-ui'
 import {BASE_URL} from "../utils";
 
 function UserInformation(props) {
@@ -40,10 +40,22 @@ function UserInformation(props) {
     // change this to send json
     await axios.delete(`${BASE_URL}/reservation/${reservation_data.citizen_id}`, config)
       .then(function (response) {
+        toaster.success("Cancellation Successful!", {
+          id: "forbidden-action",
+          description: "Latest reservation has been canceled.",
+          duration: 5,
+          zIndex: 100
+        })
         console.log(JSON.stringify(response.data));
         history.push("/info")
       })
       .catch(function (error) {
+        toaster.danger("Cancellation Failed!", {
+          id: "forbidden-action",
+          description: "There is no vaccine reservation to cancel.",
+          duration: 5,
+          zIndex: 100
+        })
         console.log(error);
       });
   }
