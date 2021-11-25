@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import Cancel from './Cancel';
-import Axios from "axios";
+import React from "react";
+import axios from "axios";
 import 'cirrus-ui';
 import Navbar from "./Navbar";
-import Modal from './Modal';
+import {useHistory} from "react-router-dom";
+import { Pane, Dialog, Button } from 'evergreen-ui'
 
 function UserInformation(props) {
 
@@ -11,7 +11,7 @@ function UserInformation(props) {
   const base_url = 'https://wcg-apis.herokuapp.com';
   const register_data = state.register_data;
 
-  const [show, setShow] = useState(false);
+  const [isShown, setIsShown] = React.useState(false)
 
   let reservation_data;
   if (state.reservation_data.length > 0) {
@@ -23,18 +23,30 @@ function UserInformation(props) {
       vaccine_name: "",
       timestamp: "",
       queue: "",
-      checked: ""
+      checked: "" 
     }
 
 
   const config = {
-    method: 'get',
-    url: ``,
     headers: {
       'Access-Control-Allow-Origin': '*',
     }
   };
   console.log(register_data.citizen_id);
+
+  const history = useHistory();
+
+  const onCancel = async () => {
+      // change this to send json 
+      await axios.delete(`${base_url}/reservation/${reservation_data.citizen_id}`, config)
+          .then(function (response) {
+              console.log(JSON.stringify(response.data));
+              history.push("/info")
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+  }
 
 
   // const reserveInfo = async () => {
@@ -154,7 +166,7 @@ function UserInformation(props) {
                 </div>
                 <div className='row'>
                   <div className='col-5'>
-                    <span>Stie name: </span>
+                    <span>Site name: </span>
                   </div>
                   <div className='col-7'>
                     <span>{reservation_data.site_name}</span>
@@ -186,7 +198,23 @@ function UserInformation(props) {
                 </div>
               </div>
             </div>
-            <Cancel citizen_id={reservation_data.citizen_id} />
+
+            <Pane>
+              <Dialog
+                isShown={isShown}
+                title="Cancel Reservation"
+                intent="danger"
+                onCloseComplete={() => setIsShown(false)}
+                confirmLabel="Confirm"
+                onConfirm = {onCancel}
+              >
+                Are you sure you want to cancel the reservation?
+              </Dialog>
+
+              <Button className="btn-danger" onClick={() => setIsShown(true)}>Cancel Reservation</Button>
+            </Pane>
+            {/* <Cancel citizen_id={reservation_data.citizen_id}/> */}
+
           </div>
           <div className='col-6'>
             <div className='card'>
@@ -217,13 +245,6 @@ function UserInformation(props) {
           </div>
         </div>
         {/*<h2>add tap for this three part</h2>*/}
-
-        <div className="App">
-          <button onClick={() => setShow(true)}>Show Modal</button>
-          <Modal title="My Modal" onClose={() => setShow(false)} show={show}>
-            <p>This is modal body</p>
-          </Modal>
-        </div>
 
       </div>
     </div>
