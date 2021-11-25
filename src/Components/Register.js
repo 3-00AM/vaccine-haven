@@ -4,6 +4,8 @@ import {useForm} from 'react-hook-form';
 import {Link, useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
 import "cirrus-ui";
+import {notify, toaster} from "evergreen-ui"
+
 
 function Register() {
 
@@ -25,6 +27,7 @@ function Register() {
     console.log(isValid)
   };
 
+
   const onSubmit = async (data, event) => {
     console.log(data)
     event.preventDefault();
@@ -37,24 +40,54 @@ function Register() {
         let feedback = res_data.feedback;
         if (response.status === 201) {
           history.push("/");
+          toaster.success("Registration Successful!", {
+            id: "forbidden-action",
+            description: "Now you can proceed to reservation page for reserving the vaccine.",
+            duration: 5,
+            zIndex: 100
+          })
         } else if (feedback === "registration failed: this person already registered") {
           setError("citizen_id", {
             type: "manual",
             message: "This Citizen ID already registered."
+          })
+          toaster.danger("Registration Failed!", {
+            id: "forbidden-action",
+            description: "This person is already registered.",
+            duration: 5,
+            zIndex: 100
           })
         } else if (feedback === "registration failed: not archived minimum age") {
           setError("birthdate", {
             type: "manual",
             message: "Not archived minimum age."
           })
+          toaster.danger("Registration Failed!", {
+            id: "forbidden-action",
+            description: "Not archived minimum age.",
+            duration: 5,
+            zIndex: 100
+          })
         } else if (feedback === "registration failed: invalid birth date format") {
           setError("birthdate", {
             type: "manual",
             message: "Invalid birth date."
           })
+          toaster.danger("Registration Failed!", {
+            id: "forbidden-action",
+            description: "Invalid birth date format.",
+            duration: 5,
+            zIndex: 100
+          })
         }
       })
       .catch(function (error) {
+        toaster.danger("Registration Failed!", {
+          id: "forbidden-action",
+          description: "Something went wrong!",
+          duration: 5,
+          zIndex: 100
+        })
         console.log(error);
       });
   };
@@ -220,7 +253,7 @@ function Register() {
                       </div>
                       <div className="mb-1 col-6 pr-0">
                         <div className="btn-group u-pull-right">
-                          <button disabled={!isValid} className="btn-info"
+                          <button className="btn-info"
                                   type="submit">Next
                           </button>
                         </div>

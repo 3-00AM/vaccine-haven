@@ -12,7 +12,7 @@ function Navbar(props) {
 
   return (
     <div
-      className={`header header-fixed unselectable header-animated doc-header ${isActive ? "" : "translucent"} ${props.onScroll || "header-dark"}`}>
+      className={`header header-fixed unselectable header-animated doc-header ${isActive ? "" : "translucent"} ${props.onScroll || "header-dark"}`} style={{zIndex:30}}>
       <div className="header-brand">
         <div className="nav-item no-hover">
           <Link to="/"><h6 className="title white">Vaccine Haven</h6></Link>
