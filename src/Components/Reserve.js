@@ -4,6 +4,8 @@ import Axios from "axios";
 import {useForm} from "react-hook-form";
 import {Link, useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
+import {Overlay, toaster} from "evergreen-ui";
+import { overflow } from "ui-box";
 
 function Reserve() {
 
@@ -26,6 +28,8 @@ function Reserve() {
     console.log(isValid)
   };
 
+
+  
   const onSubmit = async (data, event) => {
     event.preventDefault();
 
@@ -37,19 +41,43 @@ function Reserve() {
         let feedback = res_data.feedback;
         if (feedback === "reservation success!") {
           history.push("/");
+          toaster.success("Reservation Successful!", {
+            id: "forbidden-action",
+            description: "Now you can proceed to my-info page for additional information.",
+            duration: 5,
+            zIndex: 100
+          })
         } else if (feedback === "reservation failed: citizen ID is not registered") {
           setError("citizen_id", {
             type: "manual",
             message: "This Citizen ID is not registered."
+          })
+          toaster.danger("Reservation Failed!", {
+            id: "forbidden-action",
+            description: "Citizen ID is not registered.",
+            duration: 5,
+            zIndex: 100
           })
         } else if (feedback === "reservation failed: there is already a reservation for this citizen") {
           setError("citizen_id", {
             type: "manual",
             message: "This Citizen ID already reserved."
           })
+          toaster.danger("Reservation Failed!", {
+            id: "forbidden-action",
+            description: "There is already a reservation for this citizen.",
+            duration: 5,
+            zIndex: 100
+          })
         }
       })
       .catch(function (error) {
+        toaster.danger("Reservation Failed!", {
+          id: "forbidden-action",
+          description: "Something went wrong!",
+          duration: 5,
+          zIndex: 100
+        })
         console.log(error);
       });
   };
@@ -130,7 +158,7 @@ function Reserve() {
                     <div className="space" />
 
                     <div className="btn-group u-pull-right">
-                      <button disabled={!isValid} className="btn-info"
+                      <button className="btn-info"
                               type="submit">Next
                       </button>
                     </div>

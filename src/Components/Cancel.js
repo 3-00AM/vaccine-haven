@@ -1,5 +1,6 @@
 import Axios from "axios";
 import {useHistory} from "react-router-dom";
+import {toaster} from "evergreen-ui";
 
 function Cancel({ citizen_id }) {
 
@@ -11,6 +12,8 @@ function Cancel({ citizen_id }) {
             'Access-Control-Allow-Origin': '*',
         }
     };
+
+
     const history = useHistory();
 
     const onClick = async () => {
@@ -18,10 +21,22 @@ function Cancel({ citizen_id }) {
         config.url = `${base_url}/reservation/${citizen_id}`
         await Axios(config)
             .then(function (response) {
+                toaster.success("Cancellation Successful!", {
+                    id: "forbidden-action",
+                    description: "Now you can reserve more vaccine.",
+                    duration: 5,
+                    zIndex: 100
+                  })
                 console.log(JSON.stringify(response.data));
                 history.push("/info")
             })
             .catch(function (error) {
+                toaster.danger("Cancellation Failed!", {
+                    id: "forbidden-action",
+                    description: "There is no vaccine reservation to cancel.",
+                    duration: 5,
+                    zIndex: 100
+                  })
                 console.log(error);
             });
     }

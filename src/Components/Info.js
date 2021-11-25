@@ -4,6 +4,7 @@ import {useForm} from 'react-hook-form';
 import {useHistory} from "react-router-dom";
 import 'cirrus-ui';
 import Navbar from "./Navbar";
+import {toaster} from "evergreen-ui";
 
 function Info() {
   // const fetchUserInfo = async (citizen_id) => {
@@ -40,12 +41,29 @@ function Info() {
             type: "manual",
             message: "This Citizen ID is not registered."
           });
+          toaster.danger("Submit Failed!", {
+            id: "forbidden-action",
+            description: "Citizen ID is not registered.",
+            duration: 5,
+            zIndex: 100
+          })
         } else {
           history.push(`/info/${register_data.citizen_id}`, {register_data, reservation_data})
+          toaster.success("Submit Successful!", {
+            id: "forbidden-action",
+            description: "Here is a personal information.",
+            duration: 5,
+            zIndex: 100})
         }
       }))
       .catch(function (error) {
         console.log(error)
+      })
+      toaster.danger("Submit Failed!", {
+        id: "forbidden-action",
+        description: "Something went wrong!",
+        duration: 5,
+        zIndex: 100
       })
   };
   console.log(errors);
