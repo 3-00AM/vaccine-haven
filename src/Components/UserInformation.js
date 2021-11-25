@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useState} from "react";
 import Cancel from './Cancel';
 import Axios from "axios";
 import 'cirrus-ui';
 import Navbar from "./Navbar";
+import Modal from './Modal';
 
 function UserInformation(props) {
 
   const state = props.location.state
   const base_url = 'https://wcg-apis.herokuapp.com';
   const register_data = state.register_data;
+
+  const [show, setShow] = useState(false);
 
   let reservation_data;
   if (state.reservation_data.length > 0) {
@@ -214,6 +217,14 @@ function UserInformation(props) {
           </div>
         </div>
         {/*<h2>add tap for this three part</h2>*/}
+
+        <div className="App">
+          <button onClick={() => setShow(true)}>Show Modal</button>
+          <Modal title="My Modal" onClose={() => setShow(false)} show={show}>
+            <p>This is modal body</p>
+          </Modal>
+        </div>
+
       </div>
     </div>
   );
