@@ -1,16 +1,24 @@
 import "cirrus-ui";
-import React from "react";
+import React, {useContext, useState} from "react";
 import axios from "axios";
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
 import {toaster} from "evergreen-ui";
 import {BASE_URL, config} from "../utils";
+import {AuthContext} from "./Auth";
+import {db} from "../config";
 
 
 function Reserve() {
 
   const {register, handleSubmit, trigger, setError, formState: {errors, isValid}} = useForm();
+
+  const [citizen, setCitizenID] = useState("")
+  const {currentUser} = useContext(AuthContext);
+  db.collection('users').doc(currentUser.uid).get().then(doc => {
+    setCitizenID(doc.data().citizen_id)
+  })
 
   let history = useHistory();
 
@@ -24,7 +32,7 @@ function Reserve() {
     event.preventDefault();
     config.params = data;
 
-    await axios.post(`${BASE_URL}/reservation`, null, config)
+    await axios.post(`${BASE_URL}/reservation?citizen_id=${citizen}`, null, config)
       .then(function (response) {
         let res_data = response.data;
         let feedback = res_data.feedback;
@@ -74,40 +82,36 @@ function Reserve() {
 
   return (
     <div className="hero fullscreen">
-      <Navbar />
+      <Navbar/>
       <div className="content">
         <div style={{margin: "auto"}}>
           <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit, onError)}>
             <div className="frame__body p-0">
               <div className="row p-0 level fill-height">
                 <div className="col">
-                  <div className="space xlarge" />
+                  <div className="space xlarge"/>
                   <div className="padded">
                     <h1 className="u-text-center u-font-alt">Vaccine Reservation</h1>
-                    <div className="divider" />
+                    <div className="divider"/>
                     <p className="u-text-center">Get the user information for who want to reserve the vaccine</p>
-                    <div className="divider" />
+                    <div className="divider"/>
 
                     <div className="mb-1">
                       <label className="font-bold">Citizen ID <span className="required">*</span> <span
                         className="info inline font-light">Please input your real ID.</span></label>
                       <div className="section-body">
                         <div className="input-control">
-                          <input
-                            type="number"
-                            id={'citizen_id'}
-                            className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.citizen_id && "text-danger input-error"}`}
-                            placeholder="Citizen ID"
-                            {...register("citizen_id", {
-                              required: "Citizen ID is required",
-                              minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
-                              maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'}
-                            })} onKeyUp={() => {
-                            trigger("citizen_id");
-                          }} />
+                          <input disabled
+                                 type="number"
+                                 id={'citizen_id'}
+                                 className={`input-contains-icon input-contains-icon input-contains-icon-left disabled ${errors.citizen_id && "text-danger input-error"}`}
+                                 placeholder="Citizen ID"
+                                 {...register("citizen_id")}
+                                 value={citizen}
+                          />
                           <span className="icon icon-left"><i
                             className={`fa fa-wrapper fa-id-card ${errors.citizen_id && "text-danger input-error"}`}
-                            aria-hidden="true" /></span>
+                            aria-hidden="true"/></span>
                         </div>
                       </div>
                       {errors.citizen_id && <span className="required info">{errors.citizen_id.message}</span>}
@@ -150,7 +154,7 @@ function Reserve() {
                       </div>
                     </div>
 
-                    <div className="space" />
+                    <div className="space"/>
 
                     <div className="btn-group u-pull-right">
                       <button id={`reserve__btn`} className="btn-info"
@@ -159,7 +163,7 @@ function Reserve() {
                     </div>
 
                   </div>
-                  <div className="space xlarge" />
+                  <div className="space xlarge"/>
                 </div>
               </div>
             </div>

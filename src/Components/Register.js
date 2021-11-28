@@ -84,19 +84,19 @@ function Register() {
 
   return (
     <div className="hero fullscreen">
-      <Navbar />
+      <Navbar/>
       <div className="content">
         <div style={{margin: "auto"}}>
           <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit, onError)}>
             <div className="frame__body p-0">
               <div className="row p-0 level fill-height">
                 <div className="col">
-                  <div className="space xlarge" />
+                  <div className="space xlarge"/>
                   <div className="padded">
                     <h1 className="u-text-center u-font-alt">Citizen Registration</h1>
-                    <div className="divider" />
+                    <div className="divider"/>
                     <p className="u-text-center">Get the user information for who want to reserve the vaccine</p>
-                    <div className="divider" />
+                    <div className="divider"/>
 
                     <div className="mb-1">
                       <label className="font-bold">Citizen ID <span className="required">*</span> <span
@@ -114,10 +114,10 @@ function Register() {
                               maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'}
                             })} onKeyUp={() => {
                             trigger("citizen_id");
-                          }} />
+                          }}/>
                           <span className="icon icon-left"><i
                             className={`fa fa-wrapper fa-id-card ${errors.citizen_id && "text-danger input-error"}`}
-                            aria-hidden="true" /></span>
+                            aria-hidden="true"/></span>
                         </div>
                       </div>
                       {errors.citizen_id && <span className="required info">{errors.citizen_id.message}</span>}
@@ -136,9 +136,9 @@ function Register() {
                               {...register("name", {required: "Firstname is required."})}
                               onKeyUp={() => {
                                 trigger("name");
-                              }} />
+                              }}/>
                             <span className={`icon icon-left ${errors.name && "text-danger input-error"}`}><i
-                              className="fa fa-wrapper fa-user" aria-hidden="true" /></span>
+                              className="fa fa-wrapper fa-user" aria-hidden="true"/></span>
                           </div>
                           {errors.name && <span className="required info">{errors.name.message}</span>}
 
@@ -155,9 +155,9 @@ function Register() {
                               {...register("surname", {required: "Lastname is required."})}
                               onKeyUp={() => {
                                 trigger("surname");
-                              }} />
+                              }}/>
                             <span className={`icon icon-left ${errors.surname && "text-danger input-error"}`}><i
-                              className="fa fa-wrapper fa-user" aria-hidden="true" /></span>
+                              className="fa fa-wrapper fa-user" aria-hidden="true"/></span>
                           </div>
                           {errors.surname && <span className="required info">{errors.surname.message}</span>}
                         </div>
@@ -176,9 +176,9 @@ function Register() {
                             {...register("birth_date", {required: "Birthdate is required."})}
                             onKeyUp={() => {
                               trigger("birth_date");
-                            }} />
+                            }}/>
                           <span className={`icon icon-left ${errors.birth_date && "text-danger input-error"}`}>
-                            <i className="fa fa-wrapper fa-calendar" />
+                            <i className="fa fa-wrapper fa-calendar"/>
                           </span>
                         </div>
                         {errors.birth_date && <span className="required info">{errors.birth_date.message}</span>}
@@ -194,9 +194,9 @@ function Register() {
                                  {...register("occupation", {required: "Occupation is required."})}
                                  onKeyUp={() => {
                                    trigger("occupation");
-                                 }} />
+                                 }}/>
                           <span className={`icon icon-left ${errors.occupation && "text-danger input-error"}`}>
-                            <i className="fa fa-wrapper fa-briefcase" />
+                            <i className="fa fa-wrapper fa-briefcase"/>
                           </span>
                         </div>
                         {errors.occupation && <span className="required info">{errors.occupation.message}</span>}
@@ -215,9 +215,9 @@ function Register() {
                             {...register("phone_number", {required: "Phone number is required."})}
                             onKeyUp={() => {
                               trigger("phone_number");
-                            }} />
+                            }}/>
                           <span className={`icon icon-left ${errors.phone_number && "text-danger input-error"}`}>
-                            <i className="fa fa-wrapper fa-phone" />
+                            <i className="fa fa-wrapper fa-phone"/>
                           </span>
                         </div>
                         {errors.phone_number && <span className="required info">{errors.phone_number.message}</span>}
@@ -233,7 +233,7 @@ function Register() {
                         {...register("address", {required: "Address is required."})}
                         onKeyUp={() => {
                           trigger("address");
-                        }} />
+                        }}/>
                       {errors.address && <span className="required info">{errors.address.message}</span>}
                     </div>
                     <div className="row">
@@ -248,7 +248,7 @@ function Register() {
                                    }}
                             />
                             <label className="form-ext-label" htmlFor="check-info">do you have any disease that risk for
-                                                                                   COVID 19</label>
+                              COVID 19</label>
                           </label>
                         </div>
                       </div>
@@ -262,7 +262,7 @@ function Register() {
                     </div>
 
                   </div>
-                  <div className="space xlarge" />
+                  <div className="space xlarge"/>
                 </div>
               </div>
             </div>

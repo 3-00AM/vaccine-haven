@@ -1,21 +1,63 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import 'cirrus-ui';
 import Navbar from "./Navbar";
-import {useHistory} from "react-router-dom";
-import {Pane, Dialog, Button, toaster} from 'evergreen-ui'
-import {BASE_URL} from "../utils";
+import { useHistory } from "react-router-dom";
+import { Pane, Dialog, Button, toaster } from 'evergreen-ui'
+import { BASE_URL, config } from "../utils";
+import { AuthContext } from "./Auth";
+import { db } from "../config";
 
-function UserInformation(props) {
+function UserInformation() {
 
-  const state = props.location.state
-  const register_data = state.register_data;
+  let register_data;
+  let reservation_data;
+  const [citizen_id, setCitizenID] = useState("")
+  const { currentUser } = useContext(AuthContext);
+  db.collection('users').doc(currentUser.uid).get().then(doc => {
+    setCitizenID(doc.data().citizen_id)
+  })
 
   const [isShown, setIsShown] = React.useState(false)
 
-  let reservation_data;
-  if (state.reservation_data.length > 0) {
-    reservation_data = state.reservation_data[0];
+  const getInfo = async () => {
+    await axios.all([
+      axios.get(`${BASE_URL}/registration/${citizen_id}`, config),
+      axios.get(`${BASE_URL}/reservation/${citizen_id}`, config)
+    ])
+      .then(axios.spread((register, reservation) => {
+        const res_register_data = register.data;
+        const res_reservation_data = reservation.data;
+        const register_feedback = res_register_data.feedback;
+        if (register_feedback === "report failed: citizen ID is not registered") {
+          toaster.danger("Submit Failed!", {
+            id: "forbidden-action",
+            description: "Citizen ID is not registered.",
+            duration: 5,
+            zIndex: 100
+          })
+        } else {
+          register_data = res_register_data
+          reservation_data = res_reservation_data
+        }
+      }))
+      .catch(function (error) {
+        toaster.danger("Submit Failed!", {
+          id: "forbidden-action",
+          description: "Please make sure you already registered.",
+          duration: 5,
+          zIndex: 100
+        })
+        console.log(error)
+      })
+  };
+
+  useEffect(() => {
+    getInfo().then();
+  }, []);
+
+  if (reservation_data.length > 0) {
+    reservation_data = reservation_data[0];
   } else
     reservation_data = {
       citizen_id: "",
@@ -25,13 +67,6 @@ function UserInformation(props) {
       queue: "",
       checked: ""
     }
-
-
-  const config = {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    }
-  };
   console.log(register_data.citizen_id);
 
   const history = useHistory();
@@ -60,33 +95,6 @@ function UserInformation(props) {
       });
   }
 
-
-  // const reserveInfo = async () => {
-  //   console.log('data');
-  //   config.url = `${BASE_URL}/reservation/${data.citizen_id}`
-  //   Axios(config)
-  //     .then(function (response) {
-  //       // console.log(response.data.citizen_id);
-  //       const info = response.data;
-  //       console.log('data');
-  //       console.log(info);
-  //       // console.log(data.address);
-  //       // wait for gov and change this (can't find registered person)
-  //       // if (data.feedback === "cannot find this person") {
-  //       //     console.log('false');
-  //       //     setDisplayInfo(false)
-  //       //     // setCitizen_id('')
-  //       // }
-  //       // else {
-  //
-  //       // }
-  //     })
-  // };
-  //
-  // setInterval(() => {
-  //   reserveInfo();
-  //   console.log("interval")
-  // }, 10000);
 
   return (
     <div className="bg-indigo-200">

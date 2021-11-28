@@ -9,7 +9,8 @@ import Home from "./Components/Home";
 import Reserve from "./Components/Reserve";
 import Info from "./Components/Info";
 import UserInformation from "./Components/UserInformation";
-import OTP from "./Components/OTP";
+import Login from "./Components/Login";
+import {AuthProvider} from "./Components/Auth";
 
 class App extends Component {
 
@@ -18,14 +19,16 @@ class App extends Component {
 
   render() {
     return (
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/registration" component={Register} />
-        <Route path="/reservation" component={Reserve} />
-        <Route exact path="/info" component={Info} />
-        <Route path="/info/:citizen_id" component={UserInformation} />
-        <Route path="/OTP" component={OTP}/>
-      </Switch>
+      <AuthProvider>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/registration" component={Register}/>
+          <Route exact path="/info" component={UserInformation}/>
+          {/* <Route exact path="/info/:citizen_id" component={UserInformation}/> */}
+          <Route exact path="/reservation" component={Reserve}/>
+          <Route exact path="/login" component={Login}/>
+        </Switch>
+      </AuthProvider>
     )
   }
 }

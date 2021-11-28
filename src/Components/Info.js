@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import axios from "axios";
 import {useForm} from 'react-hook-form';
 import {useHistory} from "react-router-dom";
@@ -6,8 +6,11 @@ import 'cirrus-ui';
 import Navbar from "./Navbar";
 import {toaster} from "evergreen-ui";
 import {config} from "../utils";
+import {AuthContext} from "./Auth";
 
 function Info() {
+
+  const {currentUser} = useContext(AuthContext);
   const {register, handleSubmit, setError, trigger, formState: {errors}} = useForm();
   const base_url = 'https://wcg-apis.herokuapp.com';
   let history = useHistory();
@@ -50,7 +53,6 @@ function Info() {
         console.log(error)
       })
   };
-  console.log(errors);
 
   return (
     <div className="hero fullscreen">
