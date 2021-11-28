@@ -10,6 +10,7 @@
     "axios": "^0.23.0",
     "cirrus-ui": "^0.6.3",
     "evergreen-ui": "^6.6.2",
+    "firebase": "^9.5.0",
     "framer-motion": "^4.1.17",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
