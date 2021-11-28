@@ -3,11 +3,11 @@ import Cancel from './Cancel';
 import Axios from "axios";
 import 'cirrus-ui';
 import Navbar from "./Navbar";
+import {BASE_URL} from "../utils";
 
 function UserInformation(props) {
 
   const state = props.location.state
-  const base_url = 'https://wcg-apis.herokuapp.com';
   const register_data = state.register_data;
 
   let reservation_data;
@@ -36,7 +36,7 @@ function UserInformation(props) {
 
   // const reserveInfo = async () => {
   //   console.log('data');
-  //   config.url = `${base_url}/reservation/${data.citizen_id}`
+  //   config.url = `${BASE_URL}/reservation/${data.citizen_id}`
   //   Axios(config)
   //     .then(function (response) {
   //       // console.log(response.data.citizen_id);
@@ -51,11 +51,11 @@ function UserInformation(props) {
   //       //     // setCitizen_id('')
   //       // }
   //       // else {
-
+  //
   //       // }
   //     })
   // };
-
+  //
   // setInterval(() => {
   //   reserveInfo();
   //   console.log("interval")
@@ -146,7 +146,7 @@ function UserInformation(props) {
                     <span>Vaccine: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reservation_data.vaccine_name}</span>
+                    <span id={`reserve_vaccine_value`}>{reservation_data.vaccine_name}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -154,7 +154,7 @@ function UserInformation(props) {
                     <span>Stie name: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reservation_data.site_name}</span>
+                    <span id={`reserve_site_value`}>{reservation_data.site_name}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -162,7 +162,7 @@ function UserInformation(props) {
                     <span>Queue: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reservation_data.queue}</span>
+                    <span id={`reserve_queue_value`}>{reservation_data.queue}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -170,7 +170,7 @@ function UserInformation(props) {
                     <span>Date: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reservation_data.timestamp}</span>
+                    <span id={`reserve_date_value`}>{reservation_data.timestamp}</span>
                   </div>
                 </div>
                 <div className='row'>
@@ -178,7 +178,7 @@ function UserInformation(props) {
                     <span>Time: </span>
                   </div>
                   <div className='col-7'>
-                    <span>{reservation_data.timestamp}</span>
+                    <span id={`reserve_time_value`}>{reservation_data.timestamp}</span>
                   </div>
                 </div>
               </div>

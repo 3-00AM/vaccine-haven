@@ -46,7 +46,7 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">For registration citizen.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link to="/registration">
+                    <Link id={`register__link`} to="/registration">
                       <button className="u-shadow btn-link">Register</button>
                     </Link>
                   </div>
@@ -65,7 +65,7 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">Reservation for Vaccine.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link to="/reservation">
+                    <Link id={`reserve__link`} to="/reservation">
                       <button className="u-shadow btn-link">Reserve Vaccine</button>
                     </Link>
                   </div>
@@ -84,7 +84,7 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">See your reserved vaccine.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link to="/info">
+                    <Link id={`check_info__link`} to="/info">
                       <button className="u-shadow btn-link">Check Info</button>
                     </Link>
                   </div>
@@ -103,7 +103,7 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">See the Vaccine site information.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link to="/site">
+                    <Link id={`check_site__link`} to="/site">
                       <button className="u-shadow btn-link">Check Site</button>
                     </Link>
                   </div>

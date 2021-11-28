@@ -1,6 +1,7 @@
 # VaccineHaven
 
 [![Node.js CI](https://github.com/3-00AM/vaccine-haven/actions/workflows/node.js.yml/badge.svg)](https://github.com/3-00AM/vaccine-haven/actions/workflows/node.js.yml)
+[![CodeQL](https://github.com/3-00AM/vaccine-haven/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/3-00AM/vaccine-haven/actions/workflows/codeql-analysis.yml)
 
 ![VaccineHaven](https://i.imgur.com/U2N3Mxb.png)
 

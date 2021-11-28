@@ -1,22 +1,14 @@
-import Axios from "axios";
+import axios from "axios";
 import {useHistory} from "react-router-dom";
+import {BASE_URL, config} from "../utils";
 
 function Cancel({citizen_id}) {
-
-  const base_url = 'https://wcg-apis.herokuapp.com';
-  const config = {
-    method: 'DELETE',
-    url: ``,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    }
-  };
   const history = useHistory();
 
   const onClick = async () => {
     // change this to send json
-    config.url = `${base_url}/reservation/${citizen_id}`
-    await Axios(config)
+    config.url =
+    await axios.delete(`${BASE_URL}/reservation/${citizen_id}`, config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         history.push("/info")
@@ -29,7 +21,7 @@ function Cancel({citizen_id}) {
 
   return (
     <div>
-      <button className="btn-danger" type="submit" onClick={onClick}>Cancel</button>
+      <button id={`cancel__btn`} className="btn-danger" type="submit" onClick={onClick}>Cancel</button>
     </div>
   )
 }
