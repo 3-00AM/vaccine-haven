@@ -46,6 +46,7 @@ function UserInformation() {
               checked: ""
             })
         }
+        setLoading(true)
       }))
       .catch(function (error) {
         toaster.danger("Submit Failed!", {
@@ -61,7 +62,6 @@ function UserInformation() {
   useEffect(() => {
     db.collection('users').doc(currentUser.uid).get().then(doc => {
       getInfo(doc.data().citizen_id)
-      setLoading(true)
     })
   }, [])
 
