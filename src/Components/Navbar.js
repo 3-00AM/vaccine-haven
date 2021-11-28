@@ -41,7 +41,7 @@ function Navbar(props) {
             </ul>
           </div>
           <div className="nav-item">
-            <Link className="white" to="">Walk-in</Link>
+            <Link className="white" to="/site">Site Info</Link>
           </div>
           <div className="nav-item">
             <Link className="white" to="">Contact</Link>
