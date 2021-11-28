@@ -1,5 +1,5 @@
 import "cirrus-ui";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
@@ -13,7 +13,7 @@ import {db} from "../config";
 function Reserve() {
 
   const {register, handleSubmit, trigger, setError, formState: {errors, isValid}} = useForm();
-
+  const [site, setSite] = useState([<option value="" disabled selected={true}>Choose Site...</option>])
   const [citizen, setCitizenID] = useState("")
   const {currentUser} = useContext(AuthContext);
   db.collection('users').doc(currentUser.uid).get().then(doc => {
@@ -26,6 +26,15 @@ function Reserve() {
     console.log(errors, e)
     console.log(isValid)
   };
+
+  useEffect(async () => {
+    await axios.get('https://ogyh-backend-dev.herokuapp.com/api/sites', config)
+      .then(r => {
+        for (const ele of r.data.response) {
+          site.push(<option value={ele.name}>{ele.name}</option>)
+        }
+      })
+  }, [])
 
 
   const onSubmit = async (data, event) => {
@@ -128,8 +137,7 @@ function Reserve() {
                           onClick={() => {
                             trigger("site_name");
                           }}>
-                          <option value="" disabled selected={true}>Choose Site...</option>
-                          <option value="OGYHSite">OGYHSite</option>
+                          {site}
                         </select>
                         {errors.site_name && <span className="required info">{errors.site_name.message}</span>}
                       </div>
