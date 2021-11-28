@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 function Login() {
 
   const { register, handleSubmit, setError, trigger, formState: { errors, isValid } } = useForm();
+  const [citizen, setCitizenID] = useState("")
   let history = useHistory();
 
   const onError = (errors, e) => {
@@ -87,6 +88,7 @@ function Login() {
                       <div className="space" />
 
                       <div className="btn-group u-pull-right">
+                        <div id="recaptcha-container" />
                         <button id={`login__btn`} className="btn-success" type="submit">Login</button>
                       </div>
 
