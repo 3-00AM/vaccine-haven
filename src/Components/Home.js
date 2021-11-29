@@ -122,7 +122,7 @@ function Home() {
                     <h5 className="subtitle text-gray-500 level-left">See the Vaccine site information.</h5>
                   </div>
                   <div className="u-items-flex-end u-inline-flex">
-                    <Link id={`check_site__link`} to="/">
+                    <Link id={`check_site__link`} to="/site">
                       <button className="u-shadow btn-link">Check Site</button>
                     </Link>
                   </div>

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import 'cirrus-ui';
 import homeLogo from '../img/homeLogo.png';
@@ -42,7 +42,7 @@ function Navbar(props) {
                 <Link id={`nav__reserve__link`} className="white" to={'/reservation'}>Reservation</Link>
               </div>
               <div className="nav-item">
-                <Link id={`nav__walk_in__link`} className="white" to="">Walk-in</Link>
+                <Link id={`nav__site__link`} className="white" to="/site">Site Info</Link>
               </div>
               <div className="nav-item">
                 <Link id={`nav__contact__link`} className="white" to="">Contact</Link>
