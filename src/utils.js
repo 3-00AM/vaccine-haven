@@ -1,5 +1,4 @@
 import axios from "axios";
-import async from "async";
 
 export const BASE_URL = "https://wcg-apis.herokuapp.com";
 

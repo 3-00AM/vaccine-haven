@@ -1,10 +1,6 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import {
-  BASE_URL,
-  fetchUser,
-  postUser,
-} from "../../utils";
+import {BASE_URL, fetchUser, postUser,} from "../../utils";
 
 let stubRegistrationData = {
   citizen_id: "2222222222222",

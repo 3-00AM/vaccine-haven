@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+.background__blue {
+    background: linear-gradient(to right, #6782b4, #b1bfd8);
+}
+
 #splash-img {
     background-image: url('../src/img/71462111_p0.jpg')
 }

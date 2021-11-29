@@ -15,20 +15,20 @@ function Navbar(props) {
 
   return (
     <div
-      className={`header header-fixed unselectable header-animated doc-header ${isActive ? "" : "translucent"} ${props.onScroll || "header-dark"}`}
+      className={`header ${props.headerFixed ? "header-fixed" : ""} unselectable header-animated doc-header ${isActive ? "" : "translucent"} ${props.onScroll || "header-dark"}`}
       style={{zIndex: 30}}>
       <div className="header-brand">
 
         <div className="nav-item no-hover pl-0" style={{width: "75%", justifyContent: "flex-start"}}>
           <Link id={`nav__home__link`} to="/">
-            <img src={homeLogo} alt="homeLogo"/>
+            <img src={homeLogo} alt="homeLogo" />
             {/*<h6 className="title white">Vaccine Haven</h6>*/}
           </Link>
         </div>
         <div onClick={ToggleClass} className={`nav-item nav-btn ${isActive ? "" : "active"}`} id={`header-btn`}>
-          <span/>
-          <span/>
-          <span/>
+          <span />
+          <span />
+          <span />
         </div>
       </div>
       <div className={`header-nav ${isActive ? "" : "active"}`} id={`header-menu`}>
