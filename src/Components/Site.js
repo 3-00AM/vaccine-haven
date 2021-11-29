@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import 'cirrus-ui';
 import axios from "axios";
 import Navbar from "./Navbar";
+import LoadingPage from "./LoadingPage";
 
 export default function Site() {
 
@@ -16,7 +17,7 @@ export default function Site() {
     }
   };
 
-  const getSite = async () => {
+  useEffect(async () => {
     try {
       await axios(config)
         .then(response => {
@@ -37,32 +38,34 @@ export default function Site() {
     } catch (e) {
       console.log(e);
     }
-  };
-
-  useEffect(() => {
-    getSite().then(r => {});
   }, []);
 
-  return <div className="hero fullscreen">
-    <Navbar/>
-    <div className="content">
-      <div style={{margin: "auto"}}>
-        <div className="frame p-0">
-          <div className="frame__body p-0">
-            <div className="row p-0 level fill-height">
-              <div className="col">
-                <div className="space xlarge"/>
-                <div className="padded">
-                  <h1 className="u-text-center u-font-alt">Site List</h1>
-                  <div className="divider"/>
+  function getSite() {
+    return (
+      <div className="background__blue">
+        <Navbar />
+        <div className="card content" style={{background: "white"}}>
+          <div style={{margin: "auto"}}>
+            <div className="frame p-0">
+              <div className="frame__body p-0">
+                <div className="row p-0 level fill-height">
+                  <div className="col">
+                    <div className="space xlarge" />
+                    <div className="padded">
+                      <h1 className="u-text-center u-font-alt">Site List</h1>
+                      <div className="divider" />
+                    </div>
+                    {site}
+                  </div>
                 </div>
-                {loading ? (site) : (<div className="animated loading"/>)}
-                <div className="space xlarge"/>
               </div>
             </div>
           </div>
         </div>
+        <div className="space xlarge" />
       </div>
-    </div>
-  </div>
+    );
+  }
+
+  return loading ? getSite() : LoadingPage();
 }

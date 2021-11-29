@@ -246,15 +246,14 @@ function Register() {
                         </div>
                       </div>
                     </div>
-
                   </div>
-                  <div className="space xlarge" />
                 </div>
               </div>
             </div>
           </form>
         </div>
       </div>
+      <div className="space xlarge" />
     </div>
   );
 }

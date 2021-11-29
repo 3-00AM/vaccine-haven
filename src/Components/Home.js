@@ -132,6 +132,7 @@ function Home() {
           </div>
         </section>
       </div>
+      <div className="space xlarge" />
     </div>
   );
 }

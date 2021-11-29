@@ -166,9 +166,7 @@ function Reserve() {
                                 type="submit">Submit
                         </button>
                       </div>
-
                     </div>
-                    <div className="space xlarge" />
                   </div>
                 </div>
               </div>

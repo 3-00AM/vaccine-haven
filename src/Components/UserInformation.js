@@ -19,8 +19,8 @@ function UserInformation() {
   const [isShown, setIsShown] = React.useState(false)
   const history = useHistory();
 
-  const getInfo = (c) => {
-    axios.all([
+  const getInfo = async (c) => {
+    await axios.all([
       axios.get(`${BASE_URL}/registration/${c}`, config),
       axios.get(`${BASE_URL}/reservation/${c}`, config)
     ])
@@ -65,7 +65,7 @@ function UserInformation() {
   useEffect(() => {
     if (currentUser) {
       db.collection('users').doc(currentUser.uid).get().then(doc => {
-        getInfo(doc.data().citizen_id)
+        getInfo(doc.data().citizen_id).then(() => {})
       })
     } else {
       history.push("/login")

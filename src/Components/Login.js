@@ -85,7 +85,7 @@ function Login() {
                     <div className="padded">
                       <h1 className="u-text-center u-font-alt">Log In</h1>
                       <div className="divider" />
-                      <p className="u-text-center">Login to VaccineHaven.</p>
+                      <p className="u-text-center">Login to using Citizen ID and send OTP to your phone.</p>
                       <div className="divider" />
 
                       <CitizenID errors={errors} useFormRegisterReturn={register("citizen_id", {
