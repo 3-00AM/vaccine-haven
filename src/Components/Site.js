@@ -6,7 +6,7 @@ import LoadingPage from "./LoadingPage";
 
 export default function Site() {
 
-  const [site, setSite] = useState([]);
+  const [site] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const config = {
@@ -50,7 +50,7 @@ export default function Site() {
               <div className="frame__body p-0">
                 <div className="row p-0 level fill-height">
                   <div className="col">
-                    <div className="space xlarge" />
+                    <div className="space" />
                     <div className="padded">
                       <h1 className="u-text-center u-font-alt">Site List</h1>
                       <div className="divider" />

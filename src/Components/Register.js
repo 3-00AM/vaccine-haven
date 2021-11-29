@@ -93,7 +93,7 @@ function Register() {
             <div className="frame__body p-0">
               <div className="row p-0 level fill-height">
                 <div className="col">
-                  <div className="space xlarge" />
+                  <div className="space" />
                   <div className="padded">
                     <h1 className="u-text-center u-font-alt">Citizen Registration</h1>
                     <div className="divider" />

@@ -104,7 +104,6 @@ function Login() {
                       <div className="btn-group u-pull-right">
                         <button id={`login__btn`} className="btn-success" type="submit">Send OTP</button>
                       </div>
-
                     </div>
                     <div className="space xlarge" />
                   </div>

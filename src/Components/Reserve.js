@@ -107,7 +107,7 @@ function Reserve() {
               <div className="frame__body p-0">
                 <div className="row p-0 level fill-height">
                   <div className="col">
-                    <div className="space xlarge" />
+                    <div className="space" />
                     <div className="padded">
                       <h1 className="u-text-center u-font-alt">Vaccine Reservation</h1>
                       <div className="divider" />
@@ -167,6 +167,7 @@ function Reserve() {
                         </button>
                       </div>
                     </div>
+                    <div className="space xlarge" />
                   </div>
                 </div>
               </div>
