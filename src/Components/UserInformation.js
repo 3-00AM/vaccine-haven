@@ -8,10 +8,12 @@ import {BASE_URL, config} from "../utils";
 import {AuthContext} from "./Auth";
 import {db} from "../config";
 import LoadingPage from "./LoadingPage";
+import NoReserve from './NoReserve';
+import ReserveInfo from './ReserveInfo';
 
 
 function UserInformation() {
-
+  let is_reserve = false;
   const [register_data, set_register_data] = useState();
   const [reservation_data, set_reservation_data] = useState();
   const [loading, setLoading] = useState(false)
@@ -98,7 +100,6 @@ function UserInformation() {
       });
   }
 
-
   function getContent() {
     return (
       <div className="background__blue">
@@ -173,6 +174,7 @@ function UserInformation() {
               </div>
             </div>
           </div>
+          {is_reserve ? ReserveInfo(reservation_data) : NoReserve(reservation_data)}
           <div className='row'>
             <div className='col-6'>
               <div className='card'>
