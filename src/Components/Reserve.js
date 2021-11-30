@@ -38,7 +38,7 @@ function Reserve() {
   useEffect(async () => {
     await axios.get('https://ogyh-backend-dev.herokuapp.com/api/sites', config)
       .then(r => {
-        for (const ele of r.data.response) {
+        for (const ele of r.data) {
           site.push(<option value={ele.name}>{ele.name}</option>)
         }
         setLoading(true)
