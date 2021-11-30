@@ -65,7 +65,8 @@ function UserInformation() {
   useEffect(() => {
     if (currentUser) {
       db.collection('users').doc(currentUser.uid).get().then(doc => {
-        getInfo(doc.data().citizen_id).then(() => {})
+        getInfo(doc.data().citizen_id).then(() => {
+        })
       })
     } else {
       history.push("/login")

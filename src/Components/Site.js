@@ -22,7 +22,7 @@ export default function Site() {
       await axios(config)
         .then(response => {
           for (const responseElement of response.data.response) {
-            site.push(<div className="p-3">
+            site.push(<div className="p-1">
               <div className="card p-3 animated fadeIn">
                 <div className="card-body">
                   {responseElement.name}

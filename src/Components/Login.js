@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {AuthContext} from "./Auth";
 import firebase, {db} from "../config";
 import {BASE_URL, config} from "../utils";
@@ -14,6 +14,7 @@ import ThaiNationalID from "../lib/validate";
 function Login() {
 
   const {register, handleSubmit, setError, trigger, formState: {errors, isValid}} = useForm();
+  const [loading, setLoading] = useState(true)
   let history = useHistory();
 
   const onError = (errors, e) => {
@@ -22,6 +23,7 @@ function Login() {
   };
 
   const sentOTP = async (data, event) => {
+    setLoading(false)
     event.preventDefault();
     await axios.get(`${BASE_URL}/registration/${data.citizen_id}`, config).then(response => {
       const register_data = response.data;
@@ -39,6 +41,7 @@ function Login() {
         })
       } else {
         let sms = `+66${register_data.phone_number.substring(1)}`
+        setLoading(true)
         let recaptcha = new firebase.auth.RecaptchaVerifier("recaptcha-container")
         firebase.auth().signInWithPhoneNumber(sms, recaptcha).then((e) => {
           let code = prompt("enter OTP");
@@ -99,7 +102,14 @@ function Login() {
 
                       <div className="space" />
 
-                      <div id="recaptcha-container" className={`u-center`} />
+
+                      {loading ? <div id="recaptcha-container" className={`u-center`} /> :
+                        <div className="u-flex u-items-center u-justify-center">
+                          <div className="animated loading loading-right u-text-right">
+                            <p>loading reCAPTCHA</p>
+                          </div>
+                        </div>
+                      }
 
                       <div className="btn-group u-pull-right">
                         <button id={`login__btn`} className="btn-success" type="submit">Send OTP</button>

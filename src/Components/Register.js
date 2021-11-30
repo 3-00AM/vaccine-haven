@@ -112,7 +112,7 @@ function Register() {
                     <div className="mb-1">
                       <div className="section-body row">
                         <div className="col-6 pl-0">
-                          <label className="font-bold">Firstname <span className="required">*</span></label>
+                          <label className="font-bold">Firstname<span className="required">*</span></label>
                           <div className="input-control">
                             <input
                               id={`name`}
@@ -131,7 +131,7 @@ function Register() {
                         </div>
 
                         <div className="col-6 pr-0">
-                          <label className="font-bold">Lastname <span className="required">*</span></label>
+                          <label className="font-bold">Lastname<span className="required">*</span></label>
                           <div className="input-control">
                             <input
                               id={`surname`}
@@ -152,7 +152,7 @@ function Register() {
 
                     <div className="row">
                       <div className="mb-1 col-6 pl-0">
-                        <label className="font-bold">Birthdate <span className="required">*</span></label>
+                        <label className="font-bold">Birthdate<span className="required">*</span></label>
                         <div className="input-control">
                           <input
                             type="date"
@@ -171,7 +171,7 @@ function Register() {
                       </div>
 
                       <div className="mb-1 col-6 pr-0">
-                        <label className="font-bold label-small">Occupation <span className="required">*</span></label>
+                        <label className="font-bold label-small">Occupation<span className="required">*</span></label>
                         <div className="input-control">
                           <input type="text"
                                  id={`occupation`}
@@ -191,14 +191,19 @@ function Register() {
 
                     <div className="row">
                       <div className="mb-1 col-6 pl-0">
-                        <label className="font-bold">Phone Number <span className="required">*</span></label>
+                        <label className="font-bold">Phone Number<span className="required">*</span><span
+                          className="info inline font-light">Please input valid phone number.</span></label>
                         <div className="input-control">
                           <input
                             type="tel"
                             id={`phone_number`}
                             className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.phone_number && "text-danger input-error"}`}
                             placeholder="Phone Number"
-                            {...register("phone_number", {required: "Phone number is required."})}
+                            {...register("phone_number", {
+                              required: "Phone number is required.",
+                              minLength: {value: 10, message: 'Phone number must be at least 10 characters long'},
+                              maxLength: {value: 10, message: 'Phone number must be at most 10 characters long'},
+                            })}
                             onKeyUp={() => {
                               trigger("phone_number");
                             }} />
@@ -211,7 +216,7 @@ function Register() {
                     </div>
 
                     <div className="mb-1">
-                      <label className="font-bold">Address <span className="required">*</span></label>
+                      <label className="font-bold">Address<span className="required">*</span></label>
                       <textarea
                         id={`address`}
                         className={`form-group-input ${errors.address && "text-danger input-error"}`}

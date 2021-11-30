@@ -125,7 +125,7 @@ function Reserve() {
 
                       <div className="row">
                         <div className="mb-1 col-6 pl-0">
-                          <label className="font-bold">Choose Site <span className="required">*</span></label>
+                          <label className="font-bold">Choose Site<span className="required">*</span></label>
                           <select
                             className="select"
                             id={`site_name`}
@@ -139,7 +139,7 @@ function Reserve() {
                           {errors.site_name && <span className="required info">{errors.site_name.message}</span>}
                         </div>
                         <div className="mb-1 col-6 pr-0">
-                          <label className="font-bold label-small">Choose Vaccine <span
+                          <label className="font-bold label-small">Choose Vaccine<span
                             className="required">*</span></label>
                           <select
                             id={`vaccine_name`}

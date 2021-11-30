@@ -3,8 +3,8 @@ import React from "react";
 
 export default function CitizenID(props) {
   return <div className="mb-1">
-    <label className="font-bold">Citizen ID <span className="required">*</span> <span
-      className="info inline font-light">Please input your real ID.</span></label>
+    <label className="font-bold">Citizen ID<span className="required">*</span><span
+      className="info inline font-light">Please input valid citizen ID.</span></label>
     <div className="section-body">
       <div className="input-control">
         <input
