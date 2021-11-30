@@ -8,6 +8,7 @@ import {toaster} from "evergreen-ui"
 import {BASE_URL, config} from "../utils";
 import CitizenID from "./CitizenID";
 import ThaiNationalID from "../lib/validate";
+import {getAccessToken} from "../lib/getAccessToken";
 
 
 function Register() {
@@ -24,6 +25,7 @@ function Register() {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
+    await getAccessToken()
     config.params = data;
 
     await axios.post(`${BASE_URL}/registration`, null, config)
@@ -35,8 +37,7 @@ function Register() {
           toaster.success("Registration Successful!", {
             id: "forbidden-action",
             description: "Now you can proceed to reservation page for reserving the vaccine.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         } else if (feedback === "registration failed: this person already registered") {
           setError("citizen_id", {
@@ -46,8 +47,7 @@ function Register() {
           toaster.danger("Registration Failed!", {
             id: "forbidden-action",
             description: "This person is already registered.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         } else if (feedback === "registration failed: not archived minimum age") {
           setError("birth_date", {
@@ -57,8 +57,7 @@ function Register() {
           toaster.danger("Registration Failed!", {
             id: "forbidden-action",
             description: "Not archived minimum age.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         } else if (feedback === "registration failed: invalid birth date format") {
           setError("birth_date", {
@@ -68,8 +67,7 @@ function Register() {
           toaster.danger("Registration Failed!", {
             id: "forbidden-action",
             description: "Invalid birth date format.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         }
       })
@@ -77,8 +75,7 @@ function Register() {
         toaster.danger("Registration Failed!", {
           id: "forbidden-action",
           description: "Something went wrong!",
-          duration: 5,
-          zIndex: 100
+          duration: 5
         })
         console.log(error);
       });

@@ -10,6 +10,7 @@ import {db} from "../config";
 import LoadingPage from "./LoadingPage";
 import NoReserve from './NoReserve';
 import ReserveInfo from './ReserveInfo';
+import {getAccessToken} from "../lib/getAccessToken";
 
 
 function UserInformation() {
@@ -21,6 +22,7 @@ function UserInformation() {
   const history = useHistory();
 
   const getInfo = async (c) => {
+    await getAccessToken()
     await axios.all([
       axios.get(`${BASE_URL}/registration/${c}`, config),
       axios.get(`${BASE_URL}/reservation/${c}`, config)

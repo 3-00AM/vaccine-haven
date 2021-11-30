@@ -3,23 +3,16 @@ import 'cirrus-ui';
 import axios from "axios";
 import Navbar from "./Navbar";
 import LoadingPage from "./LoadingPage";
+import {config} from "../utils";
 
 export default function Site() {
 
   const [site] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const config = {
-    method: 'GET',
-    url: 'https://ogyh-backend-dev.herokuapp.com/api/sites',
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    }
-  };
-
   useEffect(async () => {
     try {
-      await axios(config)
+      await axios.get(`https://ogyh-backend-dev.herokuapp.com/api/sites`, config)
         .then(response => {
           for (const responseElement of response.data.response) {
             site.push(<div className="p-1">

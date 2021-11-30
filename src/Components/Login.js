@@ -10,6 +10,7 @@ import CitizenID from "./CitizenID";
 import {toaster} from "evergreen-ui";
 
 import ThaiNationalID from "../lib/validate";
+import {getAccessToken} from "../lib/getAccessToken";
 
 function Login() {
 
@@ -25,6 +26,7 @@ function Login() {
   const sentOTP = async (data, event) => {
     setLoading(false)
     event.preventDefault();
+    await getAccessToken()
     await axios.get(`${BASE_URL}/registration/${data.citizen_id}`, config).then(response => {
       const register_data = response.data;
       const register_feedback = register_data.feedback;
@@ -36,8 +38,7 @@ function Login() {
         toaster.danger("Submit Failed!", {
           id: "forbidden-action",
           description: "Citizen ID is not registered.",
-          duration: 5,
-          zIndex: 100
+          duration: 5
         })
       } else {
         let sms = `+66${register_data.phone_number.substring(1)}`
@@ -62,8 +63,7 @@ function Login() {
       toaster.danger("Submit Failed!", {
         id: "forbidden-action",
         description: "Citizen ID is not registered.",
-        duration: 5,
-        zIndex: 100
+        duration: 5
       })
       console.log(e)
     })

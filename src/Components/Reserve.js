@@ -11,6 +11,7 @@ import {db} from "../config";
 import CitizenID from "./CitizenID";
 import ThaiNationalID from "../lib/validate";
 import LoadingPage from "./LoadingPage";
+import {getAccessToken} from "../lib/getAccessToken";
 
 
 function Reserve() {
@@ -47,6 +48,7 @@ function Reserve() {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
+    await getAccessToken()
     config.params = data;
 
     await axios.post(`${BASE_URL}/reservation?citizen_id=${citizen}`, null, config)

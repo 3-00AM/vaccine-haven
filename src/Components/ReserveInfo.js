@@ -4,6 +4,7 @@ import {Button, Dialog, Pane, toaster} from "evergreen-ui";
 import {BASE_URL, config} from "../utils";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
+import {getAccessToken} from "../lib/getAccessToken";
 
 function ReserveInfo(props) {
 
@@ -13,6 +14,7 @@ function ReserveInfo(props) {
   const [isShown, setIsShown] = React.useState(false)
 
   const onCancel = async () => {
+    await getAccessToken()
     // change this to send json
     await axios.delete(`${BASE_URL}/reservation/${last_reserve.citizen_id}`, config)
       .then(function (response) {
