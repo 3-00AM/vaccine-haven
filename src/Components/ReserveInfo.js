@@ -58,71 +58,71 @@ function ReserveInfo(props) {
   }
 
   return (
-      <div className='col-5'>
-        <div className='card h-100 u-overflow-auto'>
-          <div className='card__header'>
-            <p className="font-bold px-3">Last Vaccine Reservation Information:</p>
-          </div>
-          <div className='content'>
-            <div className='row'>
-              <div className='col-5'>
-                <span>Vaccine: </span>
-              </div>
-              <div className='col-7'>
-                <span id={`reserve_vaccine_value`}>{last_reserve.vaccine_name}</span>
-              </div>
+    <div className='col-5'>
+      <div className='card h-100 u-overflow-auto'>
+        <div className='card__header'>
+          <p className="font-bold px-3">Last Vaccine Reservation Information:</p>
+        </div>
+        <div className='content'>
+          <div className='row'>
+            <div className='col-5'>
+              <span>Vaccine: </span>
             </div>
-            <div className='row'>
-              <div className='col-5'>
-                <span>Site name: </span>
-              </div>
-              <div className='col-7'>
-                <span id={`reserve_site_value`}>{last_reserve.site_name}</span>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-5'>
-                <span>Queue: </span>
-              </div>
-              <div className='col-7'>
-                <span id={`reserve_queue_value`}>{last_reserve.queue}</span>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-5'>
-                <span>Date: </span>
-              </div>
-              <div className='col-7'>
-                <span id={`reserve_date_value`}>{last_reserve.timestamp.slice(0, 10)}</span>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-5'>
-                <span>Time: </span>
-              </div>
-              <div className='col-7'>
-                <span id={`reserve_time_value`}>{last_reserve.timestamp.slice(10, 16)}</span>
-              </div>
+            <div className='col-7'>
+              <span id={`reserve_vaccine_value`}>{last_reserve.vaccine_name}</span>
             </div>
           </div>
-          <div className='card__action-bar'>
-            <Pane>
-              <Dialog
-                isShown={isShown}
-                title="Cancel Reservation"
-                intent="danger"
-                onCloseComplete={() => setIsShown(false)}
-                confirmLabel="Confirm"
-                onConfirm={onCancel}
-              >
-                Are you sure you want to cancel the reservation?
-              </Dialog>
-
-              <Button className="btn-danger" onClick={() => setIsShown(true)}>Cancel Reservation</Button>
-            </Pane>
+          <div className='row'>
+            <div className='col-5'>
+              <span>Site name: </span>
+            </div>
+            <div className='col-7'>
+              <span id={`reserve_site_value`}>{last_reserve.site_name}</span>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-5'>
+              <span>Queue: </span>
+            </div>
+            <div className='col-7'>
+              <span id={`reserve_queue_value`}>{last_reserve.queue}</span>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-5'>
+              <span>Date: </span>
+            </div>
+            <div className='col-7'>
+              <span id={`reserve_date_value`}>{last_reserve.timestamp.slice(0, 10)}</span>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-5'>
+              <span>Time: </span>
+            </div>
+            <div className='col-7'>
+              <span id={`reserve_time_value`}>{last_reserve.timestamp.slice(10, 16)}</span>
+            </div>
           </div>
         </div>
+        <div className='card__action-bar'>
+          <Pane>
+            <Dialog
+              isShown={isShown}
+              title="Cancel Reservation"
+              intent="danger"
+              onCloseComplete={() => setIsShown(false)}
+              confirmLabel="Confirm"
+              onConfirm={onCancel}
+            >
+              Are you sure you want to cancel the reservation?
+            </Dialog>
+
+            <Button className="btn-danger" onClick={() => setIsShown(true)}>Cancel Reservation</Button>
+          </Pane>
+        </div>
       </div>
+    </div>
   );
 }
 

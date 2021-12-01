@@ -42,17 +42,17 @@ export default function Site() {
   function getSite() {
     return (
       <div className="background__blue">
-        <Navbar/>
+        <Navbar />
         <div className="card content" style={{background: "white"}}>
           <div style={{margin: "auto"}}>
             <div className="frame p-0">
               <div className="frame__body p-0">
                 <div className="row p-0 level fill-height">
                   <div className="col">
-                    <div className="space"/>
+                    <div className="space" />
                     <div className="padded">
                       <h1 className="u-text-center u-font-alt">Site List</h1>
-                      <div className="divider"/>
+                      <div className="divider" />
                     </div>
                     {site}
                   </div>
@@ -61,7 +61,7 @@ export default function Site() {
             </div>
           </div>
         </div>
-        <div className="space xlarge"/>
+        <div className="space xlarge" />
       </div>
     );
   }
