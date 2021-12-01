@@ -10,6 +10,7 @@ export default function CitizenID(props) {
         <input
           type="text"
           id={"citizen_id"}
+          value={props.value}
           className={`input-contains-icon input-contains-icon input-contains-icon-left ${props.errors.citizen_id && "text-danger input-error"}`}
           placeholder="Citizen ID"
           {...props.useFormRegisterReturn} onKeyUp={props.onKeyUp} />

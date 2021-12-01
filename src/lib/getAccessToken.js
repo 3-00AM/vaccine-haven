@@ -8,7 +8,6 @@ export const getAccessToken = async () => {
       'Authorization': 'Basic ' + process.env.REACT_APP_AUTH_DATA
     }
   }).then(r => {
-    console.log(r.data.access_token);
     config.headers.Authorization = 'Bearer ' + r.data.access_token
   })
 }

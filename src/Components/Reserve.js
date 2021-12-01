@@ -116,7 +116,8 @@ function Reserve() {
                       <p className="u-text-center">Get the user information for who want to reserve the vaccine</p>
                       <div className="divider" />
 
-                      <CitizenID disabled errors={errors} useFormRegisterReturn={register("citizen_id", {
+                      <CitizenID value={citizen} errors={errors} useFormRegisterReturn={register("citizen_id", {
+                        disabled: true,
                         required: "Citizen ID is required",
                         minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
                         maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'},

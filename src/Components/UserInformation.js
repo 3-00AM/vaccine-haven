@@ -79,6 +79,28 @@ function UserInformation() {
     }
   }, [])
 
+  function getVaccineList() {
+    return <>
+      {reservation_data.map((value, index) => {
+        return (
+          <div className='row overflow'>
+            <div className='col-4'>
+              <span key={index}> Vaccine: {value.vaccine_name}</span>
+            </div>
+            <div className='col-4'>
+                      <span
+                        key={index}>When: {value.checked === "True" ? value.queue.slice(0, 10) : value.timestamp.slice(0, 10)}</span>
+            </div>
+            <div className='col-4'>
+
+              <span key={index}>Status: {value.checked === "True" ? "Vaccinated" : "Unvaccineated"}</span>
+            </div>
+          </div>
+        )
+      })}
+    </>;
+  }
+
   function getContent() {
     return (
       <div className="background__blue">
@@ -153,7 +175,26 @@ function UserInformation() {
               </div>
             </div>
           </div>
-          {isReserve ? <ReserveInfo data={reservation_data} /> : <NoReserve data={reservation_data} />}
+          <div className='row'>
+            {(isReserve && reservation_data[0].checked === "False") ? <ReserveInfo data={reservation_data} /> : <NoReserve data={reservation_data} />}
+            <div className='col-7'>
+              <div className='card h-100 u-overflow-auto'>
+                <div className='card__header'>
+                  <p className="font-bold px-3">Vaccine List:</p>
+                </div>
+                <div className='content'>
+                  <ul>
+
+                    {isReserve ? getVaccineList() : <>
+                      <div className="u-center">
+                        <p>Not Taken any Vaccine yet.</p>
+                      </div>
+                    </>}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

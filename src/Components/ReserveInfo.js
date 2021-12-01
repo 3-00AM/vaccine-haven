@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import 'cirrus-ui';
 import {Button, Dialog, Pane, toaster} from "evergreen-ui";
 import {BASE_URL, config} from "../utils";
@@ -11,7 +11,8 @@ function ReserveInfo(props) {
   const history = useHistory();
   const reservation_data = props.data
   const last_reserve = reservation_data[0]
-  const [isShown, setIsShown] = React.useState(false)
+  const [isShown, setIsShown] = useState(false)
+  console.log(reservation_data)
 
   const onCancel = async () => {
     await getAccessToken()
@@ -57,7 +58,6 @@ function ReserveInfo(props) {
   }
 
   return (
-    <div className='row'>
       <div className='col-5'>
         <div className='card h-100 u-overflow-auto'>
           <div className='card__header'>
@@ -123,35 +123,6 @@ function ReserveInfo(props) {
           </div>
         </div>
       </div>
-
-      <div className='col-7'>
-        <div className='card h-100 u-overflow-auto'>
-          <div className='card__header'>
-            <p className="font-bold px-3">Vaccine List:</p>
-          </div>
-          <div className='content'>
-            <ul>
-              {reservation_data.map((value, index) => {
-                return (
-                  <div className='row overflow'>
-                    <div className='col-4'>
-                      <span key={index}> Vaccine: {value.vaccine_name}</span>
-                    </div>
-                    <div className='col-4'>
-                      <span key={index}>When: {value.timestamp.slice(0, 10)}</span>
-                    </div>
-                    <div className='col-4'>
-
-                      <span key={index}>Status: {value.checked === "True" ? "Vaccinated" : "Unvaccineated"}</span>
-                    </div>
-                  </div>
-                )
-              })}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
