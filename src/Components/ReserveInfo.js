@@ -10,7 +10,7 @@ function ReserveInfo(props) {
 
   const history = useHistory();
   const reservation_data = props.data
-  const last_reserve = reservation_data[0]
+  const last_reserve = reservation_data[reservation_data.length - 1]
   const [isShown, setIsShown] = useState(false)
 
   const onCancel = async () => {

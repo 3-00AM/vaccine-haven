@@ -176,7 +176,7 @@ function UserInformation() {
             </div>
           </div>
           <div className='row'>
-            {(isReserve && reservation_data[0].checked === "False") ? <ReserveInfo data={reservation_data} /> :
+            {(isReserve && reservation_data[reservation_data.length - 1].checked === "False") ? <ReserveInfo data={reservation_data} /> :
               <NoReserve data={reservation_data} />}
             <div className='col-7'>
               <div className='card h-100 u-overflow-auto'>
