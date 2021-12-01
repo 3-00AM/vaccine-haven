@@ -51,7 +51,7 @@ function Navbar(props) {
                   firebase.auth().signOut().then(() => {
                     window.location.reload()
                   }).catch(e => {
-                    console.log(e)
+                    // Input toaster for unsuccessful sign out
                   })
                 }}>Sign Out</Link>
               </div>

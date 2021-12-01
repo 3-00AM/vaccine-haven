@@ -12,7 +12,6 @@ function ReserveInfo(props) {
   const reservation_data = props.data
   const last_reserve = reservation_data[0]
   const [isShown, setIsShown] = useState(false)
-  console.log(reservation_data)
 
   const onCancel = async () => {
     await getAccessToken()
@@ -27,7 +26,6 @@ function ReserveInfo(props) {
             duration: 5,
             zIndex: 100
           })
-          console.log(JSON.stringify(response.data));
           history.push("/")
         } else if (reservation_feedback === "cancel reservation failed: invalid citizen ID") {
           toaster.danger("Cancellation Failed!", {
@@ -46,14 +44,12 @@ function ReserveInfo(props) {
         }
       })
       .catch(function (error) {
-        console.log("Here")
         toaster.danger("Cancellation Failed!", {
           id: "forbidden-action",
           description: "Failed to cancel.",
           duration: 5,
           zIndex: 100
         })
-        console.log(error);
       });
   }
 

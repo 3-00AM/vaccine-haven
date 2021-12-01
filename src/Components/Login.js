@@ -20,7 +20,6 @@ function Login() {
 
   const onError = (errors, e) => {
     console.log(errors, e)
-    console.log(isValid)
   };
 
   const sentOTP = async (data, event) => {
@@ -31,6 +30,7 @@ function Login() {
       const register_data = response.data;
       const register_feedback = register_data.feedback;
       if (register_feedback === "report failed: citizen ID is not registered") {
+        setLoading(true)
         setError("citizen_id", {
           type: "manual",
           message: "This Citizen ID is not registered."
@@ -56,6 +56,7 @@ function Login() {
         })
       }
     }).catch((e) => {
+      setLoading(true)
       setError("citizen_id", {
         type: "manual",
         message: "This Citizen ID is not registered."
@@ -65,7 +66,6 @@ function Login() {
         description: "Citizen ID is not registered.",
         duration: 5
       })
-      console.log(e)
     })
   };
 

@@ -3,7 +3,6 @@ import "cirrus-ui";
 import {Link} from "react-router-dom";
 
 function NoReserve(props) {
-  console.log(props.data.vaccine_name);
   return (
     <div className="col-5">
       <div className="card h-100">

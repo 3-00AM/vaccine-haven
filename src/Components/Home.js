@@ -17,8 +17,6 @@ function Home() {
     })
   }
 
-  console.log(citizen_id)
-
   useEffect(() => {
     document.addEventListener("scroll", () => {
       const scrollCheck = window.scrollY < 100

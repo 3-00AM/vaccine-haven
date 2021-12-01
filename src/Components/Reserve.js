@@ -32,7 +32,6 @@ function Reserve() {
 
   const onError = (errors, e) => {
     console.log(errors, e)
-    console.log(isValid)
   };
 
   useEffect(async () => {
@@ -94,7 +93,6 @@ function Reserve() {
           duration: 5,
           zIndex: 100
         })
-        console.log(error);
       });
   };
 

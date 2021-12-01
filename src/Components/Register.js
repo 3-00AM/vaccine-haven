@@ -19,7 +19,6 @@ function Register() {
 
   const onError = (errors, e) => {
     console.log(errors, e)
-    console.log(isValid)
   };
 
 
@@ -77,7 +76,6 @@ function Register() {
           description: "Something went wrong!",
           duration: 5
         })
-        console.log(error);
       });
   };
 
