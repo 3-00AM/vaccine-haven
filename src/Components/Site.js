@@ -3,42 +3,49 @@ import 'cirrus-ui';
 import axios from "axios";
 import Navbar from "./Navbar";
 import LoadingPage from "./LoadingPage";
+import {config} from "../utils";
+import {toaster} from "evergreen-ui";
+import {useHistory} from "react-router";
 
 export default function Site() {
 
   const [site] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const config = {
-    method: 'GET',
-    url: 'https://ogyh-backend-dev.herokuapp.com/api/sites',
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    }
-  };
+  const SITE_URL = `https://ogyh-backend-dev.herokuapp.com`
+  const history = useHistory()
 
   useEffect(async () => {
     try {
-      await axios(config)
-        .then(response => {
-          for (const responseElement of response.data.response) {
-            site.push(<div className="p-1">
-              <div className="card p-3 animated fadeIn">
-                <div className="card-body">
-                  {responseElement.name}
-                </div>
-                <div className="card-footer">
-                  {responseElement.location.formatted_address}
-                </div>
-              </div>
-            </div>)
+      await axios.get(`${SITE_URL}/api/sites`, config)
+        .then(async response => {
+          for (const responseElement of response.data) {
+            await axios.get(`${SITE_URL}/api/site/${responseElement.id}/queues/walkin`, config)
+              .then(async res => {
+                site.push(<div className="p-1">
+                  <div className="card p-3 animated fadeIn">
+                    <div className="card-body">
+                      {responseElement.name}
+                      <p style={{float: 'right'}}>Walk in: {res.data.response.remaining}</p>
+                    </div>
+                    <div className="card-footer">
+                      {responseElement.location.formatted_address}
+                    </div>
+                  </div>
+                </div>)
+              })
           }
         });
       setLoading(true);
     } catch (e) {
-      console.log(e);
+      toaster.danger("Get Site Information Failed!", {
+        id: "forbidden-action",
+        description: "Please reload this page or come back later.",
+        duration: 5
+      })
+      history.push('/')
     }
   }, []);
+
 
   function getSite() {
     return (

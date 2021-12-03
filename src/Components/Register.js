@@ -8,22 +8,19 @@ import {toaster} from "evergreen-ui"
 import {BASE_URL, config} from "../utils";
 import CitizenID from "./CitizenID";
 import ThaiNationalID from "../lib/validate";
+import {getAccessToken} from "../lib/getAccessToken";
 
 
 function Register() {
 
-  const {register, handleSubmit, setError, trigger, formState: {errors, isValid}} = useForm({});
+  const {register, handleSubmit, setError, trigger, formState: {errors}} = useForm({});
 
   let history = useHistory();
-
-  const onError = (errors, e) => {
-    console.log(errors, e)
-    console.log(isValid)
-  };
 
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
+    await getAccessToken()
     config.params = data;
 
     await axios.post(`${BASE_URL}/registration`, null, config)
@@ -35,8 +32,7 @@ function Register() {
           toaster.success("Registration Successful!", {
             id: "forbidden-action",
             description: "Now you can proceed to reservation page for reserving the vaccine.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         } else if (feedback === "registration failed: this person already registered") {
           setError("citizen_id", {
@@ -46,8 +42,7 @@ function Register() {
           toaster.danger("Registration Failed!", {
             id: "forbidden-action",
             description: "This person is already registered.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         } else if (feedback === "registration failed: not archived minimum age") {
           setError("birth_date", {
@@ -57,8 +52,7 @@ function Register() {
           toaster.danger("Registration Failed!", {
             id: "forbidden-action",
             description: "Not archived minimum age.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         } else if (feedback === "registration failed: invalid birth date format") {
           setError("birth_date", {
@@ -68,19 +62,16 @@ function Register() {
           toaster.danger("Registration Failed!", {
             id: "forbidden-action",
             description: "Invalid birth date format.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         }
       })
-      .catch(function (error) {
+      .catch(function () {
         toaster.danger("Registration Failed!", {
           id: "forbidden-action",
           description: "Something went wrong!",
-          duration: 5,
-          zIndex: 100
+          duration: 5
         })
-        console.log(error);
       });
   };
 
@@ -89,7 +80,7 @@ function Register() {
       <Navbar />
       <div className="card content" style={{background: "white"}}>
         <div style={{margin: "auto"}}>
-          <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit, onError)}>
+          <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
             <div className="frame__body p-0">
               <div className="row p-0 level fill-height">
                 <div className="col">

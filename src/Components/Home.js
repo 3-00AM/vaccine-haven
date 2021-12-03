@@ -4,20 +4,10 @@ import {Link} from "react-router-dom";
 import AOS from "aos";
 import 'aos/dist/aos.css';
 import {AuthContext} from "./Auth";
-import {db} from "../config";
 
 function Home() {
   const [scroll, setScroll] = useState(0)
-  const [citizen_id, setCitizenID] = useState("")
   const {currentUser} = useContext(AuthContext);
-
-  if (currentUser) {
-    db.collection('users').doc(currentUser.uid).get().then(doc => {
-      setCitizenID(doc.data().citizen_id)
-    })
-  }
-
-  console.log(citizen_id)
 
   useEffect(() => {
     document.addEventListener("scroll", () => {

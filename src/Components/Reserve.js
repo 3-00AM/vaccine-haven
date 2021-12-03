@@ -11,11 +11,12 @@ import {db} from "../config";
 import CitizenID from "./CitizenID";
 import ThaiNationalID from "../lib/validate";
 import LoadingPage from "./LoadingPage";
+import {getAccessToken} from "../lib/getAccessToken";
 
 
 function Reserve() {
 
-  const {register, handleSubmit, trigger, setError, formState: {errors, isValid}} = useForm();
+  const {register, handleSubmit, trigger, setError, formState: {errors}} = useForm();
   const [site] = useState([<option value="" disabled selected={true}>Choose Site...</option>])
   const [loading, setLoading] = useState(false)
   const [citizen, setCitizenID] = useState("")
@@ -29,15 +30,10 @@ function Reserve() {
     history.push("/login")
   }
 
-  const onError = (errors, e) => {
-    console.log(errors, e)
-    console.log(isValid)
-  };
-
   useEffect(async () => {
     await axios.get('https://ogyh-backend-dev.herokuapp.com/api/sites', config)
       .then(r => {
-        for (const ele of r.data.response) {
+        for (const ele of r.data) {
           site.push(<option value={ele.name}>{ele.name}</option>)
         }
         setLoading(true)
@@ -47,6 +43,7 @@ function Reserve() {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
+    await getAccessToken()
     config.params = data;
 
     await axios.post(`${BASE_URL}/reservation?citizen_id=${citizen}`, null, config)
@@ -58,8 +55,7 @@ function Reserve() {
           toaster.success("Reservation Successful!", {
             id: "forbidden-action",
             description: "Now you can proceed to my-info page for additional information.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         } else if (feedback === "reservation failed: citizen ID is not registered") {
           setError("citizen_id", {
@@ -69,8 +65,7 @@ function Reserve() {
           toaster.danger("Reservation Failed!", {
             id: "forbidden-action",
             description: "Citizen ID is not registered.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         } else if (feedback === "reservation failed: there is already a reservation for this citizen") {
           setError("citizen_id", {
@@ -80,19 +75,16 @@ function Reserve() {
           toaster.danger("Reservation Failed!", {
             id: "forbidden-action",
             description: "There is already a reservation for this citizen.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         }
       })
-      .catch(function (error) {
+      .catch(function () {
         toaster.danger("Reservation Failed!", {
           id: "forbidden-action",
           description: "Something went wrong!",
-          duration: 5,
-          zIndex: 100
+          duration: 5
         })
-        console.log(error);
       });
   };
 
@@ -103,7 +95,7 @@ function Reserve() {
         <Navbar />
         <div className="card content" style={{background: "white"}}>
           <div style={{margin: "auto"}}>
-            <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit, onError)}>
+            <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
               <div className="frame__body p-0">
                 <div className="row p-0 level fill-height">
                   <div className="col">

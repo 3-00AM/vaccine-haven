@@ -4,6 +4,7 @@ import 'cirrus-ui';
 import homeLogo from '../img/homeLogo.png';
 import firebase from "../config";
 import {AuthContext} from "./Auth";
+import {toaster} from "evergreen-ui";
 
 function Navbar(props) {
 
@@ -50,8 +51,12 @@ function Navbar(props) {
                 <Link id={'nav__signOut__link'} className="white" onClick={() => {
                   firebase.auth().signOut().then(() => {
                     window.location.reload()
-                  }).catch(e => {
-                    console.log(e)
+                  }).catch(() => {
+                    toaster.danger("Sign out failed", {
+                      id: "forbidden-action",
+                      description: "Something went wrong!",
+                      duration: 5
+                    })
                   })
                 }}>Sign Out</Link>
               </div>
