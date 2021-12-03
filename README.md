@@ -44,7 +44,7 @@ information.
 | Narawish Sangsiriwut     |  [NarawishS](https://github.com/NarawishS)  |   Developer   |
 | Pattarin Wongwaipanich   |  [pattarinn](https://github.com/pattarinn)  |   Developer   |
 
-<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
+<div align="right"> <b><a href="#vaccinehaven">↥ back to top</a></b> </div>
 
 <br>
 
@@ -79,7 +79,7 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 
-<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
+<div align="right"> <b><a href="#vaccinehaven">↥ back to top</a></b> </div>
 
 <br>
 
@@ -101,7 +101,7 @@ Site. The user can find the features usage description on the wiki page in the l
 * [User Information & Cancellation](https://github.com/3-00AM/vaccine-haven/wiki/User-Information-&-Cancellation)
 * [Vaccine Site](https://github.com/3-00AM/vaccine-haven/wiki/Vaccine-Site)
 
-<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
+<div align="right"> <b><a href="#vaccinehaven">↥ back to top</a></b> </div>
 
 <br>
 
@@ -110,7 +110,7 @@ Site. The user can find the features usage description on the wiki page in the l
 * [World Class Government](https://github.com/WorldClassProgrammers/Government-APIs)
 * [OGYH](https://github.com/OGYH-Team)
 
-<div align="right"> <b><a href="#top">↥ back to top</a></b> </div>
+<div align="right"> <b><a href="#vaccinehaven">↥ back to top</a></b> </div>
 
 <br>
 
