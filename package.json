@@ -26,7 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -52,6 +52,8 @@
   },
   "devDependencies": {
     "@hookform/devtools": "^4.0.1",
-    "axios-mock-adapter": "^1.20.0"
+    "@testing-library/cypress": "^8.0.2",
+    "axios-mock-adapter": "^1.20.0",
+    "cypress": "^9.1.0"
   }
 }

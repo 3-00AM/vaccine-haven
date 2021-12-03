@@ -58,7 +58,12 @@ function Login() {
             })
           })
         }).catch(() => {
-          window.location.reload();
+          window.location.reload()
+          toaster.danger("Login Failed!", {
+            id: "forbidden-action",
+            description: "Please try login again.",
+            duration: 5
+          })
         })
       }
     }).catch(() => {
