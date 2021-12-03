@@ -1,5 +1,4 @@
 import axios from "axios";
-import async from "async";
 
 export const BASE_URL = "https://wcg-apis.herokuapp.com";
 
@@ -8,6 +7,7 @@ export const config = {
   url: ``,
   headers: {
     'Access-Control-Allow-Origin': '*',
+    'Authorization': ''
   }
 };
 
@@ -28,3 +28,20 @@ export const postUser = async (url) => {
     return [];
   }
 }
+
+export const pageVariants = {
+  initial: {
+    opacity: 0,
+  },
+  in: {
+    opacity: 1,
+  },
+  out: {
+    opacity: 0,
+  }
+};
+
+export const pageTransition = {
+  type: "tween",
+  ease: "anticipate"
+};

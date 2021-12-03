@@ -1,10 +1,6 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import {
-  BASE_URL,
-  fetchUser,
-  postUser,
-} from "../../utils";
+import {BASE_URL, fetchUser, postUser,} from "../../utils";
 
 let stubRegistrationData = {
   citizen_id: "2222222222222",
@@ -79,7 +75,6 @@ describe("When failed post a citizen data", () => {
 
   it('should not get registered data of that citizen when birthdate is not archived minimum age', async function () {
     stubRegistrationData.birthdate = "2018-01-01";
-    postRegistrationUrl = `${registrationUrl}?name=${stubRegistrationData.name}&surname=${stubRegistrationData.surname}&citizen_id=${stubRegistrationData.citizen_id}&birth_date=${stubRegistrationData.birthdate}&occupation=${stubRegistrationData.occupation}&address=${stubRegistrationData.address}&phone_number=${stubRegistrationData.phone_number}&is_risk=${stubRegistrationData.is_risk}`
     mock.onPost(postRegistrationUrl).reply(200, "registration failed: not archived minimum age");
 
     const result = await postUser(postRegistrationUrl)
@@ -90,7 +85,6 @@ describe("When failed post a citizen data", () => {
 
   it('should not get registered data of that citizen when birthdate is invalid format', async function () {
     stubRegistrationData.birthdate = "It's James birthday";
-    postRegistrationUrl = `${registrationUrl}?name=${stubRegistrationData.name}&surname=${stubRegistrationData.surname}&citizen_id=${stubRegistrationData.citizen_id}&birth_date=${stubRegistrationData.birthdate}&occupation=${stubRegistrationData.occupation}&address=${stubRegistrationData.address}&phone_number=${stubRegistrationData.phone_number}&is_risk=${stubRegistrationData.is_risk}`
     mock.onPost(postRegistrationUrl).reply(200, "registration failed: invalid birth date format")
 
     const result = await postUser(postRegistrationUrl)
@@ -101,7 +95,6 @@ describe("When failed post a citizen data", () => {
 
   it('should not register that citizen when a name field is missing', async function () {
     stubRegistrationData.name = ""
-    postRegistrationUrl = `${registrationUrl}?name=${stubRegistrationData.name}&surname=${stubRegistrationData.surname}&citizen_id=${stubRegistrationData.citizen_id}&birth_date=${stubRegistrationData.birthdate}&occupation=${stubRegistrationData.occupation}&address=${stubRegistrationData.address}&phone_number=${stubRegistrationData.phone_number}&is_risk=${stubRegistrationData.is_risk}`
     mock.onPost(postRegistrationUrl).reply(200, "registration failed: missing some attribute")
 
     const result = await postUser(postRegistrationUrl)
@@ -112,7 +105,6 @@ describe("When failed post a citizen data", () => {
 
   it('should not register that citizen when a surname field is missing', async function () {
     stubRegistrationData.surname = ""
-    postRegistrationUrl = `${registrationUrl}?name=${stubRegistrationData.name}&surname=${stubRegistrationData.surname}&citizen_id=${stubRegistrationData.citizen_id}&birth_date=${stubRegistrationData.birthdate}&occupation=${stubRegistrationData.occupation}&address=${stubRegistrationData.address}&phone_number=${stubRegistrationData.phone_number}&is_risk=${stubRegistrationData.is_risk}`
     mock.onPost(postRegistrationUrl).reply(200, "registration failed: missing some attribute")
 
     const result = await postUser(postRegistrationUrl)
@@ -123,7 +115,6 @@ describe("When failed post a citizen data", () => {
 
   it('should not register that citizen when a citizen id field is missing', async function () {
     stubRegistrationData.citizen_id = ""
-    postRegistrationUrl = `${registrationUrl}?name=${stubRegistrationData.name}&surname=${stubRegistrationData.surname}&citizen_id=${stubRegistrationData.citizen_id}&birth_date=${stubRegistrationData.birthdate}&occupation=${stubRegistrationData.occupation}&address=${stubRegistrationData.address}&phone_number=${stubRegistrationData.phone_number}&is_risk=${stubRegistrationData.is_risk}`
     mock.onPost(postRegistrationUrl).reply(200, "registration failed: missing some attribute")
 
     const result = await postUser(postRegistrationUrl)
@@ -134,7 +125,6 @@ describe("When failed post a citizen data", () => {
 
   it('should not register that citizen when a birth date field is missing', async function () {
     stubRegistrationData.birthdate = ""
-    postRegistrationUrl = `${registrationUrl}?name=${stubRegistrationData.name}&surname=${stubRegistrationData.surname}&citizen_id=${stubRegistrationData.citizen_id}&birth_date=${stubRegistrationData.birthdate}&occupation=${stubRegistrationData.occupation}&address=${stubRegistrationData.address}&phone_number=${stubRegistrationData.phone_number}&is_risk=${stubRegistrationData.is_risk}`
     mock.onPost(postRegistrationUrl).reply(200, "registration failed: missing some attribute")
 
     const result = await postUser(postRegistrationUrl)
@@ -145,7 +135,6 @@ describe("When failed post a citizen data", () => {
 
   it('should not register that citizen when an occupation field is missing', async function () {
     stubRegistrationData.occupation = ""
-    postRegistrationUrl = `${registrationUrl}?name=${stubRegistrationData.name}&surname=${stubRegistrationData.surname}&citizen_id=${stubRegistrationData.citizen_id}&birth_date=${stubRegistrationData.birthdate}&occupation=${stubRegistrationData.occupation}&address=${stubRegistrationData.address}&phone_number=${stubRegistrationData.phone_number}&is_risk=${stubRegistrationData.is_risk}`
     mock.onPost(postRegistrationUrl).reply(200, "registration failed: missing some attribute")
 
     const result = await postUser(postRegistrationUrl)
@@ -156,7 +145,6 @@ describe("When failed post a citizen data", () => {
 
   it('should not register that citizen when an address field is missing', async function () {
     stubRegistrationData.address = ""
-    postRegistrationUrl = `${registrationUrl}?name=${stubRegistrationData.name}&surname=${stubRegistrationData.surname}&citizen_id=${stubRegistrationData.citizen_id}&birth_date=${stubRegistrationData.birthdate}&occupation=${stubRegistrationData.occupation}&address=${stubRegistrationData.address}&phone_number=${stubRegistrationData.phone_number}&is_risk=${stubRegistrationData.is_risk}`
     mock.onPost(postRegistrationUrl).reply(200, "registration failed: missing some attribute")
 
     const result = await postUser(postRegistrationUrl)
@@ -167,7 +155,6 @@ describe("When failed post a citizen data", () => {
 
   it('should not register that citizen when a phone number field is missing', async function () {
     stubRegistrationData.phone_number = ""
-    postRegistrationUrl = `${registrationUrl}?name=${stubRegistrationData.name}&surname=${stubRegistrationData.surname}&citizen_id=${stubRegistrationData.citizen_id}&birth_date=${stubRegistrationData.birthdate}&occupation=${stubRegistrationData.occupation}&address=${stubRegistrationData.address}&phone_number=${stubRegistrationData.phone_number}&is_risk=${stubRegistrationData.is_risk}`
     mock.onPost(postRegistrationUrl).reply(200, "registration failed: missing some attribute")
 
     const result = await postUser(postRegistrationUrl)
@@ -178,7 +165,6 @@ describe("When failed post a citizen data", () => {
 
   it('should not register that citizen when is_risk is missing', async function () {
     stubRegistrationData.is_risk = ""
-    postRegistrationUrl = `${registrationUrl}?name=${stubRegistrationData.name}&surname=${stubRegistrationData.surname}&citizen_id=${stubRegistrationData.citizen_id}&birth_date=${stubRegistrationData.birthdate}&occupation=${stubRegistrationData.occupation}&address=${stubRegistrationData.address}&phone_number=${stubRegistrationData.phone_number}&is_risk=${stubRegistrationData.is_risk}`
     mock.onPost(postRegistrationUrl).reply(200, "registration failed: missing some attribute")
 
     const result = await postUser(postRegistrationUrl)

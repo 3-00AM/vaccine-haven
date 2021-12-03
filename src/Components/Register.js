@@ -4,24 +4,25 @@ import {useForm} from 'react-hook-form';
 import {useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
 import "cirrus-ui";
-import Modal from "./Modal";
-import {BASE_URL, config} from "../utils";
+import {toaster} from "evergreen-ui"
+import {BASE_URL, config, pageTransition, pageVariants} from "../utils";
+import CitizenID from "./CitizenID";
+import ThaiNationalID from "../lib/validate";
+import {getAccessToken} from "../lib/getAccessToken";
+import {motion} from "framer-motion"
+
 
 function Register() {
 
-  const {register, handleSubmit, setError, trigger, formState: {errors, isValid}} = useForm({});
+  const {register, handleSubmit, setError, trigger, formState: {errors}} = useForm({});
 
   let history = useHistory();
 
-  const onError = (errors, e) => {
-    console.log(errors, e)
-    console.log(isValid)
-  };
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
-
-    config.params=data;
+    await getAccessToken()
+    config.params = data;
 
     await axios.post(`${BASE_URL}/registration`, null, config)
       .then(function (response) {
@@ -29,73 +30,88 @@ function Register() {
         let feedback = res_data.feedback;
         if (response.status === 201) {
           history.push("/");
+          toaster.success("Registration Successful!", {
+            id: "forbidden-action",
+            description: "Now you can proceed to reservation page for reserving the vaccine.",
+            duration: 5
+          })
         } else if (feedback === "registration failed: this person already registered") {
           setError("citizen_id", {
             type: "manual",
             message: "This Citizen ID already registered."
+          })
+          toaster.danger("Registration Failed!", {
+            id: "forbidden-action",
+            description: "This person is already registered.",
+            duration: 5
           })
         } else if (feedback === "registration failed: not archived minimum age") {
           setError("birth_date", {
             type: "manual",
             message: "Minimum age has to be at least 30 years old."
           })
+          toaster.danger("Registration Failed!", {
+            id: "forbidden-action",
+            description: "Not archived minimum age.",
+            duration: 5
+          })
         } else if (feedback === "registration failed: invalid birth date format") {
           setError("birth_date", {
             type: "manual",
             message: "Invalid birth date."
           })
+          toaster.danger("Registration Failed!", {
+            id: "forbidden-action",
+            description: "Invalid birth date format.",
+            duration: 5
+          })
         }
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch(function () {
+        toaster.danger("Registration Failed!", {
+          id: "forbidden-action",
+          description: "Something went wrong!",
+          duration: 5
+        })
       });
   };
 
   return (
-    <div className="hero fullscreen">
+    <motion.div
+      className="background__blue"
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
       <Navbar />
-      <div className="content">
+      <div className="card content" style={{background: "white"}}>
         <div style={{margin: "auto"}}>
-          <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit, onError)}>
+          <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
             <div className="frame__body p-0">
               <div className="row p-0 level fill-height">
                 <div className="col">
-                  <div className="space xlarge" />
+                  <div className="space" />
                   <div className="padded">
                     <h1 className="u-text-center u-font-alt">Citizen Registration</h1>
                     <div className="divider" />
                     <p className="u-text-center">Get the user information for who want to reserve the vaccine</p>
                     <div className="divider" />
 
-                    <div className="mb-1">
-                      <label className="font-bold">Citizen ID <span className="required">*</span> <span
-                        className="info inline font-light">Please input your real ID.</span></label>
-                      <div className="section-body">
-                        <div className="input-control">
-                          <input
-                            type="number"
-                            id={'citizen_id'}
-                            className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.citizen_id && "text-danger input-error"}`}
-                            placeholder="Citizen ID"
-                            {...register("citizen_id", {
-                              required: "Citizen ID is required",
-                              minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
-                              maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'}
-                            })} onKeyUp={() => {
-                            trigger("citizen_id");
-                          }} />
-                          <span className="icon icon-left"><i
-                            className={`fa fa-wrapper fa-id-card ${errors.citizen_id && "text-danger input-error"}`}
-                            aria-hidden="true" /></span>
-                        </div>
-                      </div>
-                      {errors.citizen_id && <span className="required info">{errors.citizen_id.message}</span>}
-                    </div>
+                    <CitizenID errors={errors} useFormRegisterReturn={register("citizen_id", {
+                      required: "Citizen ID is required",
+                      minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
+                      maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'},
+                      validate: value => ThaiNationalID(value) || "Invalid Citizen ID"
+                    })} onKeyUp={() => {
+                      trigger("citizen_id");
+                    }} />
 
                     <div className="mb-1">
                       <div className="section-body row">
                         <div className="col-6 pl-0">
-                          <label className="font-bold">Firstname <span className="required">*</span></label>
+                          <label className="font-bold">Firstname<span className="required">*</span></label>
                           <div className="input-control">
                             <input
                               id={`name`}
@@ -114,7 +130,7 @@ function Register() {
                         </div>
 
                         <div className="col-6 pr-0">
-                          <label className="font-bold">Lastname <span className="required">*</span></label>
+                          <label className="font-bold">Lastname<span className="required">*</span></label>
                           <div className="input-control">
                             <input
                               id={`surname`}
@@ -135,7 +151,7 @@ function Register() {
 
                     <div className="row">
                       <div className="mb-1 col-6 pl-0">
-                        <label className="font-bold">Birthdate <span className="required">*</span></label>
+                        <label className="font-bold">Birthdate<span className="required">*</span></label>
                         <div className="input-control">
                           <input
                             type="date"
@@ -154,7 +170,7 @@ function Register() {
                       </div>
 
                       <div className="mb-1 col-6 pr-0">
-                        <label className="font-bold label-small">Occupation <span className="required">*</span></label>
+                        <label className="font-bold label-small">Occupation<span className="required">*</span></label>
                         <div className="input-control">
                           <input type="text"
                                  id={`occupation`}
@@ -174,14 +190,19 @@ function Register() {
 
                     <div className="row">
                       <div className="mb-1 col-6 pl-0">
-                        <label className="font-bold">Phone Number <span className="required">*</span></label>
+                        <label className="font-bold">Phone Number<span className="required">*</span><span
+                          className="info inline font-light">Please input valid phone number.</span></label>
                         <div className="input-control">
                           <input
                             type="tel"
                             id={`phone_number`}
                             className={`input-contains-icon input-contains-icon input-contains-icon-left ${errors.phone_number && "text-danger input-error"}`}
                             placeholder="Phone Number"
-                            {...register("phone_number", {required: "Phone number is required."})}
+                            {...register("phone_number", {
+                              required: "Phone number is required.",
+                              minLength: {value: 10, message: 'Phone number must be at least 10 characters long'},
+                              maxLength: {value: 10, message: 'Phone number must be at most 10 characters long'},
+                            })}
                             onKeyUp={() => {
                               trigger("phone_number");
                             }} />
@@ -194,7 +215,7 @@ function Register() {
                     </div>
 
                     <div className="mb-1">
-                      <label className="font-bold">Address <span className="required">*</span></label>
+                      <label className="font-bold">Address<span className="required">*</span></label>
                       <textarea
                         id={`address`}
                         className={`form-group-input ${errors.address && "text-danger input-error"}`}
@@ -223,25 +244,21 @@ function Register() {
                       </div>
                       <div className="mb-1 col-6 pr-0">
                         <div className="btn-group u-pull-right">
-                          <button id={`register__btn`} disabled={!isValid} className="btn-info"
+                          <button id={`register__btn`} className="btn-info"
                                   type="submit">Submit
                           </button>
                         </div>
-                        <Modal id={"confirm-modal"} title={"Register Citizen"} topic={"Confirm registration"}>
-                          This is content
-                        </Modal>
                       </div>
                     </div>
-
                   </div>
-                  <div className="space xlarge" />
                 </div>
               </div>
             </div>
           </form>
         </div>
       </div>
-    </div>
+      <div className="space xlarge" />
+    </motion.div>
   );
 }
 

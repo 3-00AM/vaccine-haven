@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import HttpsRedirect from 'react-https-redirect';
-
 import {BrowserRouter as Router} from 'react-router-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
