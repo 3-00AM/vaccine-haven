@@ -58,7 +58,7 @@ function Login() {
             })
           })
         }).catch(() => {
-          grecaptcha.reset(recaptcha)
+          window.location.reload()
           toaster.danger("Login Failed!", {
             id: "forbidden-action",
             description: "Please try login again.",
