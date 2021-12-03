@@ -4,12 +4,15 @@ import axios from "axios";
 import Navbar from "./Navbar";
 import LoadingPage from "./LoadingPage";
 import {config} from "../utils";
+import {toaster} from "evergreen-ui";
+import {useHistory} from "react-router";
 
 export default function Site() {
 
   const [site] = useState([]);
   const [loading, setLoading] = useState(false);
   const SITE_URL = `https://ogyh-backend-dev.herokuapp.com`
+  const history = useHistory()
 
   useEffect(async () => {
     try {
@@ -34,7 +37,12 @@ export default function Site() {
         });
       setLoading(true);
     } catch (e) {
-      console.log(e);
+      toaster.danger("Get Site Information Failed!", {
+        id: "forbidden-action",
+        description: "Please reload this page or come back later.",
+        duration: 5
+      })
+      history.push('/')
     }
   }, []);
 

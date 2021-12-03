@@ -23,32 +23,28 @@ function ReserveInfo(props) {
           toaster.success("Cancellation Successful!", {
             id: "forbidden-action",
             description: "Latest reservation has been canceled.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
           history.push("/")
         } else if (reservation_feedback === "cancel reservation failed: invalid citizen ID") {
           toaster.danger("Cancellation Failed!", {
             id: "forbidden-action",
             description: "Invalid citizen ID",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         } else if (reservation_feedback === "cancel reservation failed: there is no reservation for this citizen") {
           toaster.danger("Cancellation Failed!", {
             id: "forbidden-action",
             description: "There is no reservation for this citizen",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         }
       })
-      .catch(function (error) {
+      .catch(function () {
         toaster.danger("Cancellation Failed!", {
           id: "forbidden-action",
           description: "Failed to cancel.",
-          duration: 5,
-          zIndex: 100
+          duration: 5
         })
       });
   }
@@ -57,7 +53,7 @@ function ReserveInfo(props) {
     <div className='col-5'>
       <div className='card h-100 u-overflow-auto'>
         <div className='card__header'>
-          <p className="font-bold px-3">Last Vaccine Reservation Information:</p>
+          <p className="font-bold px-3">Vaccination Queue Information:</p>
         </div>
         <div className='content'>
           <div className='row'>
@@ -76,14 +72,14 @@ function ReserveInfo(props) {
               <span id={`reserve_site_value`}>{last_reserve.site_name}</span>
             </div>
           </div>
-          <div className='row'>
-            <div className='col-5'>
-              <span>Queue: </span>
-            </div>
-            <div className='col-7'>
-              <span id={`reserve_queue_value`}>{last_reserve.queue}</span>
-            </div>
-          </div>
+          {/*<div className='row'>*/}
+          {/*  <div className='col-5'>*/}
+          {/*    <span>Queue: </span>*/}
+          {/*  </div>*/}
+          {/*  <div className='col-7'>*/}
+          {/*    <span id={`reserve_queue_value`}>{last_reserve.queue}</span>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
           <div className='row'>
             <div className='col-5'>
               <span>Date: </span>
@@ -97,7 +93,7 @@ function ReserveInfo(props) {
               <span>Time: </span>
             </div>
             <div className='col-7'>
-              <span id={`reserve_time_value`}>{last_reserve.timestamp.slice(10, 16)}</span>
+              <span id={`reserve_time_value`}>{last_reserve.timestamp.slice(11, 16)}</span>
             </div>
           </div>
         </div>

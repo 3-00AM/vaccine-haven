@@ -13,13 +13,9 @@ import {getAccessToken} from "../lib/getAccessToken";
 
 function Register() {
 
-  const {register, handleSubmit, setError, trigger, formState: {errors, isValid}} = useForm({});
+  const {register, handleSubmit, setError, trigger, formState: {errors}} = useForm({});
 
   let history = useHistory();
-
-  const onError = (errors, e) => {
-    console.log(errors, e)
-  };
 
 
   const onSubmit = async (data, event) => {
@@ -70,7 +66,7 @@ function Register() {
           })
         }
       })
-      .catch(function (error) {
+      .catch(function () {
         toaster.danger("Registration Failed!", {
           id: "forbidden-action",
           description: "Something went wrong!",
@@ -84,7 +80,7 @@ function Register() {
       <Navbar />
       <div className="card content" style={{background: "white"}}>
         <div style={{margin: "auto"}}>
-          <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit, onError)}>
+          <form className="frame p-0" method="post" autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
             <div className="frame__body p-0">
               <div className="row p-0 level fill-height">
                 <div className="col">

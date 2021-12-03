@@ -3,7 +3,7 @@ import axios from "axios";
 import 'cirrus-ui';
 import Navbar from "./Navbar";
 import {useHistory} from "react-router-dom";
-import {toaster} from 'evergreen-ui'
+import {toaster} from 'evergreen-ui';
 import {BASE_URL, config} from "../utils";
 import {AuthContext} from "./Auth";
 import {db} from "../config";
@@ -35,8 +35,7 @@ function UserInformation() {
           toaster.danger("Submit Failed!", {
             id: "forbidden-action",
             description: "Citizen ID is not registered.",
-            duration: 5,
-            zIndex: 100
+            duration: 5
           })
         } else {
           set_register_data(res_register_data)
@@ -45,26 +44,16 @@ function UserInformation() {
             set_reservation_data(res_reservation_data);
           } else {
             setIsReserve(false)
-            set_reservation_data({
-              citizen_id: "",
-              site_name: "",
-              vaccine_name: "",
-              timestamp: "",
-              queue: "",
-              checked: ""
-            })
           }
         }
         setLoading(true)
       }))
-      .catch(function (error) {
+      .catch(function () {
         toaster.danger("Submit Failed!", {
           id: "forbidden-action",
           description: "Please make sure you already registered.",
-          duration: 5,
-          zIndex: 100
+          duration: 5
         })
-        console.log(error)
       })
   };
 
@@ -89,7 +78,7 @@ function UserInformation() {
             </div>
             <div className='col-4'>
                       <span
-                        key={index}>When: {value.checked === "True" ? value.queue.slice(0, 10) : value.timestamp.slice(0, 10)}</span>
+                        key={index}>Date: {value.queue.slice(0, 10)}</span>
             </div>
             <div className='col-4'>
 
@@ -176,12 +165,13 @@ function UserInformation() {
             </div>
           </div>
           <div className='row'>
-            {(isReserve && reservation_data[reservation_data.length - 1].checked === "False") ? <ReserveInfo data={reservation_data} /> :
+            {(isReserve && reservation_data[reservation_data.length - 1].checked === "False") ?
+              <ReserveInfo data={reservation_data} /> :
               <NoReserve data={reservation_data} />}
             <div className='col-7'>
               <div className='card h-100 u-overflow-auto'>
                 <div className='card__header'>
-                  <p className="font-bold px-3">Vaccine List:</p>
+                  <p className="font-bold px-3">Vaccination Information:</p>
                 </div>
                 <div className='content'>
                   <ul>
@@ -191,7 +181,8 @@ function UserInformation() {
                         <div className="u-center">
                           <p>Not Taken any Vaccine yet.</p>
                         </div>
-                      </>}
+                      </>
+                    }
                   </ul>
                 </div>
               </div>

@@ -14,13 +14,10 @@ import {getAccessToken} from "../lib/getAccessToken";
 
 function Login() {
 
-  const {register, handleSubmit, setError, trigger, formState: {errors, isValid}} = useForm();
+  const {register, handleSubmit, setError, trigger, formState: {errors}} = useForm();
   const [loading, setLoading] = useState(true)
   let history = useHistory();
 
-  const onError = (errors, e) => {
-    console.log(errors, e)
-  };
 
   const sentOTP = async (data, event) => {
     setLoading(false)
@@ -55,7 +52,7 @@ function Login() {
           })
         })
       }
-    }).catch((e) => {
+    }).catch(() => {
       setLoading(true)
       setError("citizen_id", {
         type: "manual",
@@ -80,7 +77,7 @@ function Login() {
         <Navbar />
         <div className="card content" style={{background: "white"}}>
           <div style={{margin: "auto"}}>
-            <form className="frame p-0" autoComplete="on" onSubmit={handleSubmit(sentOTP, onError)}>
+            <form className="frame p-0" autoComplete="on" onSubmit={handleSubmit(sentOTP)}>
               <div className="frame__body p-0">
                 <div className="row p-0 level fill-height">
                   <div className="col">

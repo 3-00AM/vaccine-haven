@@ -2,7 +2,7 @@ import React from "react";
 import "cirrus-ui";
 import {Link} from "react-router-dom";
 
-function NoReserve(props) {
+function NoReserve() {
   return (
     <div className="col-5">
       <div className="card h-100">

@@ -13,7 +13,7 @@ export const config = {
 };
 
 export const fetchUser = async (url) => {
-  getAccessToken()
+  await getAccessToken()
   try {
     return await axios.get(`${url}`);
   } catch (e) {
@@ -22,7 +22,7 @@ export const fetchUser = async (url) => {
 };
 
 export const postUser = async (url) => {
-  getAccessToken()
+  await getAccessToken()
   try {
     // config.params = data
     // config.url = `${BASE_URL}/registration`
