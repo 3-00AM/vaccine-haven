@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BASE_URL = "https://wcg-apis-test.herokuapp.com";
+export const BASE_URL = "https://wcg-apis.herokuapp.com";
 
 export const config = {
   params: ``,

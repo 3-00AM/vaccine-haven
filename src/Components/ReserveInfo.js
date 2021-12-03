@@ -72,20 +72,12 @@ function ReserveInfo(props) {
               <span id={`reserve_site_value`}>{last_reserve.site_name}</span>
             </div>
           </div>
-          {/*<div className='row'>*/}
-          {/*  <div className='col-5'>*/}
-          {/*    <span>Queue: </span>*/}
-          {/*  </div>*/}
-          {/*  <div className='col-7'>*/}
-          {/*    <span id={`reserve_queue_value`}>{last_reserve.queue}</span>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
           <div className='row'>
             <div className='col-5'>
               <span>Date: </span>
             </div>
             <div className='col-7'>
-              <span id={`reserve_date_value`}>{last_reserve.timestamp.slice(0, 10)}</span>
+              <span id={`reserve_date_value`}>{last_reserve.queue.slice(0, 10)}</span>
             </div>
           </div>
           <div className='row'>
@@ -93,7 +85,7 @@ function ReserveInfo(props) {
               <span>Time: </span>
             </div>
             <div className='col-7'>
-              <span id={`reserve_time_value`}>{last_reserve.timestamp.slice(11, 16)}</span>
+              <span id={`reserve_time_value`}>{last_reserve.queue.slice(11, 16)}</span>
             </div>
           </div>
         </div>
