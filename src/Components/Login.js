@@ -1,16 +1,16 @@
 import React, {useContext, useState} from "react";
 import {AuthContext} from "./Auth";
 import firebase, {db} from "../config";
-import {BASE_URL, config} from "../utils";
+import {BASE_URL, config, pageTransition, pageVariants} from "../utils";
 import axios from "axios";
-import Navbar from "./Navbar";
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
-import CitizenID from "./CitizenID";
 import {toaster} from "evergreen-ui";
-
-import ThaiNationalID from "../lib/validate";
 import {getAccessToken} from "../lib/getAccessToken";
+import ThaiNationalID from "../lib/validate";
+import CitizenID from "./CitizenID";
+import Navbar from "./Navbar";
+import {motion} from "framer-motion";
 
 function Login() {
 
@@ -42,13 +42,20 @@ function Login() {
         setLoading(true)
         let recaptcha = new firebase.auth.RecaptchaVerifier("recaptcha-container")
         firebase.auth().signInWithPhoneNumber(sms, recaptcha).then((e) => {
-          let code = prompt("enter OTP");
+          let code = prompt("Enter OTP");
           if (code == null) {
             return;
           }
           e.confirm(code).then((res) => {
             db.collection('users').doc(res.user.uid).set({citizen_id: data.citizen_id})
             console.log(res, "OTP success")
+          }).catch(() => {
+            window.location.reload();
+            toaster.danger("OTP Failed!", {
+              id: "forbidden-action",
+              description: "You entered an invalid OTP. Please try again.",
+              duration: 5
+            })
           })
         })
       }
@@ -72,55 +79,60 @@ function Login() {
   }
 
   return (
-    <>
-      <div className="fullscreen background__blue">
-        <Navbar />
-        <div className="card content" style={{background: "white"}}>
-          <div style={{margin: "auto"}}>
-            <form className="frame p-0" autoComplete="on" onSubmit={handleSubmit(sentOTP)}>
-              <div className="frame__body p-0">
-                <div className="row p-0 level fill-height">
-                  <div className="col">
-                    <div className="space xlarge" />
-                    <div className="padded">
-                      <h1 className="u-text-center u-font-alt">Log In</h1>
-                      <div className="divider" />
-                      <p className="u-text-center">Login to using Citizen ID and send OTP to your phone.</p>
-                      <div className="divider" />
+    <motion.div
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
+      <Navbar headerFixed={true}/>
+      <div className="row p-0">
+        <div className="col-6 p-0 level">
+          <div className="u-text-left w-100">
+            <form className="content" autoComplete="on" onSubmit={handleSubmit(sentOTP)}>
+              <h4>Vaccine Haven</h4>
+              <h6 className="font-alt">Login to using Citizen ID and send OTP to your phone.</h6>
 
-                      <CitizenID errors={errors} useFormRegisterReturn={register("citizen_id", {
-                        required: "Citizen ID is required",
-                        minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
-                        maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'},
-                        validate: value => ThaiNationalID(value) || "Invalid Citizen ID"
-                      })} onKeyUp={() => {
-                        trigger("citizen_id");
-                      }} />
+              <div className="divider" />
 
-                      <div className="space" />
+              <CitizenID errors={errors} useFormRegisterReturn={register("citizen_id", {
+                required: "Citizen ID is required",
+                minLength: {value: 13, message: 'Citizen ID must be at least 13 characters long'},
+                maxLength: {value: 13, message: 'Citizen ID must be at most 13 characters long'},
+                validate: value => ThaiNationalID(value) || "Invalid Citizen ID"
+              })} onKeyUp={() => {
+                trigger("citizen_id");
+              }} />
 
-
-                      {loading ? <div id="recaptcha-container" className={`u-center`} /> :
-                        <div className="u-flex u-items-center u-justify-center">
-                          <div className="animated loading loading-right u-text-right">
-                            <p>loading reCAPTCHA</p>
-                          </div>
-                        </div>
-                      }
-
-                      <div className="btn-group u-pull-right">
-                        <button id={`login__btn`} className="btn-success" type="submit">Send OTP</button>
-                      </div>
-                    </div>
-                    <div className="space xlarge" />
+              {loading ? <div id="recaptcha-container" className={`u-center`} /> :
+                <div className="u-flex u-items-center u-justify-center">
+                  <div className="animated loading loading-right u-text-right">
+                    <p>loading reCAPTCHA</p>
                   </div>
+                </div>
+              }
+
+              <div className="form-section u-text-right">
+                <div className="m-1 u-inline-block">
+                  <button id={`login__btn`} className="btn-info" type="submit">Send OTP</button>
+                </div>
+                <div className="m-1 u-inline-block">
+                  <Link to={"/"}>
+                    <button id={`cancel__btn`} type={"reset"} className="btn-light">
+                      Cancel
+                    </button>
+                  </Link>
                 </div>
               </div>
             </form>
           </div>
         </div>
+        <div className="col-6 p-0">
+          <div id="splash-img" className="hero fullscreen hero-img" />
+        </div>
       </div>
-    </>
+    </motion.div>
   )
 }
 

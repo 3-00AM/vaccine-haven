@@ -5,10 +5,11 @@ import {useHistory} from "react-router-dom";
 import Navbar from "./Navbar";
 import "cirrus-ui";
 import {toaster} from "evergreen-ui"
-import {BASE_URL, config} from "../utils";
+import {BASE_URL, config, pageTransition, pageVariants} from "../utils";
 import CitizenID from "./CitizenID";
 import ThaiNationalID from "../lib/validate";
 import {getAccessToken} from "../lib/getAccessToken";
+import {motion} from "framer-motion"
 
 
 function Register() {
@@ -76,7 +77,14 @@ function Register() {
   };
 
   return (
-    <div className="background__blue">
+    <motion.div
+      className="background__blue"
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
       <Navbar />
       <div className="card content" style={{background: "white"}}>
         <div style={{margin: "auto"}}>
@@ -250,7 +258,7 @@ function Register() {
         </div>
       </div>
       <div className="space xlarge" />
-    </div>
+    </motion.div>
   );
 }
 

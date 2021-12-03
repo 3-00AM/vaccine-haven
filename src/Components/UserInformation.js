@@ -11,6 +11,8 @@ import LoadingPage from "./LoadingPage";
 import NoReserve from './NoReserve';
 import ReserveInfo from './ReserveInfo';
 import {getAccessToken} from "../lib/getAccessToken";
+import {motion} from "framer-motion"
+import {pageTransition, pageVariants} from "../utils";
 
 
 function UserInformation() {
@@ -92,7 +94,14 @@ function UserInformation() {
 
   function getContent() {
     return (
-      <div className="background__blue">
+      <motion.div
+        className="background__blue"
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+        transition={pageTransition}
+      >
         <Navbar />
         <div className="px-1 mx-2">
           <div className='row'>
@@ -189,7 +198,7 @@ function UserInformation() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   }
 

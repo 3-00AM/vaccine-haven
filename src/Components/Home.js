@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 import AOS from "aos";
 import 'aos/dist/aos.css';
 import {AuthContext} from "./Auth";
+import {motion} from "framer-motion"
+import {pageTransition, pageVariants} from "../utils";
 
 function Home() {
   const [scroll, setScroll] = useState(0)
@@ -23,7 +25,14 @@ function Home() {
   })
 
   return (
-    <div className="Home">
+    <motion.div
+      className="Home"
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
       <Navbar onScroll={scroll ? "header-clear header-landing" : "header-dark"} headerFixed={true} />
       <section id={'splash'}>
         <div id="splash-img" className="hero fullscreen hero-img parallax-img">
@@ -123,7 +132,7 @@ function Home() {
         </section>
       </div>
       <div className="space xlarge" />
-    </div>
+    </motion.div>
   );
 }
 

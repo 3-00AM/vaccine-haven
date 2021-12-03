@@ -12,6 +12,8 @@ import CitizenID from "./CitizenID";
 import ThaiNationalID from "../lib/validate";
 import LoadingPage from "./LoadingPage";
 import {getAccessToken} from "../lib/getAccessToken";
+import {motion} from "framer-motion"
+import {pageTransition, pageVariants} from "../utils";
 
 
 function Reserve() {
@@ -91,7 +93,14 @@ function Reserve() {
 
   function getReserve() {
     return (
-      <div className="fullscreen background__blue">
+      <motion.div
+        className="fullscreen background__blue"
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+        transition={pageTransition}
+      >
         <Navbar />
         <div className="card content" style={{background: "white"}}>
           <div style={{margin: "auto"}}>
@@ -167,7 +176,7 @@ function Reserve() {
             </form>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
