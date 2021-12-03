@@ -1,10 +1,11 @@
-
-beforeEach(() => {
-    cy.visit('/');
-})
-
 describe("Register a citizen to database", () => {
+    beforeEach(() => {
+    cy.visit('/');
+    cy.wait(1000)
+})
     it("should send POST request with the citizen information to government", () => {
+        // cy.visit('/');
+        // cy.wait(1000)
         cy.get('#nav__register__link').click();
         cy.wait(200)
         cy.get('#citizen_id').type('8023525444082');

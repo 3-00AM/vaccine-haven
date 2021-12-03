@@ -1,8 +1,8 @@
-beforeEach(() => {
-    cy.visit("/registration")
-})
-
 describe("renders main features of registration page", () => {
+    beforeEach(() => {
+        cy.visit("/registration")
+        cy.wait(1000)
+    })
     it("renders a pad for form", () => {
         cy.get(".padded").should("exist")
     })

@@ -1,9 +1,9 @@
-
-beforeEach(() => {
-    cy.visit('/site')
-})
-
 describe("go to site information page", () => {
+    beforeEach(() => {
+        cy.visit('/site')
+        cy.wait(10000)
+    })
+    
     it("renders navbar", () => {
         cy.get(".header-brand").should("exist")
         cy.get("#header-menu").should("exist")
@@ -13,7 +13,8 @@ describe("go to site information page", () => {
     })
 
     it("renders sites stations", () => {
-        cy.get(".p-1").should('exist')
+        // cy.get("p-1").should('exist')
+        // cy.visit('/site')
         cy.findByText('สถานีกลางบางซื่อ').should('exist')
         cy.findByText('เซ็นทรัลพลาซา เวสเกต').should('exist')
         cy.findByText('ศูนย์กีฬากำธน สินธวานนท์ กฟผ.').should('exist')

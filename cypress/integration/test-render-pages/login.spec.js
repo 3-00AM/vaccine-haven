@@ -1,9 +1,10 @@
 
-beforeEach(() => {
-    cy.visit("/")
-    cy.get("#nav__logIn__link").click()
-})
 describe("renders login page with the correct components", () => {
+    beforeEach(() => {
+        cy.visit("/")
+        cy.get("#nav__logIn__link").click()
+        cy.wait(1000)
+    })
     it("renders login section", () => {
         cy.get("#citizen_id").should("exist")
         cy.get("#login__btn").should("exist")

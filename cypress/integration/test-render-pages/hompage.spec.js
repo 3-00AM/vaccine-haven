@@ -1,8 +1,8 @@
-
-beforeEach(() => {
-    cy.visit("/")
-})
 describe("renders the homepage", () => {
+    beforeEach(() => {
+        cy.visit("/")
+        cy.wait(1000)
+    })
     it("renders navbar", () => {
         cy.get(".header-brand").should("exist")
         cy.get("#header-menu").should("exist")
