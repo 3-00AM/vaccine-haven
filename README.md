@@ -33,16 +33,16 @@ information.
 
 ## Team Members
 
-| Name                     |                  GitHub ID                  |     Role      |
-| ------------------------ | :-----------------------------------------: | :-----------: |
+| Name                     | GitHub ID                                   | Role          |
+|:-------------------------|:--------------------------------------------|:--------------|
 | Vichisorn Wejsupakul     | [james31366](https://github.com/james31366) | Scrum Master  |
-| Teeranut Sawanyawat      |     [LevNut](https://github.com/LevNut)     | Product Owner |
-| Bheem Suttipong          |  [Bheem6005](https://github.com/Bheem6005)  |   Developer   |
-| Chonchanok Chevaisrakul  | [boom210232](https://github.com/boom210232) |   Developer   |
-| Kongtapp Veerawattananun |  [KongtappV](https://github.com/KongtappV)  |   Developer   |
-| Metaras Charoenseang     |    [metaras](https://github.com/metaras)    |   Developer   |
-| Narawish Sangsiriwut     |  [NarawishS](https://github.com/NarawishS)  |   Developer   |
-| Pattarin Wongwaipanich   |  [pattarinn](https://github.com/pattarinn)  |   Developer   |
+| Teeranut Sawanyawat      | [LevNut](https://github.com/LevNut)         | Product Owner |
+| Bheem Suttipong          | [Bheem6005](https://github.com/Bheem6005)   | Developer     |
+| Chonchanok Chevaisrakul  | [boom210232](https://github.com/boom210232) | Developer     |
+| Kongtapp Veerawattananun | [KongtappV](https://github.com/KongtappV)   | Developer     |
+| Metaras Charoenseang     | [metaras](https://github.com/metaras)       | Developer     |
+| Narawish Sangsiriwut     | [NarawishS](https://github.com/NarawishS)   | Developer     |
+| Pattarin Wongwaipanich   | [pattarinn](https://github.com/pattarinn)   | Developer     |
 
 <div align="right"> <b><a href="#vaccinehaven">↥ back to top</a></b> </div>
 
