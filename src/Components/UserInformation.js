@@ -198,6 +198,7 @@ function UserInformation() {
             </div>
           </div>
         </div>
+        <div className="space xlarge" />
       </motion.div>
     );
   }

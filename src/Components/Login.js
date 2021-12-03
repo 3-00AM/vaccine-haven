@@ -57,6 +57,8 @@ function Login() {
               duration: 5
             })
           })
+        }).catch(() => {
+          window.location.reload();
         })
       }
     }).catch(() => {
@@ -115,14 +117,14 @@ function Login() {
 
               <div className="form-section u-text-right">
                 <div className="m-1 u-inline-block">
-                  <button id={`login__btn`} className="btn-info" type="submit">Send OTP</button>
-                </div>
-                <div className="m-1 u-inline-block">
                   <Link to={"/"}>
                     <button id={`cancel__btn`} type={"reset"} className="btn-light">
                       Cancel
                     </button>
                   </Link>
+                </div>
+                <div className="m-1 u-inline-block">
+                  <button id={`login__btn`} className="btn-info" type="submit">Send OTP</button>
                 </div>
               </div>
             </form>
