@@ -65,6 +65,26 @@ function Register() {
             description: "Invalid birth date format.",
             duration: 5
           })
+        } else if (feedback === "registration failed: invalid phone number") {
+          setError("phone_number", {
+            type: "manual",
+            message: "Invalid phone number."
+          })
+          toaster.danger("Registration Failed!", {
+            id: "forbidden-action",
+            description: "Invalid phone number.",
+            duration: 5
+          })
+        } else if (feedback === "registration failed: this phone number already registered") {
+          setError("phone_number", {
+            type: "manual",
+            message: "This phone number already registered."
+          })
+          toaster.danger("Registration Failed!", {
+            id: "forbidden-action",
+            description: "This phone number already registered.",
+            duration: 5
+          })
         }
       })
       .catch(function () {
