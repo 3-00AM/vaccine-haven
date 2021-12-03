@@ -58,7 +58,12 @@ function Login() {
             })
           })
         }).catch(() => {
-          window.location.reload();
+          grecaptcha.reset(recaptcha)
+          toaster.danger("Login Failed!", {
+            id: "forbidden-action",
+            description: "Please try login again.",
+            duration: 5
+          })
         })
       }
     }).catch(() => {
